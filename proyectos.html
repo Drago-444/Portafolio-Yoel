@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos | Yoel Velásquez - Ingeniero de Software & IA</title>
+    <meta name="description" content="Portafolio de proyectos desarrollados por Yoel Velásquez - Sistemas web, aplicaciones de IA y soluciones tecnológicas">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { 
+            font-family: 'Roboto Mono', monospace;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        .dark body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .font-title { font-family: 'Fira Code', monospace; }
+        
+        /* Project Card Hover Effect Mejorado */
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1), 0 0 0 1px rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Dark mode card improvements */
+        .dark .project-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+        .dark .project-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+        
+        /* Project Image Container Mejorado */
+        .project-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        .project-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.1), transparent);
+            pointer-events: none;
+        }
+        .project-image img {
+            transition: transform 0.7s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.95);
+        }
+        .project-card:hover .project-image img {
+            transform: scale(1.08);
+            filter: brightness(1.05);
+        }
+        
+        /* Status Badges Mejorados */
+        .status-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 10;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        /* Modal Mejorado */
+        .project-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            animation: modalFadeIn 0.3s ease;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .project-modal.active {
+            display: flex;
+        }
+        
+        /* Dark mode classes mejorados */
+        .dark .dark\:bg-gray-900 { background-color: #0f172a; }
+        .dark .dark\:bg-gray-800 { background-color: #1e293b; }
+        .dark .dark\:text-white { color: #f8fafc; }
+        .dark .dark\:text-gray-200 { color: #e2e8f0; }
+        .dark .dark\:border-gray-700 { border-color: #334155; }
+        
+        /* Filter Buttons Mejorados */
+        .filter-btn {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            font-weight: 500;
+        }
+        .filter-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .filter-btn:hover::after {
+            width: 80%;
+        }
+        .filter-btn.active {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            border-color: transparent;
+        }
+        .filter-btn.active::after {
+            display: none;
+        }
+        
+        /* Tech Stack Tags Mejorados */
+        .tech-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.4rem 0.9rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
+            color: #1d4ed8;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1.5px solid rgba(59, 130, 246, 0.15);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+        .tech-tag:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1));
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.1);
+        }
+        .dark .tech-tag {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.2), rgba(30, 64, 175, 0.1));
+            border-color: rgba(59, 130, 246, 0.25);
+            color: #93c5fd;
+        }
+        
+        /* Project Stats Mejorados */
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 1rem;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .stat-item:hover::before {
+            opacity: 1;
+        }
+        .stat-item:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.8));
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+        }
+        .dark .stat-item {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(30, 41, 59, 0.5));
+            border: 1px solid rgba(51, 65, 85, 0.6);
+        }
+        .dark .stat-item:hover {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.7));
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+        
+        /* Counter Animation Mejorada */
+        .counter-animated {
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+        }
+        
+        /* Image Gallery Mejorada */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+        }
+        
+        /* Progress bar mejorado */
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .dark .progress-bar {
+            background-color: #334155;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.6s ease;
+            background: linear-gradient(90deg, #f59e0b, #fbbf24);
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Header Gradient Mejorado */
+        .header-gradient {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-gradient::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+        }
+        .header-gradient::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+        }
+        
+        /* Botones de acción mejorados */
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* Mejora en el footer */
+        .footer-gradient {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-top: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        
+        /* Mejora en los títulos */
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 200%;
+            animation: gradientMove 3s ease infinite;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #3b82f6, #2563eb);
+            border-radius: 5px;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+        }
+        
+        /* Animación sutil para las cards al cargar */
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .project-card {
+            animation: cardAppear 0.6s ease forwards;
+        }
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        
+        /* Mejora en los badges de categoría en header */
+        .category-badge {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(255,255,255,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        /* Mejora en el botón de tema */
+        #themeToggleProjects {
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+    </style>
+    
+    <!-- Script para configuración de Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-gray-900 dark:text-gray-100 min-h-screen">
+    
+    <!-- Botón Dark/Light Mode Fixed Mejorado -->
+    <button id="themeToggleProjects" 
+            class="fixed top-6 right-6 z-50 p-3 rounded-full bg-white/90 backdrop-blur-lg text-gray-700 hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl dark:bg-gray-800/90 dark:text-gray-300 dark:hover:bg-gray-700 hover:scale-110"
+            aria-label="Cambiar tema">
+        <i class="fas fa-moon text-lg" id="moonIconProjects"></i>
+        <i class="fas fa-sun text-lg hidden" id="sunIconProjects"></i>
+    </button>
+    
+    <!-- Back to Portfolio Button Mejorado -->
+    <a href="index.html" 
+       class="fixed top-6 left-6 z-40 bg-white/90 dark:bg-gray-800/90 text-gray-800 dark:text-white px-5 py-2.5 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 font-title backdrop-blur-lg border border-gray-200 dark:border-gray-700 hover:scale-[1.02]">
+        <i class="fas fa-arrow-left"></i>
+        <span class="font-semibold">Volver al Portafolio</span>
+    </a>
+    
+    <!-- Header Mejorado -->
+    <header class="pt-24 pb-16 header-gradient relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="flex justify-center mb-6">
+                <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl hover:scale-105 transition-transform duration-300">
+                    <img src="perfil.png" 
+                         alt="Yoel Velásquez" 
+                         class="w-full h-full object-cover"
+                         onerror="this.src='https://ui-avatars.com/api/?name=Yoel+Velasquez&background=3b82f6&color=fff&bold=true&size=128'">
+                </div>
+            </div>
+            
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 font-title">
+                <span class="gradient-text">
+                    Portafolio de Proyectos
+                </span>
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Sistemas web, aplicaciones de IA y soluciones tecnológicas desarrolladas profesionalmente
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-3">
+                <span class="category-badge bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400">
+                    <i class="fas fa-code mr-2"></i>Full Stack Development
+                </span>
+                <span class="category-badge bg-green-100 text-green-600 dark:bg-green-900/40 dark:text-green-400">
+                    <i class="fas fa-brain mr-2"></i>Inteligencia Artificial
+                </span>
+                <span class="category-badge bg-purple-100 text-purple-600 dark:bg-purple-900/40 dark:text-purple-400">
+                    <i class="fas fa-database mr-2"></i>Sistemas a Medida
+                </span>
+                <span class="category-badge bg-yellow-100 text-yellow-600 dark:bg-yellow-900/40 dark:text-yellow-400">
+                    <i class="fas fa-users mr-2"></i>Proyectos para Clientes
+                </span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Stats Section Mejorada -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="stat-item">
+                <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 counter-animated" data-counter="3">0</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400 font-medium mt-2">Proyectos Totales</div>
+            </div>
+            <div class="stat-item">
+                <div class="text-4xl font-bold text-green-600 dark:text-green-400 counter-animated" data-counter="1">0</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400 font-medium mt-2">Concluidos</div>
+            </div>
+            <div class="stat-item">
+                <div class="text-4xl font-bold text-yellow-600 dark:text-yellow-400 counter-animated" data-counter="2">0</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400 font-medium mt-2">En Desarrollo</div>
+            </div>
+            <div class="stat-item">
+                <div class="text-4xl font-bold text-purple-600 dark:text-purple-400 counter-animated" data-counter="1">0</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400 font-medium mt-2">Clientes Satisfechos</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Filter Buttons Mejorados -->
+        <div class="mb-16">
+            <div class="flex flex-wrap gap-3 justify-center">
+                <button class="filter-btn px-5 py-2.5 bg-white dark:bg-gray-800 rounded-xl font-semibold active" data-filter="all">
+                    Todos los Proyectos
+                </button>
+                <button class="filter-btn px-5 py-2.5 bg-white dark:bg-gray-800 rounded-xl font-semibold" data-filter="completed">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i>Concluidos
+                </button>
+                <button class="filter-btn px-5 py-2.5 bg-white dark:bg-gray-800 rounded-xl font-semibold" data-filter="development">
+                    <i class="fas fa-code text-yellow-500 mr-2"></i>En Desarrollo
+                </button>
+                <button class="filter-btn px-5 py-2.5 bg-white dark:bg-gray-800 rounded-xl font-semibold" data-filter="web">
+                    <i class="fas fa-globe text-blue-500 mr-2"></i>Desarrollo Web
+                </button>
+            </div>
+        </div>
+        
+        <!-- Projects Grid -->
+        <div id="projectsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            
+            <!-- PROYECTO 1: Sistema Web de Registro de Docentes (CONCLUIDO) -->
+            <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl" data-category="completed web">
+                <div class="project-image relative">
+                    <img src="proyectos/proyecto-1/portada.jpg" 
+     alt="Sistema Web de Registro de Docentes"
+     onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
+                    <span class="status-badge bg-gradient-to-r from-green-500 to-emerald-500 text-white">
+                        <i class="fas fa-check-circle mr-1"></i> Concluido
+                    </span>
+                </div>
+                
+                <div class="p-7">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white font-title">Sistema Web de Registro de Docentes</h3>
+                            <p class="text-blue-600 dark:text-blue-400 text-sm font-medium mt-1">Plataforma Web Educativa</p>
+                        </div>
+                        <div class="flex items-center text-yellow-500 bg-yellow-50 dark:bg-yellow-900/20 px-3 py-1 rounded-full">
+                            <i class="fas fa-star"></i>
+                            <span class="ml-1.5 text-sm font-bold">4.8</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-5 leading-relaxed">
+                        Sistema web completo para gestión y control de docentes en aulas de innovación pedagógica con CRUD, autenticación segura y reportes automatizados.
+                    </p>
+                    
+                    <div class="mb-5 space-y-3">
+                        <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm">
+                            <i class="fas fa-building mr-2.5 text-blue-500"></i>
+                            <span>Cliente: Institución Educativa ASB</span>
+                        </div>
+                        <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm">
+                            <i class="far fa-calendar mr-2.5 text-green-500"></i>
+                            <span>Entrega: Nov 2025</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-7">
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">SQLAlchemy</span>
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Bootstrap</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="flex gap-2">
+                            <button class="btn-primary view-project-btn px-4 py-2.5 rounded-xl text-sm font-semibold"
+                                    data-project="registro-docente">
+                                <i class="far fa-eye mr-2"></i> Ver Detalles
+                            </button>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="px-3 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors opacity-50 cursor-not-allowed"
+                                    title="GitHub (próximamente)">
+                                <i class="fab fa-github"></i>
+                            </button>
+                            <button class="px-3 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors opacity-50 cursor-not-allowed"
+                                    title="Demo (próximamente)">
+                                <i class="fas fa-external-link-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PROYECTO 2: Drago Móvil - E-commerce (EN DESARROLLO) -->
+            <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl" data-category="development web">
+                <div class="project-image relative">
+                    <img src="proyectos/proyecto-2/portada.jpg" 
+     alt="Drago Móvil - E-commerce"
+     onerror="this.src='https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
+                    <span class="status-badge bg-gradient-to-r from-yellow-500 to-amber-500 text-white">
+                        <i class="fas fa-code mr-1"></i> En Desarrollo
+                    </span>
+                </div>
+                
+                <div class="p-7">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white font-title">Drago Móvil - E-commerce</h3>
+                            <p class="text-green-600 dark:text-green-400 text-sm font-medium mt-1">Tienda Online de Celulares</p>
+                        </div>
+                        <div class="flex items-center text-gray-400 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
+                            <i class="fas fa-star"></i>
+                            <span class="ml-1.5 text-sm font-bold">-</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-5 leading-relaxed">
+                        Plataforma de e-commerce especializada en venta de celulares con carrito de compras, panel de administración y gestión de inventario.
+                    </p>
+                    
+                    <div class="mb-5 space-y-3">
+                        <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm">
+                            <i class="fas fa-building mr-2.5 text-blue-500"></i>
+                            <span>Proyecto Demo (para ofrecer a clientes)</span>
+                        </div>
+                        <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm">
+                            <i class="far fa-calendar mr-2.5 text-green-500"></i>
+                            <span>Entrega estimada: Feb 2026</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-gradient-to-r from-yellow-500 to-amber-500" style="width: 65%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-2">
+                            <span class="font-medium">Progreso:</span>
+                            <span class="font-bold">65% completado</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-7">
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">SQLAlchemy</span>
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Stripe API</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="flex gap-2">
+                            <button class="btn-primary view-project-btn px-4 py-2.5 rounded-xl text-sm font-semibold"
+                                    data-project="drago-movil">
+                                <i class="far fa-eye mr-2"></i> Ver Detalles
+                            </button>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="px-3 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors opacity-50 cursor-not-allowed"
+                                    title="GitHub (próximamente)">
+                                <i class="fab fa-github"></i>
+                            </button>
+                            <button class="px-3 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors opacity-50 cursor-not-allowed"
+                                    title="Demo (próximamente)">
+                                <i class="fas fa-external-link-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PROYECTO 3: Dany Sweets - Pastelería (EN DESARROLLO) -->
+            <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl" data-category="development web">
+                <div class="project-image relative">
+                    <img src="proyectos/proyecto-3/portada.jpg" 
+     alt="Dany Sweets - Pastelería"
+     onerror="this.src='https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
+                    <span class="status-badge bg-gradient-to-r from-yellow-500 to-amber-500 text-white">
+                        <i class="fas fa-code mr-1"></i> En Desarrollo
+                    </span>
+                </div>
+                
+                <div class="p-7">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white font-title">Dany Sweets - Pastelería</h3>
+                            <p class="text-pink-600 dark:text-pink-400 text-sm font-medium mt-1">E-commerce de Postres Artesanales</p>
+                        </div>
+                        <div class="flex items-center text-gray-400 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
+                            <i class="fas fa-star"></i>
+                            <span class="ml-1.5 text-sm font-bold">-</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-5 leading-relaxed">
+                        Plataforma de venta de postres artesanales con sistema de personalización avanzado, 5 sabores exclusivos y 8 toppings premium.
+                    </p>
+                    
+                    <div class="mb-5 space-y-3">
+                        <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm">
+                            <i class="fas fa-building mr-2.5 text-blue-500"></i>
+                            <span>Cliente: Daniela Barreto (Emprendedora)</span>
+                        </div>
+                        <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm">
+                            <i class="far fa-calendar mr-2.5 text-green-500"></i>
+                            <span>Entrega estimada: Mar 2026</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-gradient-to-r from-purple-500 to-pink-500" style="width: 40%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-2">
+                            <span class="font-medium">Progreso:</span>
+                            <span class="font-bold">40% completado</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-7">
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">API REST</span>
+                        <span class="tech-tag">Personalización</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="flex gap-2">
+                            <button class="btn-primary view-project-btn px-4 py-2.5 rounded-xl text-sm font-semibold"
+                                    data-project="dany-sweets">
+                                <i class="far fa-eye mr-2"></i> Ver Detalles
+                            </button>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="px-3 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors opacity-50 cursor-not-allowed"
+                                    title="GitHub (próximamente)">
+                                <i class="fab fa-github"></i>
+                            </button>
+                            <button class="px-3 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors opacity-50 cursor-not-allowed"
+                                    title="Demo (próximamente)">
+                                <i class="fas fa-external-link-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call to Action Mejorado -->
+        <div class="mt-20 text-center">
+            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl p-12 border border-blue-100 dark:border-gray-700 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-40 h-40 bg-blue-500/10 rounded-full -translate-y-20 translate-x-20"></div>
+                <div class="absolute bottom-0 left-0 w-40 h-40 bg-cyan-500/10 rounded-full translate-y-20 -translate-x-20"></div>
+                
+                <div class="relative z-10">
+                    <i class="fas fa-lightbulb text-5xl text-yellow-500 mb-6"></i>
+                    <h3 class="text-3xl font-bold text-gray-800 dark:text-white mb-6 font-title">
+                        ¿Tienes un proyecto en mente?
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+                        Trabajemos juntos para transformar tus ideas en soluciones tecnológicas innovadoras.
+                    </p>
+                    <a href="index.html#contacto" 
+                       class="btn-primary inline-flex items-center px-8 py-4 text-lg font-bold">
+                        <i class="fas fa-rocket mr-3"></i>
+                        Iniciar Proyecto
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Modal para ver detalles del proyecto - Mejorado -->
+    <div id="projectModal" class="project-modal">
+        <div class="max-w-6xl w-full mx-4 bg-white dark:bg-gray-800 rounded-3xl overflow-hidden max-h-[90vh] shadow-2xl border border-gray-200 dark:border-gray-700">
+            <div class="flex items-center justify-between p-7 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-50 to-white dark:from-gray-800 dark:to-gray-900">
+                <div>
+                    <h3 id="modalProjectTitle" class="text-3xl font-bold text-gray-800 dark:text-white font-title"></h3>
+                    <div class="flex items-center gap-4 mt-3">
+                        <span id="modalProjectType" class="text-blue-600 dark:text-blue-400 font-semibold"></span>
+                        <span id="modalProjectStatus" class="px-4 py-1.5 rounded-full text-sm font-bold shadow-md"></span>
+                    </div>
+                </div>
+                <button id="closeProjectModal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white text-3xl hover:scale-110 transition-transform">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="p-8 overflow-y-auto max-h-[calc(90vh-120px)]">
+                <div id="modalProjectContent">
+                    <!-- Contenido dinámico se cargará aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer Mejorado -->
+    <footer class="footer-gradient text-white mt-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-6 font-title">
+                    <span class="gradient-text">
+                        Yoel Velásquez Hualcas
+                    </span>
+                </h3>
+                <p class="text-gray-300 mb-8 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+                    Ingeniero de Software especializado en Inteligencia Artificial y Desarrollo Full Stack.
+                    Transformando ideas en soluciones tecnológicas innovadoras.
+                </p>
+                
+                <div class="flex flex-wrap justify-center gap-4 mb-10">
+                    <a href="index.html" class="btn-primary px-6 py-3">
+                        <i class="fas fa-home mr-2"></i>Portafolio Principal
+                    </a>
+                    <a href="certificaciones.html" class="px-6 py-3 border border-gray-600 text-gray-300 rounded-xl hover:bg-gray-700 transition-colors bg-gray-800/50 backdrop-blur-sm">
+                        <i class="fas fa-certificate mr-2"></i>Certificaciones
+                    </a>
+                    <a href="index.html#contacto" class="px-6 py-3 border border-gray-600 text-gray-300 rounded-xl hover:bg-gray-700 transition-colors bg-gray-800/50 backdrop-blur-sm">
+                        <i class="fas fa-envelope mr-2"></i>Contacto
+                    </a>
+                </div>
+                
+                <div class="border-t border-gray-700 dark:border-gray-800 pt-10">
+                    <p class="text-gray-400 text-lg">
+                        <i class="fas fa-code text-blue-400 mr-3"></i>
+                        © <span id="currentYear">2024</span> Yoel Velásquez | Portafolio de Proyectos
+                    </p>
+                    <p class="text-gray-500 text-sm mt-4">
+                        <i class="fas fa-coffee text-yellow-400 mr-2"></i>
+                        Desarrollado con código limpio y buenas prácticas
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript (se mantiene igual) -->
+    <script>
+        // EL JAVASCRIPT SE MANTIENE EXACTAMENTE IGUAL
+        // Variables globales para control del modal
+        let isModalOpen = false;
+        let modalHistoryState = null;
+        
+        // Datos de proyectos actualizados (CORREGIDO: Proyecto 1 - SIN multi-rol)
+        const projectsData = {
+            'registro-docente': {
+                title: 'Sistema Web de Registro de Docentes',
+                type: 'Plataforma Web Educativa',
+                status: 'completed',
+                statusText: 'Concluido',
+                statusColor: 'bg-gradient-to-r from-green-500 to-emerald-500',
+                client: 'Institución Educativa ASB',
+                date: 'Noviembre 2025',
+                rating: '4.8',
+                description: 'Sistema web completo para la gestión y control de docentes en aulas de innovación pedagógica del colegio ASB.',
+                longDescription: `
+                    <p class="mb-4">Sistema desarrollado para la Institución Educativa ASB con el objetivo de digitalizar y optimizar el registro de docentes en aulas de innovación pedagógica.</p>
+                    
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-3">
+                        <i class="fas fa-cogs text-blue-500 mr-2"></i>
+                        Características Técnicas
+                    </h4>
+                    <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700 dark:text-gray-300">
+                        <li><strong>Arquitectura:</strong> Flask (Python) + SQLite + HTML/CSS + JavaScript</li>
+                        <li><strong>Autenticación:</strong> Sistema simple - 1 persona autorizada (Admin)</li>
+                        <li><strong>Funcionalidades:</strong> Solo la persona autorizada puede ingresar y modificar datos</li>
+                        <li><strong>Base de datos:</strong> SQLite con SQLAlchemy ORM</li>
+                        <li><strong>Seguridad:</strong> Cifrado de contraseñas, manejo de sesiones</li>
+                        <li><strong>Funcionalidades CRUD:</strong> Crear, Leer, Actualizar, Eliminar registros de docentes</li>
+                        <li><strong>Reportes:</strong> Generación automática en Excel/CSV con filtros por fecha</li>
+                        <li><strong>Interfaz:</strong> Responsive design compatible con móviles y tablets</li>
+                    </ul>
+                    
+                    <div class="bg-yellow-50 dark:bg-gray-700 p-4 rounded-lg mb-4 border-l-4 border-yellow-500">
+                        <div class="flex items-start">
+                            <i class="fas fa-info-circle text-yellow-500 mt-1 mr-3"></i>
+                            <div>
+                                <h5 class="font-bold text-gray-800 dark:text-white mb-1">Configuración de Acceso</h5>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm">
+                                    <strong>NOTA:</strong> Este sistema tiene una configuración simple de acceso. 
+                                    Solo una persona está autorizada (rol de administrador) para ingresar y modificar datos. 
+                                    No es un sistema multi-rol complejo, está diseñado para ser administrado por una sola persona.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-3">
+                        <i class="fas fa-chart-line text-green-500 mr-2"></i>
+                        Resultados Obtenidos
+                    </h4>
+                    <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700 dark:text-gray-300">
+                        <li>Reducción del 70% en tiempo de registro de docentes</li>
+                        <li>Eliminación completa de errores de registro manual</li>
+                        <li>Automatización de reportes mensuales</li>
+                        <li>Acceso en tiempo real a estadísticas de asistencia</li>
+                        <li>Mejora en la organización de horarios y aulas</li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-3">
+                        <i class="fas fa-image text-yellow-500 mr-2"></i>
+                        Capturas del Sistema
+                    </h4>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">El sistema cuenta con más de 6 capturas que muestran todas sus funcionalidades.</p>
+                `,
+                technologies: ['Flask', 'Python', 'SQLite', 'SQLAlchemy', 'HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'Jinja2'],
+                features: [
+                    'Registro completo de datos de docentes',
+                    'Control de entrada y salida con validaciones',
+                    'Autenticación simple - 1 persona autorizada',
+                    'Generación de reportes en Excel/CSV',
+                    'Dashboard con estadísticas en tiempo real',
+                    'Sistema de backup automático',
+                    'Interfaz responsiva optimizada'
+                ],
+                images: [
+                    'proyectos/proyecto-1/login.jpg',
+                    'proyectos/proyecto-1/dashboard.jpg',
+                    'proyectos/proyecto-1/registro.jpg',
+                    'proyectos/proyecto-1/lista.jpg',
+                    'proyectos/proyecto-1/reportes.jpg',
+              
+                ],
+                github: '#',
+                demo: '#',
+                challenges: 'Implementar un sistema que maneje correctamente las fechas y horas locales, asegurar la integridad de los datos con validaciones complejas y crear una interfaz intuitiva para usuarios no técnicos.',
+                solution: 'Se implementó datetime.now() para fechas locales, validaciones en tiempo real con JavaScript y Flask, y una interfaz guiada paso a paso con mensajes claros de error.'
+            },
+            'drago-movil': {
+                title: 'Drago Móvil - E-commerce',
+                type: 'Tienda Online de Celulares',
+                status: 'development',
+                statusText: 'En Desarrollo',
+                statusColor: 'bg-gradient-to-r from-yellow-500 to-amber-500',
+                client: 'Proyecto Demo (para ofrecer a clientes)',
+                date: 'Febrero 2026 (estimado)',
+                rating: 'En desarrollo',
+                description: 'Plataforma de e-commerce especializada en venta de celulares con catálogo dinámico, carrito de compras y panel de administración.',
+                longDescription: `
+                    <p class="mb-4">Plataforma de e-commerce desarrollada como proyecto demostrativo para mostrar a potenciales clientes del sector retail y tecnología.</p>
+                    
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-3">
+                        <i class="fas fa-cogs text-blue-500 mr-2"></i>
+                        Características Técnicas
+                    </h4>
+                    <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700 dark:text-gray-300">
+                        <li><strong>Arquitectura:</strong> Flask + SQLite + Bootstrap + JavaScript</li>
+                        <li><strong>Catálogo:</strong> Productos organizados por categorías y marcas</li>
+                        <li><strong>Carrito:</strong> Sistema completo con gestión de cantidades</li>
+                        <li><strong>Checkout:</strong> Proceso de compra con validaciones</li>
+                        <li><strong>Panel Admin:</strong> CRUD completo de productos, gestión de stock</li>
+                        <li><strong>Filtros:</strong> Búsqueda por marca, categoría, precio y características</li>
+                        <li><strong>Stock:</strong> Sistema de alertas para inventario bajo</li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-3">
+                        <i class="fas fa-shopping-cart text-green-500 mr-2"></i>
+                        Funcionalidades Principales
+                    </h4>
+                    <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700 dark:text-gray-300">
+                        <li><strong>Catálogo de productos:</strong> 8 productos demo con imágenes y descripciones detalladas</li>
+                        <li><strong>Sistema de carrito:</strong> Agregar, actualizar cantidades, eliminar productos</li>
+                        <li><strong>Proceso de compra:</strong> Formulario de checkout con validación</li>
+                        <li><strong>Panel de administración:</strong> Gestión completa de productos (CRUD)</li>
+                        <li><strong>Control de stock:</strong> Alertas automáticas para productos con bajo inventario</li>
+                        <li><strong>Productos destacados:</strong> Sistema para marcar productos especiales</li>
+                        <li><strong>Búsqueda inteligente:</strong> Filtros por múltiples criterios</li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-3">
+                        <i class="fas fa-code-branch text-purple-500 mr-2"></i>
+                        Estado Actual (65% completado)
+                    </h4>
+                    <div class="mb-4">
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-gradient-to-r from-yellow-500 to-amber-500" style="width: 65%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
+                            <span>✅ Frontend completado</span>
+                            <span>✅ Backend básico</span>
+                            <span>🔄 Integración pagos</span>
+                            <span>⏳ Testing</span>
+                        </div>
+                    </div>
+                    
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-3">
+                        <i class="fas fa-image text-yellow-500 mr-2"></i>
+                        Capturas del Sistema
+                    </h4>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">El sistema contará con 6+ capturas mostrando todas las funcionalidades implementadas.</p>
+                `,
+                technologies: ['Flask', 'Python', 'SQLite', 'SQLAlchemy', 'Bootstrap', 'JavaScript', 'HTML5', 'CSS3', 'Stripe API'],
+                features: [
+                    'Catálogo dinámico de productos',
+                    'Sistema de carrito de compras',
+                    'Checkout con validaciones',
+                    'Panel de administración completo',
+                    'Gestión de inventario inteligente',
+                    'Productos destacados',
+                    'Filtros de búsqueda avanzados'
+                ],
+                images: [
+                    'proyectos/proyecto-2/home.jpg',
+                    'proyectos/proyecto-2/catalogo.jpg',
+                    'proyectos/proyecto-2/detalle.jpg',
+                    'proyectos/proyecto-2/agregar_producto.jpg',
+                    'proyectos/proyecto-2/checkout.jpg',
+                    'proyectos/proyecto-2/admin.jpg'
+                ],
+                github: '#',
+                demo: '#',
+                challenges: 'Implementar un sistema de carrito que maneje correctamente el stock disponible, crear una interfaz de administración intuitiva y asegurar la seguridad en el proceso de checkout.',
+                solution: 'Se implementó validación en tiempo real del stock, sesiones seguras para el carrito, y un panel admin con controles de acceso y validaciones de datos.'
+            },
+            'dany-sweets': {
+                title: 'Dany Sweets - Pastelería',
+                type: 'E-commerce de Postres Artesanales',
+                status: 'development',
+                statusText: 'En Desarrollo',
+                statusColor: 'bg-gradient-to-r from-yellow-500 to-amber-500',
+                client: 'Daniela Barreto (Emprendedora)',
+                date: 'Febrero 2026 (estimado)',
+                rating: 'En desarrollo',
+                description: 'Plataforma de venta de postres artesanales con sistema avanzado de personalización, múltiples sabores y toppings premium.',
+                longDescription: `
+                    <p class="mb-4">E-commerce especializado en postres artesanales desarrollado para la emprendedora Daniela Barreto, con enfoque en personalización y experiencia de usuario.</p>
+                    
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-3">
+                        <i class="fas fa-cogs text-blue-500 mr-2"></i>
+                        Características Técnicas
+                    </h4>
+                    <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700 dark:text-gray-300">
+                        <li><strong>Arquitectura:</strong> Flask + SQLite + Tailwind CSS + JavaScript</li>
+                        <li><strong>Personalización:</strong> 5 sabores exclusivos + 8 toppings premium</li>
+                        <li><strong>Catálogo:</strong> Productos organizados por categorías (tortas, cupcakes, etc.)</li>
+                        <li><strong>Sistema de pedidos:</strong> Con seguimiento de estado</li>
+                        <li><strong>Panel Admin:</strong> Gestión completa de productos, pedidos y usuarios</li>
+                        <li><strong>Autenticación:</strong> Sistema multi-rol (cliente, admin)</li>
+                        <li><strong>Diseño:</strong> Interfaz moderna con tema pastel</li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-3">
+                        <i class="fas fa-candy-cane text-pink-500 mr-2"></i>
+                        Sistema de Personalización
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-rose-50 dark:bg-gray-700 p-4 rounded-lg">
+                            <h5 class="font-bold text-gray-800 dark:text-white mb-2">5 Sabores Exclusivos</h5>
+                            <ul class="text-sm text-gray-600 dark:text-gray-300">
+                                <li>🍪 Oreo</li>
+                                <li>🍓 Fresa</li>
+                                <li>🍋 Limón</li>
+                                <li>🍊 Parchita</li>
+                                <li>🍫 Chocolate</li>
+                            </ul>
+                        </div>
+                        <div class="bg-rose-50 dark:bg-gray-700 p-4 rounded-lg">
+                            <h5 class="font-bold text-gray-800 dark:text-white mb-2">8 Toppings Premium</h5>
+                            <ul class="text-sm text-gray-600 dark:text-gray-300">
+                                <li>Samba</li>
+                                <li>Galleta Oreo</li>
+                                <li>Galleta María</li>
+                                <li>Flips</li>
+                                <li>Chispas de colores</li>
+                                <li>Chispas de chocolate</li>
+                                <li>Cocosete</li>
+                                <li>Pirulín</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-3">
+                        <i class="fas fa-code-branch text-purple-500 mr-2"></i>
+                        Estado Actual (40% completado)
+                    </h4>
+                    <div class="mb-4">
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-gradient-to-r from-purple-500 to-pink-500" style="width: 40%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
+                            <span>✅ Diseño completado</span>
+                            <span>✅ Base de datos</span>
+                            <span>🔄 Sistema personalización</span>
+                            <span>⏳ Checkout</span>
+                            <span>⏳ Panel admin</span>
+                        </div>
+                    </div>
+                    
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-3">
+                        <i class="fas fa-image text-yellow-500 mr-2"></i>
+                        Capturas del Sistema
+                    </h4>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">El sistema contará con 6+ capturas mostrando el proceso de personalización y todas las funcionalidades.</p>
+                `,
+                technologies: ['Flask', 'Python', 'SQLite', 'Tailwind CSS', 'JavaScript', 'API REST', 'Jinja2', 'SQLAlchemy'],
+                features: [
+                    'Sistema avanzado de personalización de postres',
+                    '5 sabores exclusivos y 8 toppings premium',
+                    'Catálogo por categorías (tortas, cupcakes, galletas, etc.)',
+                    'Seguimiento de pedidos en tiempo real',
+                    'Panel de administración completo',
+                    'Autenticación multi-rol',
+                    'Diseño responsivo con tema pastel'
+                ],
+                images: [
+                    'proyectos/proyecto-3/home.jpg',
+                    'proyectos/proyecto-3/catalogo.jpg',
+                    'proyectos/proyecto-3/personalizacion.jpg',
+                    'proyectos/proyecto-3/sabores.jpg',
+                    'proyectos/proyecto-3/toppings.jpg',
+                    'proyectos/proyecto-3/carrito.jpg',
+                    'proyectos/proyecto-3/checkout.jpg',
+                    'proyectos/proyecto-3/admin.jpg'
+                ],
+                github: '#',
+                demo: '#',
+                challenges: 'Implementar un sistema de personalización que calcule correctamente los precios según las combinaciones de sabores y toppings, manejar stock virtual para productos personalizables, y crear una interfaz intuitiva para el proceso de personalización.',
+                solution: 'Se diseñó una base de datos relacional para sabores y toppings, un sistema de cálculo de precios en tiempo real, y un interfaz guiada paso a paso para la personalización.'
+            }
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // ===== DARK MODE TOGGLE =====
+            const themeToggle = document.getElementById('themeToggleProjects');
+            const moonIcon = document.getElementById('moonIconProjects');
+            const sunIcon = document.getElementById('sunIconProjects');
+            
+            // Cargar tema guardado
+            const savedTheme = localStorage.getItem('theme');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                if (moonIcon) moonIcon.classList.add('hidden');
+                if (sunIcon) sunIcon.classList.remove('hidden');
+            } else if (savedTheme === 'light') {
+                document.documentElement.classList.remove('dark');
+                if (moonIcon) moonIcon.classList.remove('hidden');
+                if (sunIcon) sunIcon.classList.add('hidden');
+            }
+            
+            // Alternar tema
+            function toggleTheme() {
+                const isDark = document.documentElement.classList.toggle('dark');
+                
+                if (moonIcon) moonIcon.classList.toggle('hidden', isDark);
+                if (sunIcon) sunIcon.classList.toggle('hidden', !isDark);
+                
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            }
+            
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+            
+            // ===== FILTER PROJECTS =====
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remover active de todos los botones
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Agregar active al botón clickeado
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category.includes(filter)) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0) scale(1.01)';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px) scale(0.98)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // ===== MODAL PARA PROYECTOS =====
+            const projectModal = document.getElementById('projectModal');
+            const closeModalBtn = document.getElementById('closeProjectModal');
+            const modalTitle = document.getElementById('modalProjectTitle');
+            const modalType = document.getElementById('modalProjectType');
+            const modalStatus = document.getElementById('modalProjectStatus');
+            const modalContent = document.getElementById('modalProjectContent');
+            
+            // Función para abrir modal
+            function openModal(projectId) {
+                const project = projectsData[projectId];
+                
+                if (!project) return;
+                
+                modalTitle.textContent = project.title;
+                modalType.textContent = project.type;
+                modalStatus.textContent = project.statusText;
+                modalStatus.className = `px-4 py-1.5 rounded-full text-sm font-bold text-white shadow-md ${project.statusColor}`;
+                
+                // Generar contenido del modal
+                modalContent.innerHTML = generateModalContent(project);
+                
+                // Inicializar galería de imágenes
+                initImageGallery();
+                
+                projectModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                isModalOpen = true;
+                
+                // Agregar estado al historial para manejar botón de retroceso
+                modalHistoryState = 'project-detail-' + projectId;
+                window.history.pushState({ modal: modalHistoryState }, '', '#project-' + projectId);
+            }
+            
+            // Función para cerrar modal
+            function closeModal() {
+                projectModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                isModalOpen = false;
+                
+                // Restaurar estado del historial
+                if (modalHistoryState) {
+                    window.history.replaceState({}, '', 'proyectos.html');
+                    modalHistoryState = null;
+                }
+            }
+            
+            // Abrir modal al hacer click en botón "Detalles"
+            document.querySelectorAll('.view-project-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const projectId = this.dataset.project;
+                    openModal(projectId);
+                });
+            });
+            
+            // Cerrar modal con botón X
+            if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+            
+            // Cerrar al hacer click fuera del modal
+            projectModal.addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+            
+            // ===== MANEJAR BOTÓN DE RETROCESO DEL NAVEGADOR =====
+            window.addEventListener('popstate', function(event) {
+                if (isModalOpen) {
+                    closeModal();
+                    // Prevenir que el navegador cambie de página
+                    if (modalHistoryState) {
+                        window.history.replaceState({}, '', 'proyectos.html');
+                        modalHistoryState = null;
+                    }
+                }
+            });
+            
+            // Cerrar con Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && isModalOpen) {
+                    closeModal();
+                }
+            });
+            
+            // ===== CONTADORES ANIMADOS =====
+            const counters = document.querySelectorAll('.counter-animated');
+            if (counters.length > 0) {
+                const counterObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const counter = entry.target;
+                            const target = parseInt(counter.getAttribute('data-counter'));
+                            
+                            if (isNaN(target) || target <= 0) {
+                                observer.unobserve(counter);
+                                return;
+                            }
+                            
+                            animateCounter(counter, target);
+                            observer.unobserve(counter);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                counters.forEach(counter => counterObserver.observe(counter));
+            }
+            
+            // ===== AÑO ACTUAL EN FOOTER =====
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+            
+            console.log('🚀 Portafolio de Proyectos cargado correctamente');
+        });
+        
+        // Función para animar contadores
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const duration = 2000;
+            const interval = duration / (target / increment);
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                    element.textContent = Math.floor(target);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, interval);
+        }
+        
+        // Función para generar contenido del modal (mejorada para coincidir con nuevo diseño)
+        function generateModalContent(project) {
+            return `
+                <div class="space-y-8">
+                    <!-- Descripción -->
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
+                            <i class="fas fa-info-circle text-blue-500 mr-3 text-2xl"></i>
+                            Descripción del Proyecto
+                        </h4>
+                        <div class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+                            ${project.longDescription || project.description}
+                        </div>
+                    </div>
+                    
+                    <!-- Información del Cliente -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 p-5 rounded-xl border border-blue-100 dark:border-gray-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-building text-blue-500 mr-3 text-xl"></i>
+                                <span class="font-bold text-gray-800 dark:text-white">Cliente</span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 font-medium">${project.client}</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-50 to-white dark:from-gray-800 dark:to-gray-900 p-5 rounded-xl border border-green-100 dark:border-gray-700">
+                            <div class="flex items-center mb-3">
+                                <i class="far fa-calendar text-green-500 mr-3 text-xl"></i>
+                                <span class="font-bold text-gray-800 dark:text-white">Fecha de Entrega</span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 font-medium">${project.date}</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-yellow-50 to-white dark:from-gray-800 dark:to-gray-900 p-5 rounded-xl border border-yellow-100 dark:border-gray-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-star text-yellow-500 mr-3 text-xl"></i>
+                                <span class="font-bold text-gray-800 dark:text-white">Calificación</span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 font-medium">${project.rating}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Tecnologías -->
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
+                            <i class="fas fa-code text-purple-500 mr-3 text-2xl"></i>
+                            Tecnologías Utilizadas
+                        </h4>
+                        <div class="flex flex-wrap gap-3">
+                            ${project.technologies.map(tech => 
+                                `<span class="tech-tag text-sm px-4 py-2">${tech}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                    
+                    <!-- Características -->
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
+                            <i class="fas fa-list-check text-green-500 mr-3 text-2xl"></i>
+                            Características Principales
+                        </h4>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            ${project.features.map(feature => 
+                                `<li class="flex items-center bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                                    <i class="fas fa-check text-green-500 mr-3 text-lg"></i>
+                                    <span class="text-gray-700 dark:text-gray-300 font-medium">${feature}</span>
+                                </li>`
+                            ).join('')}
+                        </ul>
+                    </div>
+                    
+                    <!-- Galería de Imágenes -->
+                    ${project.images && project.images.length > 0 ? `
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
+                            <i class="fas fa-images text-yellow-500 mr-3 text-2xl"></i>
+                            Capturas del Proyecto
+                        </h4>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6 text-lg">
+                            Este proyecto cuenta con ${project.images.length} capturas que muestran todas sus funcionalidades. 
+                            Las imágenes están organizadas en la carpeta: 
+                            <code class="bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-lg font-mono text-sm font-bold">
+                                ${project.images[0].split('/')[0]}/${project.images[0].split('/')[1]}/
+                            </code>
+                        </p>
+                        <div class="gallery-grid">
+                            ${project.images.map((img, index) => `
+                                <div class="gallery-item" onclick="viewImage('${img}', '${project.title} - Captura ${index + 1}')">
+                                    <img src="${img}" alt="Captura ${index + 1} - ${project.title}" 
+                                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
+                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white text-xs p-2 text-center font-bold">
+                                        Captura ${index + 1}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    <!-- Desafíos y Soluciones -->
+                    ${project.challenges && project.solution ? `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-gradient-to-br from-red-50 to-white dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl border-l-4 border-red-500">
+                            <h5 class="font-bold text-gray-800 dark:text-white mb-4 flex items-center text-lg">
+                                <i class="fas fa-exclamation-triangle text-red-500 mr-3 text-xl"></i>
+                                Desafíos Encontrados
+                            </h5>
+                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">${project.challenges}</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-50 to-white dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl border-l-4 border-green-500">
+                            <h5 class="font-bold text-gray-800 dark:text-white mb-4 flex items-center text-lg">
+                                <i class="fas fa-lightbulb text-green-500 mr-3 text-xl"></i>
+                                Solución Implementada
+                            </h5>
+                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">${project.solution}</p>
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    <!-- Enlaces -->
+                    <div class="flex flex-wrap gap-4 pt-8 border-t border-gray-200 dark:border-gray-700">
+                        ${project.github && project.github !== '#' ? `
+                        <a href="${project.github}" 
+                           target="_blank"
+                           class="btn-primary px-6 py-3 text-lg font-bold">
+                            <i class="fab fa-github mr-3"></i>
+                            Ver Código en GitHub
+                        </a>
+                        ` : `
+                        <button class="px-6 py-3 bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-xl flex items-center cursor-not-allowed text-lg font-bold">
+                            <i class="fab fa-github mr-3"></i>
+                            GitHub (próximamente)
+                        </button>
+                        `}
+                        
+                        ${project.demo && project.demo !== '#' ? `
+                        <a href="${project.demo}" 
+                           target="_blank"
+                           class="btn-primary px-6 py-3 text-lg font-bold">
+                            <i class="fas fa-external-link-alt mr-3"></i>
+                            Ver Demo en Vivo
+                        </a>
+                        ` : `
+                        <button class="px-6 py-3 bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-xl flex items-center cursor-not-allowed text-lg font-bold">
+                            <i class="fas fa-external-link-alt mr-3"></i>
+                            Demo (próximamente)
+                        </button>
+                        `}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Función para inicializar galería de imágenes
+        function initImageGallery() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const img = this.querySelector('img').src;
+                    const title = this.querySelector('img').alt || document.getElementById('modalProjectTitle').textContent;
+                    viewImage(img, title);
+                });
+            });
+        }
+        
+        // Función para ver imagen en grande
+        function viewImage(src, title) {
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.97);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+                animation: modalFadeIn 0.3s ease;
+            `;
+            
+            overlay.innerHTML = `
+                <div class="relative max-w-5xl w-full">
+                    <button class="absolute top-6 right-6 text-white text-4xl z-10 hover:text-gray-300 bg-black/50 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center hover:scale-110 transition-transform" 
+                            onclick="this.parentElement.parentElement.remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <img src="${src}" alt="${title}" class="w-full h-auto rounded-2xl shadow-2xl">
+                    <p class="text-white text-center mt-6 text-xl font-medium">${title}</p>
+                </div>
+            `;
+            
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.remove();
+                }
+            });
+            
+            document.body.appendChild(overlay);
+        }
+        
+        // Hacer función viewImage disponible globalmente
+        window.viewImage = viewImage;
+    </script>
+</body>
+</html>

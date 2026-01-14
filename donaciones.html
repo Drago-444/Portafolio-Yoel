@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apoya Mi Trabajo | Yoel Velásquez - Ingeniero de Software & IA</title>
+    <meta name="description" content="Apoya el desarrollo de proyectos de código abierto, contenido educativo y la obtención de mi título profesional">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Roboto Mono', monospace; }
+        .font-title { font-family: 'Fira Code', monospace; }
+        
+        /* Donation Card Styles */
+        .donation-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+            position: relative;
+            overflow: hidden;
+        }
+        .donation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .donation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #3b82f6, #8b5cf6);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        .donation-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        /* Payment Method Cards */
+        .payment-method {
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            background: white;
+        }
+        .payment-method:hover {
+            border-color: #3b82f6;
+            background: #f8fafc;
+            transform: translateY(-3px);
+        }
+        .dark .payment-method {
+            background: #1f2937;
+            border-color: #374151;
+        }
+        .dark .payment-method:hover {
+            background: #1e40af20;
+            border-color: #3b82f6;
+        }
+        
+        /* QR Code Container */
+        .qr-container {
+            padding: 1rem;
+            background: white;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            display: inline-block;
+        }
+        .dark .qr-container {
+            background: #1f2937;
+            border-color: #374151;
+        }
+        
+        /* Amount Buttons */
+        .amount-btn {
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            background: white;
+        }
+        .amount-btn:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        .amount-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        .dark .amount-btn {
+            background: #1f2937;
+            border-color: #374151;
+            color: #e5e7eb;
+        }
+        .dark .amount-btn:hover {
+            border-color: #3b82f6;
+            background: #1e40af20;
+        }
+        .dark .amount-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        /* Dark mode classes */
+        .dark .dark\:bg-gray-900 { background-color: #111827; }
+        .dark .dark\:bg-gray-800 { background-color: #1f2937; }
+        .dark .dark\:text-white { color: #ffffff; }
+        .dark .dark\:text-gray-200 { color: #e5e7eb; }
+        .dark .dark\:border-gray-700 { border-color: #374151; }
+        
+        /* Success Animation */
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f59e0b;
+            opacity: 0;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        
+        /* Priority Badge */
+        .priority-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 min-h-screen">
+    
+    <!-- Botón Dark/Light Mode Fixed -->
+    <button id="themeToggleDonations" 
+            class="fixed top-4 right-4 z-50 p-3 rounded-lg bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl dark:bg-gray-800/80 dark:text-gray-300 dark:hover:bg-gray-700"
+            aria-label="Cambiar tema">
+        <i class="fas fa-moon text-lg" id="moonIconDonations"></i>
+        <i class="fas fa-sun text-lg hidden" id="sunIconDonations"></i>
+    </button>
+    
+    <!-- Back to Portfolio Button -->
+    <a href="index.html" 
+       class="fixed top-4 left-4 z-40 bg-white dark:bg-gray-800 text-gray-800 dark:text-white px-4 py-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 font-title">
+        <i class="fas fa-arrow-left"></i>
+        Volver al Portafolio
+    </a>
+    
+    <!-- Header -->
+    <header class="pt-20 pb-12 bg-gradient-to-r from-green-500/10 via-blue-500/10 to-purple-500/10 dark:from-green-900/20 dark:via-blue-900/20 dark:to-purple-900/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex justify-center mb-4">
+                <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl">
+                    <img src="perfil.png" 
+                         alt="Yoel Velásquez" 
+                         class="w-full h-full object-cover"
+                         onerror="this.src='https://ui-avatars.com/api/?name=Yoel+Velasquez&background=3b82f6&color=fff'">
+                </div>
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 font-title">
+                <span class="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Apoya Mi Trabajo
+                </span>
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                Tu apoyo me ayuda a tramitar mi título profesional y continuar creando proyectos de código abierto
+            </p>
+            
+            <div class="mt-8 flex flex-wrap justify-center gap-3">
+                <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm dark:bg-green-900/30 dark:text-green-400">
+                    <i class="fas fa-graduation-cap mr-2"></i>Título Profesional
+                </span>
+                <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm dark:bg-blue-900/30 dark:text-blue-400">
+                    <i class="fas fa-code mr-2"></i>Proyectos Open Source
+                </span>
+                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm dark:bg-purple-900/30 dark:text-purple-400">
+                    <i class="fas fa-graduation-cap mr-2"></i>Contenido Educativo
+                </span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Introduction -->
+        <section class="mb-16">
+            <div class="bg-gradient-to-r from-green-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 border border-green-100 dark:border-gray-700">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="md:w-1/3">
+                        <div class="bg-green-100 dark:bg-gray-700 w-24 h-24 rounded-full flex items-center justify-center mx-auto md:mx-0 mb-4 md:mb-0">
+                            <i class="fas fa-graduation-cap text-green-600 dark:text-green-400 text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3">
+                        <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4 font-title">
+                            ¡Ayúdame a obtener mi título profesional!
+                        </h2>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">
+                            Como recién egresado de Ingeniería de Software con IA, necesito recursos para los trámites 
+                            de obtención de mi título profesional. Además, tu apoyo me permite:
+                        </p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span class="font-semibold">Tramitar mi título profesional</span> (papeleo, trámites administrativos)
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                Mantener y mejorar proyectos open source
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                Crear más contenido educativo gratuito
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                Dedicar tiempo a mentoring y ayuda a la comunidad
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Payment Methods -->
+        <section class="mb-16">
+            <div class="flex items-center mb-8">
+                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-400 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-wallet text-white text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 dark:text-white font-title">Métodos de Pago</h2>
+                    <p class="text-gray-600 dark:text-gray-400">Elige la forma más conveniente para ti</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Yape -->
+                <div class="payment-method relative">
+                    <div class="priority-badge">RECOMENDADO</div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-400 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-mobile-alt text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white font-title">Yape</h3>
+                            <p class="text-purple-600 dark:text-purple-400">Transferencia instantánea</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                        Escanea el código QR con la app de Yape para enviar tu apoyo instantáneamente.
+                    </p>
+                    
+                    <div class="text-center mb-4">
+                        <div class="qr-container inline-block">
+                            <!-- QR REAL de Yape -->
+                            <img src="yape.jpg" 
+                                 alt="Código QR de Yape" 
+                                 class="w-40 h-40 rounded"
+                                 onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=943379479&format=png'">
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="font-bold text-gray-800 dark:text-white mb-2">Número Yape:</div>
+                        <div class="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-4">943 379 479</div>
+                        <button onclick="copyToClipboard('943379479', 'Yape')" 
+                                class="w-full px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors">
+                            <i class="far fa-copy mr-2"></i>Copiar número
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- PayPal -->
+                <div class="payment-method">
+                    <div class="flex items-center mb-4">
+                        <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fab fa-paypal text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white font-title">PayPal</h3>
+                            <p class="text-blue-600 dark:text-blue-400">Internacional</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                        Donaciones internacionales vía PayPal. Acepta todas las tarjetas y monedas.
+                    </p>
+                    
+                    <div class="text-center mb-4">
+                        <div class="text-3xl mb-4">
+                            <i class="fab fa-cc-visa text-blue-600 mr-2"></i>
+                            <i class="fab fa-cc-mastercard text-red-600 mr-2"></i>
+                            <i class="fab fa-cc-amex text-blue-800"></i>
+                        </div>
+                        
+                        <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg mb-4">
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mb-2">Correo PayPal:</div>
+                            <div class="text-lg font-bold text-gray-800 dark:text-white break-all">
+                                Drackzait@gmail.com
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <a href="https://paypal.me/yoelvelasquez" 
+                           target="_blank"
+                           class="block w-full px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-center font-bold">
+                            <i class="fab fa-paypal mr-2"></i>Donar con PayPal
+                        </a>
+                        <button onclick="copyToClipboard('Drackzait@gmail.com', 'PayPal')" 
+                                class="w-full px-4 py-2 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
+                            <i class="far fa-copy mr-2"></i>Copiar correo
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Transferencia BCP -->
+                <div class="payment-method">
+                    <div class="flex items-center mb-4">
+                        <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-400 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-university text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white font-title">Banco BCP</h3>
+                            <p class="text-green-600 dark:text-green-400">Transferencia/Déposito</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                        Transferencias o depósitos directos desde cualquier banco peruano.
+                    </p>
+                    
+                    <div class="space-y-4 mb-4">
+                        <div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Banco:</div>
+                            <div class="font-bold text-gray-800 dark:text-white">Banco de Crédito del Perú (BCP)</div>
+                        </div>
+                        
+                        <div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Tipo de cuenta:</div>
+                            <div class="font-bold text-gray-800 dark:text-white">Cuenta de Ahorros en Soles</div>
+                        </div>
+                        
+                        <div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Número de cuenta:</div>
+                            <div class="font-bold text-gray-800 dark:text-white">31011734524046</div>
+                        </div>
+                        
+                        <div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">CCI (Interbancario):</div>
+                            <div class="font-bold text-gray-800 dark:text-white">00231011173452404610</div>
+                        </div>
+                        
+                        <div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Titular:</div>
+                            <div class="font-bold text-gray-800 dark:text-white">Yoel Velásquez Hualcas</div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="copyToClipboard('31011734524046', 'cuenta BCP')" 
+                            class="w-full px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors mb-2">
+                        <i class="far fa-copy mr-2"></i>Copiar número de cuenta
+                    </button>
+                    
+                    <button onclick="copyToClipboard('00231011173452404610', 'CCI BCP')" 
+                            class="w-full px-4 py-2 border border-green-500 text-green-500 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors">
+                        <i class="far fa-copy mr-2"></i>Copiar CCI
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Other Methods -->
+        <section class="mb-16">
+            <div class="flex items-center mb-8">
+                <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-400 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-ellipsis-h text-white text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 dark:text-white font-title">Otros Métodos</h2>
+                    <p class="text-gray-600 dark:text-gray-400">Más opciones disponibles</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Lemon Cash -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-400 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-lemon text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-800 dark:text-white">Lemon Cash</h4>
+                            <p class="text-yellow-600 dark:text-yellow-400 text-sm">Cripto/Fiat</p>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-gray-800 dark:text-white mb-4">$dragoo_136</div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                            Usuario de Lemon Cash para transferencias en cripto o soles
+                        </p>
+                        <button onclick="copyToClipboard('$dragoo_136', 'Lemon Cash')" 
+                                class="w-full px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                            <i class="far fa-copy mr-2"></i>Copiar usuario
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- PrexPe -->
+<div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+    <div class="flex items-center mb-4">
+        <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-400 rounded-lg flex items-center justify-center mr-4">
+            <i class="fas fa-mobile-alt text-white text-xl"></i>
+        </div>
+        <div>
+            <h4 class="text-lg font-bold text-gray-800 dark:text-white">PrexPe</h4>
+            <p class="text-red-600 dark:text-red-400 text-sm">Billetera Digital Peruana</p>
+        </div>
+    </div>
+    <div class="text-center">
+        <div class="text-2xl font-bold text-gray-800 dark:text-white mb-4">943 379 479</div>
+        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+            Transferencias a través de PrexPe usando mi número de celular
+        </p>
+        <button onclick="copyToClipboard('943379479', 'PrexPe')" 
+                class="w-full px-4 py-2 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-lg hover:from-red-600 hover:to-orange-600 transition-colors">
+            <i class="far fa-copy mr-2"></i>Copiar número
+        </button>
+    </div>
+</div>
+                
+                <!-- Próximamente -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 border-dashed">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-gray-400 to-gray-600 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-clock text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-800 dark:text-white">Próximamente</h4>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">En desarrollo</p>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-gray-500 dark:text-gray-400 mb-4">
+                            <i class="fas fa-tools text-3xl mb-2"></i>
+                            <p class="text-sm">Plin y Tunki estarán disponibles próximamente</p>
+                        </div>
+                        <button class="w-full px-4 py-2 bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-lg cursor-not-allowed">
+                            <i class="fas fa-hourglass-half mr-2"></i>Disponible pronto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Suggested Amounts -->
+        <section class="mb-16">
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 border border-blue-100 dark:border-gray-700">
+                <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center font-title">
+                    <i class="fas fa-coins text-yellow-500 mr-3"></i>
+                    Sugerencias de Monto
+                </h3>
+                
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <button class="amount-btn" data-amount="1">
+                        S/ 1.00
+                    </button>
+                    <button class="amount-btn" data-amount="5">
+                        S/ 5.00
+                    </button>
+                    <button class="amount-btn active" data-amount="10">
+                        S/ 10.00
+                    </button>
+                    <button class="amount-btn" data-amount="20">
+                        S/ 20.00
+                    </button>
+                    <button class="amount-btn" data-amount="50">
+                        S/ 50.00
+                    </button>
+                    <button class="amount-btn" data-amount="100">
+                        S/ 100.00
+                    </button>
+                    <button class="amount-btn" data-amount="custom">
+                        Otro monto
+                    </button>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                        <strong>Cada sol cuenta</strong> - Hasta S/ 1.00 me ayuda con los trámites de mi título profesional
+                    </p>
+                    
+                    <div class="inline-flex items-center gap-2 text-green-600 dark:text-green-400 font-bold">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>¡Gracias por apoyar mi educación profesional!</span>
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Transparency Section -->
+        <section class="mb-16">
+            <div class="flex items-center mb-8">
+                <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-400 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-eye text-white text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 dark:text-white font-title">¿En qué usaré las donaciones?</h2>
+                    <p class="text-gray-600 dark:text-gray-400">Transparencia total del uso de fondos</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 text-center">
+                    <div class="w-16 h-16 bg-green-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-graduation-cap text-green-600 dark:text-green-400 text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Título Profesional (PRIORIDAD)</h4>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        Trámites administrativos, papeleo, certificaciones y legalización de mi título de Ingeniero de Software
+                    </p>
+                    <div class="mt-3">
+                        <span class="px-2 py-1 bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 text-xs rounded-full">
+                            <i class="fas fa-exclamation-circle mr-1"></i> Alta prioridad
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 text-center">
+                    <div class="w-16 h-16 bg-blue-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-server text-blue-600 dark:text-blue-400 text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Hosting y Servidores</h4>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        Mantenimiento de servidores para proyectos open source, demos en vivo y portfolio
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 text-center">
+                    <div class="w-16 h-16 bg-purple-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-book text-purple-600 dark:text-purple-400 text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Contenido Educativo</h4>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        Creación de tutoriales, cursos gratuitos y documentación para la comunidad de desarrolladores
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials -->
+        <section class="mb-16">
+            <div class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 border border-green-100 dark:border-gray-700">
+                <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center font-title">
+                    <i class="fas fa-comments text-green-500 mr-3"></i>
+                    Agradecimiento Especial
+                </h3>
+                
+                <div class="text-center">
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+                        "Cada donación, sin importar el monto, me acerca más a obtener mi título profesional 
+                        y continuar creando contenido valioso para la comunidad. Tu apoyo hace la diferencia."
+                    </p>
+                    <div class="font-bold text-gray-800 dark:text-white">- Yoel Velásquez</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-500 mt-2">Ingeniero de Software con IA (Egresado)</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white dark:bg-gray-900 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center">
+                <h3 class="text-xl font-bold mb-4 font-title">
+                    <span class="bg-gradient-to-r from-green-400 to-blue-300 bg-clip-text text-transparent">
+                        Yoel Velásquez Hualcas
+                    </span>
+                </h3>
+                <p class="text-gray-300 mb-6 dark:text-gray-400 max-w-2xl mx-auto">
+                    Ingeniero de Software especializado en IA. Tu apoyo es fundamental para mi desarrollo profesional 
+                    y para seguir creando proyectos de código abierto.
+                </p>
+                
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <a href="index.html" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-home mr-2"></i>Portafolio
+                    </a>
+                    <a href="proyectos.html" class="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-code mr-2"></i>Proyectos
+                    </a>
+                    <a href="habilidades.html" class="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-chart-bar mr-2"></i>Habilidades
+                    </a>
+                    <a href="certificaciones.html" class="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-certificate mr-2"></i>Certificaciones
+                    </a>
+                </div>
+                
+                <div class="border-t border-gray-700 dark:border-gray-800 pt-8">
+                    <p class="text-gray-400">
+                        <i class="fas fa-graduation-cap text-yellow-400 mr-2"></i>
+                        © <span id="currentYear">2026</span> Yoel Velásquez | En proceso de obtención de título profesional
+                    </p>
+                    <p class="text-gray-500 text-sm mt-2">
+                        <i class="fas fa-heart text-red-400 mr-2"></i>
+                        Gracias por apoyar mi educación y proyectos
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ===== DARK MODE TOGGLE =====
+            const themeToggle = document.getElementById('themeToggleDonations');
+            const moonIcon = document.getElementById('moonIconDonations');
+            const sunIcon = document.getElementById('sunIconDonations');
+            
+            // Cargar tema guardado
+            const savedTheme = localStorage.getItem('theme');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                if (moonIcon) moonIcon.classList.add('hidden');
+                if (sunIcon) sunIcon.classList.remove('hidden');
+            } else if (savedTheme === 'light') {
+                document.documentElement.classList.remove('dark');
+                if (moonIcon) moonIcon.classList.remove('hidden');
+                if (sunIcon) sunIcon.classList.add('hidden');
+            }
+            
+            // Alternar tema
+            function toggleTheme() {
+                const isDark = document.documentElement.classList.toggle('dark');
+                
+                if (moonIcon) moonIcon.classList.toggle('hidden', isDark);
+                if (sunIcon) sunIcon.classList.toggle('hidden', !isDark);
+                
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            }
+            
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+            
+            // ===== AMOUNT BUTTONS =====
+            const amountButtons = document.querySelectorAll('.amount-btn');
+            amountButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    amountButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const amount = this.dataset.amount;
+                    if (amount === 'custom') {
+                        showNotification('¡Puedes enviar cualquier monto! Cada sol cuenta para mi título profesional. ¡Gracias!', 'info');
+                    } else {
+                        showNotification(`Sugerencia: S/ ${amount}. Este monto me ayuda con los trámites de mi título. ¡Gracias!`, 'info');
+                    }
+                });
+            });
+            
+            // ===== AÑO ACTUAL EN FOOTER =====
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+            
+            console.log('🎓 Página de Donaciones cargada correctamente');
+        });
+        
+        // Función para copiar al portapapeles
+        function copyToClipboard(text, method) {
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification(`¡Copiado! ${method}: ${text}`, 'success');
+                createConfetti();
+            }).catch(err => {
+                console.error('Error al copiar:', err);
+                showNotification('Error al copiar. Intenta manualmente.', 'error');
+            });
+        }
+        
+        // Función para crear efecto confetti
+        function createConfetti() {
+            const colors = ['#f59e0b', '#10b981', '#3b82f6', '#8b5cf6', '#ef4444'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                
+                document.body.appendChild(confetti);
+                
+                // Animación
+                confetti.style.animation = `confetti ${Math.random() * 2 + 1}s forwards`;
+                
+                // Eliminar después de la animación
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+        
+        // Función para mostrar notificaciones
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            
+            let icon = '💡';
+            let bgColor = '#3b82f6';
+            
+            switch(type) {
+                case 'success':
+                    icon = '✅';
+                    bgColor = '#10b981';
+                    break;
+                case 'error':
+                    icon = '❌';
+                    bgColor = '#ef4444';
+                    break;
+                case 'warning':
+                    icon = '⚠️';
+                    bgColor = '#f59e0b';
+                    break;
+                case 'info':
+                    icon = '💡';
+                    bgColor = '#3b82f6';
+                    break;
+            }
+            
+            notification.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <span style="font-size: 1.2em;">${icon}</span>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: white;
+                color: #1f2937;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+                border-left: 4px solid ${bgColor};
+                z-index: 9999;
+                transform: translateX(120%);
+                transition: transform 0.3s ease;
+                max-width: 350px;
+                font-family: 'Roboto Mono', monospace;
+            `;
+            
+            // Dark mode support
+            if (document.documentElement.classList.contains('dark')) {
+                notification.style.background = '#1f2937';
+                notification.style.color = '#e5e7eb';
+            }
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(120%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 5000);
+        }
+        
+        // Exportar funciones para uso global
+        window.copyToClipboard = copyToClipboard;
+        window.showNotification = showNotification;
+    </script>
+</body>
+</html>

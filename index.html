@@ -1,0 +1,2312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Yoel Velásquez | Ingeniero de Software & IA</title>
+    
+    <!-- Meta tags importantes -->
+    <meta name="description" content="Ingeniero de Software especializado en IA y Desarrollo Full Stack. Creo soluciones innovadoras con Python, Flask, JavaScript y Machine Learning.">
+    <meta name="keywords" content="desarrollador, ingeniero software, IA, machine learning, python, flask, full stack, perú">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Monospace para el tema developer -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <style>
+        /* ===== ESTILOS CSS UNIFICADOS ===== */
+        
+        /* Configuración base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Roboto Mono', 'Fira Code', 'Courier New', monospace;
+            color: #1f2937;
+            line-height: 1.6;
+            font-size: 16px;
+            letter-spacing: -0.02em;
+            background: #f9fafb;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* Fuentes monospace */
+        .font-mono-primary { 
+            font-family: 'Fira Code', 'Roboto Mono', 'Courier New', monospace !important; 
+        }
+        .font-mono-secondary { 
+            font-family: 'Roboto Mono', 'Courier New', monospace !important; 
+        }
+        .font-title { 
+            font-family: 'Fira Code', 'Roboto Mono', monospace !important; 
+            font-weight: 600; 
+        }
+
+        /* Dark mode classes */
+        .dark .dark\:bg-gray-900 { background-color: #111827; }
+        .dark .dark\:bg-gray-800 { background-color: #1f2937; }
+        .dark .dark\:text-white { color: #ffffff; }
+        .dark .dark\:text-gray-200 { color: #e5e7eb; }
+        .dark .dark\:border-gray-700 { border-color: #374151; }
+
+        /* Progress bar para scroll */
+        #scrollProgress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            z-index: 100;
+            transition: width 0.1s ease;
+        }
+
+        /* ===== CLASES ESPECÍFICAS ===== */
+        
+        /* Navegación */
+        .nav-link {
+            color: #4b5563;
+            font-family: 'Roboto Mono', 'Courier New', monospace !important;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            color: #3b82f6;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Navegación móvil - CORREGIDO */
+        .nav-link-mobile {
+            color: #4b5563 !important;
+            font-family: 'Roboto Mono', 'Courier New', monospace !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
+            display: block !important;
+            padding: 1rem 0 !important;
+            border-bottom: 1px solid #f1f1f1 !important;
+            font-size: 1.1rem !important;
+            text-decoration: none !important;
+        }
+
+        .nav-link-mobile:hover {
+            color: #3b82f6 !important;
+        }
+
+        /* Tech tags */
+        .tech-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Roboto Mono', 'Fira Code', monospace !important;
+        }
+
+        .tech-tag:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+
+        /* Tech badges */
+        .tech-badge {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6 !important;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+            font-family: 'Roboto Mono', monospace !important;
+        }
+
+        .tech-badge:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        /* Soft skills tags */
+        .soft-skill-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.6rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6 !important;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Roboto Mono', monospace !important;
+        }
+
+        .soft-skill-tag:hover {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.15);
+        }
+
+        /* Social icons */
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            color: #4b5563;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-family: 'Roboto Mono', monospace !important;
+        }
+
+        .social-icon:hover {
+            background: #3b82f6;
+            color: white !important;
+        }
+
+        /* Footer links */
+        .footer-link {
+            display: block;
+            color: #9ca3af;
+            padding: 0.25rem 0;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            font-family: 'Roboto Mono', monospace !important;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            color: #60a5fa;
+        }
+
+        /* Formulario */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            font-family: 'Roboto Mono', 'Fira Code', monospace !important;
+            background: #f9fafb;
+            border: 1px solid #d1d5db;
+            color: #1f2937;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+            width: 100%;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* ===== ANIMACIONES ===== */
+        
+        /* Barras de habilidades */
+        .skill-bar {
+            width: 0;
+            transition: width 1.5s ease-in-out;
+            border-radius: 0.25rem;
+        }
+
+        /* Contadores animados */
+        .counter-animated {
+            display: inline-block;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Efectos hover */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ===== MENÚ HAMBURGUESA CORREGIDO ===== */
+        
+        /* Menú móvil completo - VERSIÓN ORIGINAL MEJORADA */
+        #mobileMenu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 50;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            display: none;
+        }
+
+        #mobileMenu:not(.hidden) {
+            display: block;
+        }
+
+        /* Contenido del menú móvil */
+        #mobileMenu > div {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 85%;
+            max-width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            padding: 1.5rem;
+        }
+
+        #mobileMenu:not(.hidden) > div {
+            transform: translateX(0);
+        }
+
+        /* Modo oscuro para el menú */
+        .dark #mobileMenu > div {
+            background: #1f2937;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark .nav-link-mobile {
+            color: #e5e7eb !important;
+            border-bottom-color: #374151 !important;
+        }
+
+        .dark .nav-link-mobile:hover {
+            color: #3b82f6 !important;
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #3b82f6, #06b6d4);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #2563eb, #0891b2);
+        }
+
+        /* Selección de texto */
+        ::selection {
+            background: rgba(59, 130, 246, 0.3);
+            color: #1f2937;
+        }
+
+        /* ===== DARK MODE ===== */
+        .dark .tech-tag {
+            background: rgba(30, 64, 175, 0.2);
+            border-color: rgba(59, 130, 246, 0.3);
+            color: #93c5fd;
+        }
+
+        .dark .tech-badge {
+            background: rgba(30, 64, 175, 0.2);
+            border-color: rgba(59, 130, 246, 0.3);
+            color: #93c5fd !important;
+        }
+
+        .dark .soft-skill-tag {
+            background: rgba(30, 64, 175, 0.2);
+            border-color: rgba(59, 130, 246, 0.3);
+            color: #93c5fd !important;
+        }
+
+        .dark .social-icon {
+            background: rgba(30, 64, 175, 0.2);
+            color: #cbd5e1;
+        }
+
+        .dark .social-icon:hover {
+            background: #3b82f6;
+            color: white !important;
+        }
+
+        .dark .footer-link {
+            color: #94a3b8;
+        }
+
+        .dark .footer-link:hover {
+            color: #60a5fa;
+        }
+
+        .dark .form-group input,
+        .dark .form-group textarea,
+        .dark .form-group select {
+            background: #1f2937;
+            color: #e5e7eb;
+            border-color: #374151;
+        }
+
+        .dark .form-group input:focus,
+        .dark .form-group textarea:focus,
+        .dark .form-group select:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        /* ===== RESPONSIVE DESIGN MEJORADO ===== */
+        
+        /* Mobile (0px - 767px) */
+        @media (max-width: 767px) {
+            body {
+                font-size: 15px;
+            }
+            
+            /* Títulos móviles */
+            .text-5xl, .text-6xl {
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .text-4xl {
+                font-size: 1.75rem !important;
+            }
+            
+            .text-3xl {
+                font-size: 1.5rem !important;
+            }
+            
+            .text-2xl {
+                font-size: 1.25rem !important;
+            }
+            
+            /* Espaciado móvil */
+            section {
+                padding-top: 4rem !important;
+                padding-bottom: 4rem !important;
+            }
+            
+            /* Hero section móvil */
+            #inicio .py-24 {
+                padding-top: 6rem !important;
+                padding-bottom: 4rem !important;
+            }
+            
+            /* Stats grid móvil */
+            .grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem !important;
+            }
+            
+            .grid-cols-4 > div {
+                padding: 1rem !important;
+            }
+            
+            /* Botones móviles */
+            .flex-col.sm\:flex-row {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            
+            .flex-col.sm\:flex-row > a {
+                width: 100% !important;
+                padding: 0.875rem !important;
+                text-align: center;
+            }
+            
+            /* Habilidades móviles */
+            #habilidades .grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.25rem !important;
+            }
+            
+            /* Contacto móvil */
+            #contacto .grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            
+            /* WhatsApp button móvil mejorado */
+            .fixed.bottom-6.right-6 {
+                bottom: 5.5rem !important;
+                right: 1.25rem !important;
+                width: 3.75rem !important;
+                height: 3.75rem !important;
+                z-index: 40 !important;
+            }
+            
+            .fixed.bottom-6.right-6 img {
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+            }
+            
+            /* Back to top button móvil */
+            .fixed.bottom-6.left-6 {
+                bottom: 1.25rem !important;
+                left: 1.25rem !important;
+                width: 3rem !important;
+                height: 3rem !important;
+            }
+            
+            /* Form inputs móvil */
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                font-size: 16px !important; /* Previene zoom en iOS */
+                padding: 0.875rem !important;
+            }
+            
+            /* Experiencia timeline móvil */
+            #experiencia .pl-8 {
+                padding-left: 2.5rem !important;
+            }
+            
+            /* Footer móvil */
+            footer .grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            
+            /* Asegurar que todo el texto sea legible */
+            p, span, a, li {
+                font-size: 0.95rem !important;
+                line-height: 1.6 !important;
+            }
+            
+            /* Mejorar padding en cards */
+            .p-6, .p-8 {
+                padding: 1.25rem !important;
+            }
+            
+            /* Mejorar márgenes en secciones */
+            .mb-16, .mb-12 {
+                margin-bottom: 2rem !important;
+            }
+            
+            /* Grids móviles */
+            .grid.gap-8 {
+                gap: 1.25rem !important;
+            }
+            
+            /* Cards más compactas en móvil */
+            .rounded-2xl, .rounded-xl {
+                border-radius: 0.75rem !important;
+            }
+            
+            /* Botón APOYAR en móvil */
+            .bg-gradient-to-r.from-pink-500.via-red-500.to-orange-500 {
+                padding: 0.875rem 1.25rem !important;
+                font-size: 0.95rem !important;
+                margin-left: 0 !important;
+                margin-top: 1rem !important;
+                display: inline-flex !important;
+                width: auto !important;
+            }
+            
+            /* Menú móvil mejorado */
+            #mobileMenu > div {
+                padding: 1.25rem !important;
+            }
+            
+            .nav-link-mobile {
+                padding: 0.875rem 0 !important;
+                font-size: 1rem !important;
+            }
+        }
+        
+        /* Tablet (768px - 1023px) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            body {
+                font-size: 15px;
+            }
+            
+            /* Ajustes para tablet */
+            .text-5xl, .text-6xl {
+                font-size: 2.5rem !important;
+            }
+            
+            section {
+                padding-top: 5rem !important;
+                padding-bottom: 5rem !important;
+            }
+            
+            /* Skills tablet */
+            #habilidades .grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1.5rem !important;
+            }
+            
+            /* Contacto tablet */
+            #contacto .grid {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem !important;
+            }
+            
+            /* Padding ajustado para tablet */
+            .px-4, .sm\:px-6, .lg\:px-8 {
+                padding-left: 1.5rem !important;
+                padding-right: 1.5rem !important;
+            }
+            
+            /* WhatsApp button tablet */
+            .fixed.bottom-6.right-6 {
+                bottom: 2rem !important;
+                right: 2rem !important;
+            }
+        }
+        
+        /* Desktop (1024px and up) */
+        @media (min-width: 1024px) {
+            /* Estilos específicos para desktop */
+            .fixed.bottom-6.right-6 {
+                bottom: 2rem !important;
+                right: 2rem !important;
+            }
+        }
+        
+        /* Pantallas muy grandes (1440px+) */
+        @media (min-width: 1440px) {
+            .max-w-7xl {
+                max-width: 80rem !important;
+            }
+        }
+        
+        /* Prevenir overflow horizontal */
+        .overflow-x-hidden {
+            overflow-x: hidden !important;
+        }
+        
+        /* Mejorar imágenes responsivas */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Asegurar que los botones sean tocables en móvil */
+        button, a {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        /* Heartbeat animation para botón APOYAR */
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .animate-heartbeat {
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: #1f2937;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            z-index: 9999;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            max-width: 350px;
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .dark .notification {
+            background: #1f2937;
+            color: #e5e7eb;
+        }
+        
+        /* FIX para iOS Safari */
+        @supports (-webkit-touch-callout: none) {
+            .h-screen {
+                height: -webkit-fill-available !important;
+            }
+            .min-h-screen {
+                min-height: -webkit-fill-available !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen font-mono-primary dark:bg-gray-900 dark:text-gray-100">
+    <!-- Progress Bar -->
+    <div id="scrollProgress"></div>
+    
+    <!-- Back to Top Button -->
+    <button id="backToTop" 
+            class="fixed bottom-6 left-6 w-12 h-12 bg-gray-800 text-white rounded-full shadow-xl z-40 flex items-center justify-center transition-all duration-300 opacity-0 scale-0 hover:bg-gray-900 hover:scale-110 dark:bg-gray-700 dark:hover:bg-gray-600"
+            aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- WhatsApp Flotante - CON IMAGEN -->
+    <a href="https://wa.me/51943379479?text=Hola%20Yoel,%20vi%20tu%20portafolio%20y%20me%20interesa%20trabajar%20contigo" 
+       class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center z-40 shadow-xl hover:bg-green-600 hover:scale-110 transition-all duration-300 group"
+       target="_blank"
+       title="WhatsApp"
+       aria-label="Contactar por WhatsApp">
+        <img src="WhatsApp.jpg" 
+             alt="WhatsApp" 
+             class="w-10 h-10 rounded-full object-cover"
+             onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg';">
+        <span class="absolute right-16 bg-gray-800 text-white px-3 py-1 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg dark:bg-gray-700">
+            ¡Hablemos! 👨‍💻
+        </span>
+    </a>
+
+    <!-- Navegación -->
+    <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm font-mono-primary dark:bg-gray-900/95 dark:border-b dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo con foto de perfil -->
+                <div class="flex items-center">
+                    <div class="flex items-center space-x-2">
+                        <!-- Foto de perfil -->
+                        <div class="relative group">
+                            <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-blue-500 cursor-pointer transition-all duration-300 group-hover:scale-110 group-hover:border-blue-600">
+                                <img src="perfil.png" 
+                                     alt="Yoel Velásquez - Foto de perfil" 
+                                     class="w-full h-full object-cover"
+                                     onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Yoel+Velasquez&background=3b82f6&color=fff&size=128';">
+                            </div>
+                            <!-- Tooltip para foto -->
+                            <div class="absolute left-0 top-12 bg-gray-800 text-white px-3 py-1 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 shadow-lg font-mono-secondary dark:bg-gray-700">
+                                Ver perfil completo
+                            </div>
+                        </div>
+                        <span class="text-xl font-bold text-gray-800 font-title dark:text-white">Yoel Velásquez</span>
+                    </div>
+                </div>
+                
+                <!-- Menú de navegación desktop -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="nav-link font-mono-secondary dark:text-gray-300 dark:hover:text-white">Inicio</a>
+                    <a href="#sobre-mi" class="nav-link font-mono-secondary dark:text-gray-300 dark:hover:text-white">Sobre Mí</a>
+                    <a href="#experiencia" class="nav-link font-mono-secondary dark:text-gray-300 dark:hover:text-white">Experiencia</a>
+                    <a href="#proyectos" class="nav-link font-mono-secondary dark:text-gray-300 dark:hover:text-white">Proyectos</a>
+                    <a href="#habilidades" class="nav-link font-mono-secondary dark:text-gray-300 dark:hover:text-white">Habilidades</a>
+                    <a href="#contacto" class="nav-link font-mono-secondary dark:text-gray-300 dark:hover:text-white">Contacto</a>
+                    
+                    <!-- Dark mode toggle -->
+                    <button id="themeToggle" 
+                            class="p-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all duration-300 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                            aria-label="Cambiar tema">
+                        <i class="fas fa-moon" id="moonIcon"></i>
+                        <i class="fas fa-sun hidden" id="sunIcon"></i>
+                    </button>
+                    
+                    <!-- Botón menú hamburguesa para desktop -->
+                    <button id="desktopMenuButton" 
+                            class="hidden md:flex items-center justify-center p-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all duration-300 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 ml-4"
+                            aria-label="Abrir menú de navegación">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+                
+                <!-- Menú hamburguesa para móviles -->
+                <div class="flex items-center md:hidden space-x-4">
+                    <!-- Dark mode toggle mobile -->
+                    <button id="themeToggleMobile" 
+                            class="p-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all duration-300 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                            aria-label="Cambiar tema">
+                        <i class="fas fa-moon" id="moonIconMobile"></i>
+                        <i class="fas fa-sun hidden" id="sunIconMobile"></i>
+                    </button>
+                    
+                    <!-- Botón hamburguesa -->
+                    <button id="mobileMenuButton" 
+                            class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white p-2"
+                            aria-label="Abrir menú">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menú móvil - FUERA DEL NAV PARA FUNCIONAR CORRECTAMENTE -->
+    <div id="mobileMenu" class="hidden">
+        <div class="p-6 h-full flex flex-col">
+            <!-- Header del menú móvil -->
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-blue-500">
+                        <img src="perfil.png" 
+                             alt="Yoel Velásquez" 
+                             class="w-full h-full object-cover"
+                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Yoel+Velasquez&background=3b82f6&color=fff&size=128';">
+                    </div>
+                    <span class="text-lg font-bold text-gray-800 font-title dark:text-white">Yoel Velásquez</span>
+                </div>
+                <button id="closeMobileMenu" 
+                        class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white p-2"
+                        aria-label="Cerrar menú">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Navegación móvil -->
+            <div class="flex-1 flex flex-col space-y-4">
+                <a href="#inicio" class="nav-link-mobile text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-white">Inicio</a>
+                <a href="#sobre-mi" class="nav-link-mobile text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-white">Sobre Mí</a>
+                <a href="#experiencia" class="nav-link-mobile text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-white">Experiencia</a>
+                <a href="#proyectos" class="nav-link-mobile text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-white">Proyectos</a>
+                <a href="#habilidades" class="nav-link-mobile text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-white">Habilidades</a>
+                <a href="#contacto" class="nav-link-mobile text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-white">Contacto</a>
+            </div>
+            
+            <!-- Botón contacto móvil -->
+            <div class="pt-6 border-t border-gray-100 dark:border-gray-800">
+                <a href="#contacto" 
+                   class="w-full block px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg font-medium text-center hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 shadow-md hover:shadow-lg font-mono-secondary">
+                    Contáctame
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para foto de perfil completa -->
+    <div id="profileModal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden items-center justify-center p-4">
+        <div class="relative bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden font-mono-primary dark:bg-gray-900 dark:text-gray-100">
+            <!-- Header del modal -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-800">
+                <h3 class="text-2xl font-bold text-gray-800 font-title dark:text-white">Yoel Velásquez</h3>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700 text-2xl dark:text-gray-400 dark:hover:text-white" aria-label="Cerrar modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Contenido del modal -->
+            <div class="p-6 overflow-y-auto max-h-[calc(90vh-80px)]">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <!-- Foto grande -->
+                    <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-blue-500 shadow-xl">
+                        <img src="perfil.png" 
+                             alt="Yoel Velásquez - Foto de perfil completo" 
+                             class="w-full h-full object-cover"
+                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Yoel+Velasquez&background=3b82f6&color=fff&size=512';">
+                    </div>
+                    
+                    <!-- Información -->
+                    <div class="flex-1">
+                        <h4 class="text-3xl font-bold text-gray-800 mb-2 font-title dark:text-white">Yoel Velásquez Hualcas</h4>
+                        <p class="text-blue-600 text-lg font-medium mb-4 dark:text-blue-400">Ingeniero de Software con IA</p>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-graduation-cap text-blue-500 w-6 mr-3 dark:text-blue-400" aria-hidden="true"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Ingeniería de Software con IA - SENATI</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-blue-500 w-6 mr-3 dark:text-blue-400" aria-hidden="true"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Trujillo, Perú</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-code text-blue-500 w-6 mr-3 dark:text-blue-400" aria-hidden="true"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Full Stack Developer & Especialista en IA</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-800">
+                            <h5 class="font-bold text-gray-800 mb-3 font-title dark:text-white">Contacto</h5>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <a href="mailto:yoelvelasquezhualcas1809@gmail.com" 
+                                   class="flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                                    <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
+                                    <span>Email</span>
+                                </a>
+                                <a href="https://wa.me/51943379479" 
+                                   target="_blank"
+                                   class="flex items-center text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300">
+                                    <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>
+                                    <span>WhatsApp</span>
+                                </a>
+                                <a href="https://linkedin.com/in/yoelvelasquez" 
+                                   target="_blank"
+                                   class="flex items-center text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200">
+                                    <i class="fab fa-linkedin mr-2" aria-hidden="true"></i>
+                                    <span>LinkedIn</span>
+                                </a>
+                                <a href="CV_Yoel_Velasquez.pdf" 
+                                   download="CV_Yoel_Velasquez.pdf"
+                                   class="flex items-center text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300" id="downloadCV">
+                                    <i class="fas fa-file-pdf mr-2" aria-hidden="true"></i>
+                                    <span>Descargar CV</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sección "Sobre Mí" en el modal -->
+                <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800">
+                    <h5 class="text-xl font-bold text-gray-800 mb-4 font-title dark:text-white">Sobre Mí</h5>
+                    <p class="text-gray-700 leading-relaxed dark:text-gray-300">
+                        Ingeniero de Software egresado con especialización en Inteligencia Artificial. 
+                        Me apasiona crear soluciones tecnológicas innovadoras que resuelven problemas 
+                        reales. Como desarrollador Full Stack, combino habilidades en backend con 
+                        Python/Flask y frontend con tecnologías modernas para construir sistemas 
+                        completos y eficientes.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="tech-tag dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">Python/Flask</span>
+                        <span class="tech-tag dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">JavaScript</span>
+                        <span class="tech-tag dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">Machine Learning</span>
+                        <span class="tech-tag dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">SQL</span>
+                        <span class="tech-tag dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">HTML/CSS</span>
+                        <span class="tech-tag dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">Inteligencia Artificial</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative overflow-x-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div class="text-center">
+                <div class="mb-4 md:mb-6">
+                    <span class="inline-block px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium font-mono-secondary dark:bg-blue-900/30 dark:text-blue-400">
+                        <i class="fas fa-graduation-cap mr-2" aria-hidden="true"></i>Ingeniero de Software
+                    </span>
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 md:mb-6 leading-tight font-title dark:text-white">
+                    Yoel Velásquez
+                    <span class="block text-blue-600 dark:text-blue-400 mt-2">Full Stack Developer</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-gray-600 mb-6 md:mb-8 leading-relaxed font-mono-secondary dark:text-gray-300 max-w-3xl mx-auto px-2">
+                    Especialista en <span class="font-semibold text-blue-600 dark:text-blue-400">Inteligencia Artificial</span> y 
+                    <span class="font-semibold text-cyan-600 dark:text-cyan-400">Desarrollo Web</span>. 
+                    Creo soluciones innovadoras que transforman ideas en realidades digitales.
+                </p>
+                
+                <div class="flex flex-wrap gap-2 mb-6 md:mb-8 justify-center px-2">
+                    <span class="tech-tag font-mono-secondary dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">Python/Flask</span>
+                    <span class="tech-tag font-mono-secondary dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">Machine Learning</span>
+                    <span class="tech-tag font-mono-secondary dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">JavaScript</span>
+                    <span class="tech-tag font-mono-secondary dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">SQL</span>
+                    <span class="tech-tag font-mono-secondary dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">IA</span>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-2">
+                    <a href="#contacto" 
+                       class="px-6 md:px-8 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg font-semibold text-base md:text-lg hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center font-mono-secondary">
+                        <i class="fas fa-rocket mr-3" aria-hidden="true"></i>
+                        Iniciar Proyecto
+                    </a>
+                    <a href="#proyectos" 
+                       class="px-6 md:px-8 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold text-base md:text-lg hover:border-blue-500 hover:text-blue-600 transition-all duration-300 flex items-center justify-center font-mono-secondary dark:border-gray-700 dark:text-gray-300 dark:hover:border-blue-500 dark:hover:text-blue-400">
+                        <i class="fas fa-eye mr-3" aria-hidden="true"></i>
+                        Ver Proyectos
+                    </a>
+                </div>
+                
+                <!-- Estadísticas simplificadas -->
+                <div class="mt-8 md:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-2xl mx-auto px-2">
+                    <div class="p-3 md:p-4 bg-white rounded-xl shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                        <div class="text-xl md:text-2xl font-bold text-blue-600 counter-animated dark:text-blue-400" data-counter="+1">0</div>
+                        <div class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">Proyectos</div>
+                    </div>
+                    <div class="p-3 md:p-4 bg-white rounded-xl shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                        <div class="text-xl md:text-2xl font-bold text-cyan-600 counter-animated dark:text-cyan-400" data-counter="100">0</div>
+                        <div class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">Satisfacción</div>
+                    </div>
+                    <div class="p-3 md:p-4 bg-white rounded-xl shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                        <div class="text-xl md:text-2xl font-bold text-purple-600 counter-animated dark:text-purple-400" data-counter="2">0</div>
+                        <div class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">Años Exp</div>
+                    </div>
+                    <div class="p-3 md:p-4 bg-white rounded-xl shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                        <div class="text-xl md:text-2xl font-bold text-green-600 dark:text-green-400" data-no-counter>IA</div>
+                        <div class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">Especialidad</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Mí -->
+    <section id="sobre-mi" class="py-16 md:py-24 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 font-title dark:text-white">
+                    Sobre Mí
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mb-4 md:mb-6"></div>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-mono-secondary dark:text-gray-300 px-2">
+                    Ingeniero de Software | Especialista en IA | Full Stack Developer
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 md:p-8 shadow-lg dark:from-gray-800 dark:to-gray-900 dark:border dark:border-gray-800">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 md:w-12 h-10 md:h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-white text-lg md:text-xl" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-800 font-title dark:text-white">Perfil Profesional</h3>
+                            <p class="text-blue-600 font-mono-secondary dark:text-blue-400 text-sm md:text-base">Ingeniero de Software con IA</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3 dark:text-green-400" aria-hidden="true"></i>
+                            <p class="text-gray-700 font-mono-secondary dark:text-gray-300 text-sm md:text-base">
+                                Egresado de Ingeniería de Software con especialización en Inteligencia Artificial.
+                            </p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3 dark:text-green-400" aria-hidden="true"></i>
+                            <p class="text-gray-700 font-mono-secondary dark:text-gray-300 text-sm md:text-base">
+                                Experiencia en desarrollo backend con Python/Flask y frontend con tecnologías modernas.
+                            </p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3 dark:text-green-400" aria-hidden="true"></i>
+                            <p class="text-gray-700 font-mono-secondary dark:text-gray-300 text-sm md:text-base">
+                                Especializado en crear soluciones web completas y sistemas inteligentes.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 md:mt-8 pt-4 md:pt-6 border-t border-blue-100 dark:border-gray-800">
+                        <h4 class="text-lg font-bold text-gray-800 mb-4 font-title dark:text-white">Información Personal</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-blue-500 mr-3 dark:text-blue-400" aria-hidden="true"></i>
+                                <span class="text-gray-700 font-mono-secondary text-xs md:text-sm dark:text-gray-300">yoelvelasquezhualcas1809@gmail.com</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-blue-500 mr-3 dark:text-blue-400" aria-hidden="true"></i>
+                                <span class="text-gray-700 font-mono-secondary text-xs md:text-sm dark:text-gray-300">+51 943 379 479</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-blue-500 mr-3 dark:text-blue-400" aria-hidden="true"></i>
+                                <span class="text-gray-700 font-mono-secondary text-xs md:text-sm dark:text-gray-300">Trujillo, Perú</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fab fa-linkedin text-blue-500 mr-3 dark:text-blue-400" aria-hidden="true"></i>
+                                <span class="text-gray-700 font-mono-secondary text-xs md:text-sm dark:text-gray-300">linkedin.com/in/yoelvelasquez</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Enlace a certificaciones -->
+                    <a href="certificaciones.html" 
+                       class="mt-6 inline-flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium text-sm md:text-base">
+                        <i class="fas fa-external-link-alt mr-2"></i>
+                        Ver todas mis certificaciones y educación completa
+                    </a>
+                </div>
+                
+                <div>
+                    <div class="mb-8 md:mb-10">
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6 font-title dark:text-white">
+                            <i class="fas fa-graduation-cap text-blue-500 mr-3 dark:text-blue-400" aria-hidden="true"></i>
+                            Educación & Certificaciones
+                        </h3>
+                        
+                        <div class="bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-200 mb-6 dark:bg-gray-800 dark:border-gray-700">
+                            <div class="flex items-start">
+                                <div class="w-10 md:w-14 h-10 md:h-14 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-university text-white text-lg md:text-2xl" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-base md:text-lg font-bold text-gray-800 font-title dark:text-white">CFP SENATI - Chimbote</h4>
+                                    <p class="text-blue-600 font-medium font-mono-secondary dark:text-blue-400 text-sm md:text-base">Ingeniería de Software con IA</p>
+                                    <p class="text-gray-600 font-mono-secondary dark:text-gray-400 text-xs md:text-sm">Mar 2023 - Nov 2025 | Egresado</p>
+                                    <p class="text-gray-700 mt-2 font-mono-secondary dark:text-gray-300 text-sm">
+                                        Formación integral en desarrollo de software con enfoque en tecnologías emergentes e inteligencia artificial.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3 md:gap-4">
+                            <div class="bg-white rounded-lg p-3 md:p-4 shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-certificate text-green-500 mr-2 dark:text-green-400" aria-hidden="true"></i>
+                                    <span class="font-medium text-gray-800 font-mono-secondary dark:text-white text-sm md:text-base">Diseño Web</span>
+                                </div>
+                                <p class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">HTML5 + CSS</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-3 md:p-4 shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-certificate text-blue-500 mr-2 dark:text-blue-400" aria-hidden="true"></i>
+                                    <span class="font-medium text-gray-800 font-mono-secondary dark:text-white text-sm md:text-base">JavaScript</span>
+                                </div>
+                                <p class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">Programación Avanzada</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-3 md:p-4 shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-certificate text-purple-500 mr-2 dark:text-purple-400" aria-hidden="true"></i>
+                                    <span class="font-medium text-gray-800 font-mono-secondary dark:text-white text-sm md:text-base">Machine Learning</span>
+                                </div>
+                                <p class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">Fundamentos IA</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-3 md:p-4 shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-certificate text-cyan-500 mr-2 dark:text-cyan-400" aria-hidden="true"></i>
+                                    <span class="font-medium text-gray-800 font-mono-secondary dark:text-white text-sm md:text-base">Metodologías Ágiles</span>
+                                </div>
+                                <p class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">Scrum & Kanban</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-4 font-title dark:text-white">
+                            <i class="fas fa-bullseye text-green-500 mr-3 dark:text-green-400" aria-hidden="true"></i>
+                            Objetivo Profesional
+                        </h4>
+                        <p class="text-gray-700 leading-relaxed font-mono-secondary dark:text-gray-300 text-sm md:text-base">
+                            Integrarme al sector tecnológico para desarrollar software innovador, 
+                            automatizar procesos y crear soluciones basadas en datos que impulsen 
+                            la transformación digital de empresas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiencia -->
+    <section id="experiencia" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 font-title dark:text-white">
+                    Experiencia Profesional
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mb-4 md:mb-6"></div>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-mono-secondary dark:text-gray-300 px-2">
+                    Mi trayectoria en el desarrollo de software y gestión tecnológica
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="relative pl-6 md:pl-8">
+                    <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-400 to-cyan-400"></div>
+                    
+                    <div class="mb-8 md:mb-12 relative">
+                        <div class="absolute -left-8 md:-left-11 top-0 w-4 md:w-6 h-4 md:h-6 bg-blue-500 rounded-full border-4 border-white dark:border-gray-900"></div>
+                        
+                        <div class="bg-white rounded-xl shadow-lg p-4 md:p-8 border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 md:mb-6">
+                                <div>
+                                    <span class="inline-block px-3 md:px-4 py-1 bg-blue-100 text-blue-600 rounded-full text-xs md:text-sm font-medium mb-2 font-mono-secondary dark:bg-blue-900/30 dark:text-blue-400">
+                                        Feb 2025 - Jun 2025
+                                    </span>
+                                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 font-title dark:text-white">Aprendiz de Responsabilidad Social</h3>
+                                    <div class="text-base md:text-lg font-semibold text-blue-600 mt-1 font-mono-secondary dark:text-blue-400">
+                                        Empresa Siderúrgica del Perú S.A.A.
+                                    </div>
+                                </div>
+                                <div class="mt-4 sm:mt-0">
+                                    <div class="flex items-center text-gray-600 font-mono-secondary dark:text-gray-400 text-sm md:text-base">
+                                        <i class="fas fa-building mr-2" aria-hidden="true"></i>
+                                        <span>Empresa líder en producción de aceros</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4 md:mb-6 p-3 md:p-4 bg-blue-50 rounded-lg border border-blue-100 dark:bg-gray-800 dark:border-gray-700">
+                                <p class="text-gray-700 font-mono-secondary dark:text-gray-300 text-sm md:text-base">
+                                    Organización con más de 66 años de experiencia, perteneciente a Gerdau, 
+                                    principal proveedor de aceros en Latinoamérica.
+                                </p>
+                            </div>
+                            
+                            <div class="mb-6 md:mb-8">
+                                <h4 class="text-base md:text-lg font-bold text-gray-800 mb-4 font-title dark:text-white">
+                                    <i class="fas fa-tasks text-blue-500 mr-2 dark:text-blue-400" aria-hidden="true"></i>
+                                    Responsabilidades
+                                </h4>
+                                <div class="grid md:grid-cols-2 gap-3 md:gap-4">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-3 dark:text-green-400" aria-hidden="true"></i>
+                                        <span class="font-mono-secondary dark:text-gray-300 text-sm md:text-base">Gestión documental de +100 postulantes</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-3 dark:text-green-400" aria-hidden="true"></i>
+                                        <span class="font-mono-secondary dark:text-gray-300 text-sm md:text-base">Soporte técnico y TI</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-3 dark:text-green-400" aria-hidden="true"></i>
+                                        <span class="font-mono-secondary dark:text-gray-300 text-sm md:text-base">Implementación de metodología 5S</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-3 dark:text-green-400" aria-hidden="true"></i>
+                                        <span class="font-mono-secondary dark:text-gray-300 text-sm md:text-base">Gestión de inventario y activos</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h5 class="text-base md:text-lg font-bold text-gray-800 mb-4 font-title dark:text-white">
+                                    <i class="fas fa-trophy text-yellow-500 mr-2 dark:text-yellow-400" aria-hidden="true"></i>
+                                    Logros Destacados
+                                </h5>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                                    <div class="bg-gradient-to-br from-blue-50 to-white p-4 md:p-6 rounded-xl border border-blue-100 dark:from-gray-800 dark:to-gray-900 dark:border-gray-700">
+                                        <div class="flex items-center mb-2">
+                                            <div class="w-8 md:w-10 h-8 md:h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3 dark:bg-gray-700">
+                                                <i class="fas fa-file-alt text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
+                                            </div>
+                                            <div>
+                                                <div class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">Expedientes gestionados</div>
+                                                <div class="text-xl md:text-2xl font-bold text-blue-600 counter-animated dark:text-blue-400" data-counter="100">0</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-green-50 to-white p-4 md:p-6 rounded-xl border border-green-100 dark:from-gray-800 dark:to-gray-900 dark:border-gray-700">
+                                        <div class="flex items-center mb-2">
+                                            <div class="w-8 md:w-10 h-8 md:h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3 dark:bg-gray-700">
+                                                <i class="fas fa-chart-line text-green-600 dark:text-green-400" aria-hidden="true"></i>
+                                            </div>
+                                            <div>
+                                                <div class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">Eficiencia documental</div>
+                                                <div class="text-xl md:text-2xl font-bold text-green-600 counter-animated dark:text-green-400" data-counter="90">0</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Enlace a experiencia completa -->
+                <a href="experiencia.html" 
+                   class="mt-6 inline-flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium text-sm md:text-base">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                    Ver mi experiencia profesional completa
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section id="proyectos" class="py-16 md:py-24 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 font-title dark:text-white">
+                    Proyectos Destacados
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mb-4 md:mb-6"></div>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-mono-secondary dark:text-gray-300 px-2">
+                    Sistemas y aplicaciones desarrollados con tecnologías modernas
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-1 gap-6 md:gap-8">
+                <!-- Proyecto 1 - SOLO ESTE QUEDA -->
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 hover-lift dark:bg-gray-800 dark:border-gray-700">
+                    <div class="p-4 md:p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-chalkboard-teacher text-white text-lg md:text-xl" aria-hidden="true"></i>
+                            </div>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs md:text-sm font-medium font-mono-secondary dark:bg-blue-900/30 dark:text-blue-400">
+                                Flask
+                            </span>
+                        </div>
+                        
+                        <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3 font-title dark:text-white">Sistema Web de Registro Docente</h3>
+                        <p class="text-gray-600 mb-4 font-mono-secondary dark:text-gray-300 text-sm md:text-base">
+                            Plataforma web completa para gestión y control de docentes en aulas de innovación pedagógica.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4 md:mb-6">
+                            <span class="tech-badge font-mono-secondary dark:bg-gray-700 dark:text-blue-400 dark:border-blue-800">Flask</span>
+                            <span class="tech-badge font-mono-secondary dark:bg-gray-700 dark:text-blue-400 dark:border-blue-800">SQLite</span>
+                            <span class="tech-badge font-mono-secondary dark:bg-gray-700 dark:text-blue-400 dark:border-blue-800">HTML/CSS</span>
+                            <span class="tech-badge font-mono-secondary dark:bg-gray-700 dark:text-blue-400 dark:border-blue-800">JavaScript</span>
+                        </div>
+                        
+                        <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex flex-col sm:flex-row justify-between gap-2">
+                                <div class="flex items-center justify-center sm:justify-start">
+                                    <i class="fas fa-database text-blue-500 mr-2 dark:text-blue-400" aria-hidden="true"></i>
+                                    <span class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">CRUD Completo</span>
+                                </div>
+                                <div class="flex items-center justify-center sm:justify-start">
+                                    <i class="fas fa-shield-alt text-green-500 mr-2 dark:text-green-400" aria-hidden="true"></i>
+                                    <span class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">Seguridad</span>
+                                </div>
+                                <div class="flex items-center justify-center sm:justify-start">
+                                    <i class="fas fa-mobile-alt text-purple-500 mr-2 dark:text-purple-400" aria-hidden="true"></i>
+                                    <span class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">Responsive</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enlace a proyectos completos -->
+            <div class="text-center mt-8">
+                <a href="proyectos.html" 
+                   class="inline-flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium text-sm md:text-base">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                    Ver todos mis proyectos y detalles completos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Habilidades -->
+    <section id="habilidades" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 font-title dark:text-white">
+                    Habilidades Técnicas
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mb-4 md:mb-6"></div>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-mono-secondary dark:text-gray-300 px-2">
+                    Conocimientos y tecnologías que domino para crear soluciones de calidad
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <!-- Frontend -->
+                <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 border border-gray-200 hover-lift dark:bg-gray-800 dark:border-gray-700">
+                    <div class="text-center mb-6">
+                        <div class="w-12 md:w-16 h-12 md:h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-code text-white text-xl md:text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold text-gray-800 font-title dark:text-white">Frontend</h3>
+                    </div>
+                    
+                    <div class="space-y-4 md:space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">HTML5 & CSS3</span>
+                                <span class="text-blue-600 font-bold font-mono-secondary dark:text-blue-400 text-sm md:text-base">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-2 rounded-full skill-bar" style="width: 95%" data-width="95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">JavaScript</span>
+                                <span class="text-blue-600 font-bold font-mono-secondary dark:text-blue-400 text-sm md:text-base">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-2 rounded-full skill-bar" style="width: 85%" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">Angular</span>
+                                <span class="text-blue-600 font-bold font-mono-secondary dark:text-blue-400 text-sm md:text-base">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-2 rounded-full skill-bar" style="width: 80%" data-width="80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend -->
+                <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 border border-gray-200 hover-lift dark:bg-gray-800 dark:border-gray-700">
+                    <div class="text-center mb-6">
+                        <div class="w-12 md:w-16 h-12 md:h-16 bg-gradient-to-br from-green-500 to-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-server text-white text-xl md:text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold text-gray-800 font-title dark:text-white">Backend</h3>
+                    </div>
+                    
+                    <div class="space-y-4 md:space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">Python / Flask</span>
+                                <span class="text-green-600 font-bold font-mono-secondary dark:text-green-400 text-sm md:text-base">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                <div class="bg-gradient-to-r from-green-500 to-blue-400 h-2 rounded-full skill-bar" style="width: 90%" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">SQL / SQLite</span>
+                                <span class="text-green-600 font-bold font-mono-secondary dark:text-green-400 text-sm md:text-base">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                <div class="bg-gradient-to-r from-green-500 to-blue-400 h-2 rounded-full skill-bar" style="width: 88%" data-width="88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">APIs REST</span>
+                                <span class="text-green-600 font-bold font-mono-secondary dark:text-green-400 text-sm md:text-base">82%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                <div class="bg-gradient-to-r from-green-500 to-blue-400 h-2 rounded-full skill-bar" style="width: 82%" data-width="82%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IA & ML -->
+                <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 border border-gray-200 hover-lift dark:bg-gray-800 dark:border-gray-700">
+                    <div class="text-center mb-6">
+                        <div class="w-12 md:w-16 h-12 md:h-16 bg-gradient-to-br from-purple-500 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-brain text-white text-xl md:text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold text-gray-800 font-title dark:text-white">IA & ML</h3>
+                    </div>
+                    
+                    <div class="space-y-4 md:space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">Machine Learning</span>
+                                <span class="text-purple-600 font-bold font-mono-secondary dark:text-purple-400 text-sm md:text-base">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                <div class="bg-gradient-to-r from-purple-500 to-pink-400 h-2 rounded-full skill-bar" style="width: 85%" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">Análisis de Datos</span>
+                                <span class="text-purple-600 font-bold font-mono-secondary dark:text-purple-400 text-sm md:text-base">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                <div class="bg-gradient-to-r from-purple-500 to-pink-400 h-2 rounded-full skill-bar" style="width: 80%" data-width="80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">Scikit-learn</span>
+                                <span class="text-purple-600 font-bold font-mono-secondary dark:text-purple-400 text-sm md:text-base">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                <div class="bg-gradient-to-r from-purple-500 to-pink-400 h-2 rounded-full skill-bar" style="width: 80%" data-width="80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Herramientas -->
+                <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 border border-gray-200 hover-lift dark:bg-gray-800 dark:border-gray-700">
+                    <div class="text-center mb-6">
+                        <div class="w-12 md:w-16 h-12 md:h-16 bg-gradient-to-br from-yellow-500 to-orange-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-tools text-white text-xl md:text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold text-gray-800 font-title dark:text-white">Herramientas</h3>
+                    </div>
+                    
+                    <div class="space-y-4 md:space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">Git & GitHub</span>
+                                <span class="text-yellow-600 font-bold font-mono-secondary dark:text-yellow-400 text-sm md:text-base">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                <div class="bg-gradient-to-r from-yellow-500 to-orange-400 h-2 rounded-full skill-bar" style="width: 80%" data-width="80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">Excel Avanzado</span>
+                                <span class="text-yellow-600 font-bold font-mono-secondary dark:text-yellow-400 text-sm md:text-base">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                <div class="bg-gradient-to-r from-yellow-500 to-orange-400 h-2 rounded-full skill-bar" style="width: 92%" data-width="92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">Metodologías Ágiles</span>
+                                <span class="text-yellow-600 font-bold font-mono-secondary dark:text-yellow-400 text-sm md:text-base">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                <div class="bg-gradient-to-r from-yellow-500 to-orange-400 h-2 rounded-full skill-bar" style="width: 85%" data-width="85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soft Skills -->
+            <div class="mt-12 md:mt-20">
+                <h3 class="text-xl md:text-2xl font-bold text-gray-800 text-center mb-6 md:mb-8 font-title dark:text-white">
+                    <i class="fas fa-users text-blue-500 mr-3 dark:text-blue-400" aria-hidden="true"></i>
+                    Habilidades Blandas
+                </h3>
+                <div class="flex flex-wrap justify-center gap-2 md:gap-3">
+                    <span class="soft-skill-tag font-mono-secondary dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">
+                        <i class="fas fa-handshake mr-2" aria-hidden="true"></i>Trabajo en Equipo
+                    </span>
+                    <span class="soft-skill-tag font-mono-secondary dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">
+                        <i class="fas fa-tasks mr-2" aria-hidden="true"></i>Gestión de Procesos
+                    </span>
+                    <span class="soft-skill-tag font-mono-secondary dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">
+                        <i class="fas fa-comments mr-2" aria-hidden="true"></i>Comunicación
+                    </span>
+                    <span class="soft-skill-tag font-mono-secondary dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">
+                        <i class="fas fa-lightbulb mr-2" aria-hidden="true"></i>Resolución Problemas
+                    </span>
+                    <span class="soft-skill-tag font-mono-secondary dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">
+                        <i class="fas fa-chart-line mr-2" aria-hidden="true"></i>Gestión Proyectos
+                    </span>
+                    <span class="soft-skill-tag font-mono-secondary dark:bg-gray-800 dark:text-blue-400 dark:border-blue-700">
+                        <i class="fas fa-bullseye mr-2" aria-hidden="true"></i>Orientación Resultados
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Enlace a habilidades completas -->
+            <div class="text-center mt-8">
+                <a href="habilidades.html" 
+                   class="inline-flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium text-sm md:text-base">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                    Ver mi stack tecnológico completo y habilidades detalladas
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="py-16 md:py-24 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 font-title dark:text-white">
+                    ¡Trabajemos Juntos!
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mb-4 md:mb-6"></div>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-mono-secondary dark:text-gray-300 px-2">
+                    ¿Tienes un proyecto en mente? Contáctame y transformemos tus ideas en realidad
+                </p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-8 md:gap-12">
+          
+                <!-- Botón APOYAR -->
+                <div class="lg:col-span-2 text-center mb-4">
+                    <a href="donaciones.html" 
+                       class="relative inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-pink-500 via-red-500 to-orange-500 text-white rounded-xl hover:shadow-2xl transition-all duration-300 group overflow-hidden font-mono-primary font-bold">
+                        
+                        <!-- Fondo animado -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-pink-600 via-red-600 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        
+                        <!-- Contenido -->
+                        <i class="fas fa-heart mr-3 text-xl animate-heartbeat"></i>
+                        <span class="relative">APOYAR</span>
+                    </a>
+                </div>
+                
+                <!-- Información de contacto -->
+                <div>
+                    <div class="bg-gradient-to-br from-blue-50 to-gray-100 rounded-2xl p-4 md:p-8 shadow-lg dark:from-gray-800 dark:to-gray-900 dark:border dark:border-gray-800">
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6 md:mb-8 font-title dark:text-white">
+                            <i class="fas fa-envelope-open-text text-blue-500 mr-3 dark:text-blue-400" aria-hidden="true"></i>
+                            Información de Contacto
+                        </h3>
+                        <div class="space-y-4 md:space-y-6">
+                            <div class="flex items-center p-3 md:p-4 bg-white rounded-lg shadow-sm hover-lift dark:bg-gray-800">
+                                <div class="w-10 md:w-12 h-10 md:h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-3 md:mr-4 dark:bg-gray-700">
+                                    <i class="fas fa-envelope text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-base md:text-lg font-semibold text-gray-800 font-title dark:text-white">Correo Electrónico</h4>
+                                    <p class="text-blue-600 font-mono-secondary dark:text-blue-400 text-sm md:text-base">yoelvelasquezhualcas1809@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 md:p-4 bg-white rounded-lg shadow-sm hover-lift dark:bg-gray-800">
+                                <div class="w-10 md:w-12 h-10 md:h-12 bg-green-100 rounded-lg flex items-center justify-center mr-3 md:mr-4 dark:bg-gray-700">
+                                    <i class="fab fa-whatsapp text-green-600 dark:text-green-400" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-base md:text-lg font-semibold text-gray-800 font-title dark:text-white">WhatsApp</h4>
+                                    <p class="text-green-600 font-mono-secondary dark:text-green-400 text-sm md:text-base">+51 943 379 479</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 md:p-4 bg-white rounded-lg shadow-sm hover-lift dark:bg-gray-800">
+                                <div class="w-10 md:w-12 h-10 md:h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-3 md:mr-4 dark:bg-gray-700">
+                                    <i class="fab fa-linkedin text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-base md:text-lg font-semibold text-gray-800 font-title dark:text-white">LinkedIn</h4>
+                                    <p class="text-blue-600 font-mono-secondary dark:text-blue-400 text-sm md:text-base">linkedin.com/in/yoelvelasquez</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 md:p-4 bg-white rounded-lg shadow-sm hover-lift dark:bg-gray-800">
+                                <div class="w-10 md:w-12 h-10 md:h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-3 md:mr-4 dark:bg-gray-700">
+                                    <i class="fas fa-map-marker-alt text-purple-600 dark:text-purple-400" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-base md:text-lg font-semibold text-gray-800 font-title dark:text-white">Ubicación</h4>
+                                    <p class="text-gray-700 font-mono-secondary dark:text-gray-300 text-sm md:text-base">Víctor Larco - Trujillo, Perú</p>
+                                    <p class="text-green-600 text-xs md:text-sm mt-1 font-mono-secondary dark:text-green-400">
+                                        <i class="fas fa-check-circle" aria-hidden="true"></i> Disponible para proyectos remotos
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 md:mt-8 pt-4 md:pt-8 border-t border-blue-100 dark:border-gray-800">
+                            <h4 class="text-base md:text-lg font-semibold text-gray-800 mb-4 font-title dark:text-white">Disponibilidad</h4>
+                            <div class="grid grid-cols-2 gap-3 md:gap-4">
+                                <div class="bg-white p-3 md:p-4 rounded-lg shadow-sm text-center hover-lift dark:bg-gray-800">
+                                    <div class="w-8 md:w-10 h-8 md:h-10 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2 dark:bg-gray-700">
+                                        <i class="fas fa-clock text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">Tiempo de Respuesta</div>
+                                    <div class="text-base md:text-lg font-bold text-gray-800 font-title dark:text-white">24 horas</div>
+                                </div>
+                                <div class="bg-white p-3 md:p-4 rounded-lg shadow-sm text-center hover-lift dark:bg-gray-800">
+                                    <div class="w-8 md:w-10 h-8 md:h-10 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2 dark:bg-gray-700">
+                                        <i class="fas fa-globe-americas text-green-600 dark:text-green-400" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-xs md:text-sm text-gray-600 font-mono-secondary dark:text-gray-400">Modalidad</div>
+                                    <div class="text-base md:text-lg font-bold text-gray-800 font-title dark:text-white">Remoto/Presencial</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario de contacto -->
+                <div>
+                    <div class="bg-white rounded-2xl shadow-lg p-4 md:p-8 border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6 font-title dark:text-white">
+                            <i class="fas fa-paper-plane text-blue-500 mr-3 dark:text-blue-400" aria-hidden="true"></i>
+                            Envíame un Mensaje
+                        </h3>
+                        
+                        <form id="contactForm" class="space-y-4 md:space-y-6">
+                            <div class="form-group">
+                                <label for="nombre" class="block text-gray-700 mb-2 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">
+                                    <i class="fas fa-user text-blue-500 mr-2 dark:text-blue-400" aria-hidden="true"></i>
+                                    Nombre
+                                </label>
+                                <input type="text" 
+                                       id="nombre"
+                                       name="nombre"
+                                       class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 font-mono-secondary dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                                       placeholder="Ingresa tu nombre"
+                                       required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="block text-gray-700 mb-2 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">
+                                    <i class="fas fa-envelope text-blue-500 mr-2 dark:text-blue-400" aria-hidden="true"></i>
+                                    Email
+                                </label>
+                                <input type="email" 
+                                       id="email"
+                                       name="email"
+                                       class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 font-mono-secondary dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                                       placeholder="tucorreo@ejemplo.com"
+                                       required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="tipo-proyecto" class="block text-gray-700 mb-2 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">
+                                    <i class="fas fa-code-branch text-blue-500 mr-2 dark:text-blue-400" aria-hidden="true"></i>
+                                    Tipo de Proyecto
+                                </label>
+                                <select id="tipo-proyecto"
+                                        name="tipo_proyecto"
+                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 font-mono-secondary dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                                        required>
+                                    <option value="" disabled selected>Selecciona una opción</option>
+                                    <option value="Desarrollo Web">Desarrollo Web</option>
+                                    <option value="Sistema a Medida">Sistema a Medida</option>
+                                    <option value="Proyecto de IA/ML">Proyecto de IA/ML</option>
+                                    <option value="Consultoría Técnica">Consultoría Técnica</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="mensaje" class="block text-gray-700 mb-2 font-medium font-mono-secondary dark:text-gray-300 text-sm md:text-base">
+                                    <i class="fas fa-comment-alt text-blue-500 mr-2 dark:text-blue-400" aria-hidden="true"></i>
+                                    Mensaje
+                                </label>
+                                <textarea id="mensaje"
+                                          name="mensaje"
+                                          class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 font-mono-secondary dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                                          rows="4"
+                                          placeholder="Describe tu proyecto o consulta..."
+                                          required></textarea>
+                            </div>
+                            
+                            <button type="submit" 
+                                    class="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 shadow-lg hover:shadow-xl font-mono-secondary">
+                                <i class="fas fa-paper-plane mr-2" aria-hidden="true"></i>
+                                Enviar Mensaje
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+            <div class="grid md:grid-cols-4 gap-6 md:gap-8">
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-4 font-title">
+                        <span class="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                            Yoel Velásquez
+                        </span>
+                    </h3>
+                    <p class="text-gray-300 mb-4 md:mb-6 font-mono-secondary dark:text-gray-400 text-sm md:text-base">
+                        Ingeniero de Software especializado en IA y desarrollo Full Stack.
+                    </p>
+                    <div class="flex space-x-3 md:space-x-4">
+                        <a href="https://linkedin.com/in/yoelvelasquez" 
+                           class="social-icon dark:bg-gray-700 dark:hover:bg-gray-600" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/Drago-444" 
+                           class="social-icon dark:bg-gray-700 dark:hover:bg-gray-600" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:yoelvelasquezhualcas1809@gmail.com" 
+                           class="social-icon dark:bg-gray-700 dark:hover:bg-gray-600" aria-label="Enviar email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="CV_Yoel_Velasquez.pdf" 
+                           download="CV_Yoel_Velasquez.pdf"
+                           class="social-icon dark:bg-gray-700 dark:hover:bg-gray-600" aria-label="Descargar CV">
+                            <i class="fas fa-file-pdf"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-base md:text-lg font-bold mb-4 md:mb-6 font-title">Navegación</h4>
+                    <div class="space-y-2 md:space-y-3">
+                        <a href="#inicio" class="footer-link font-mono-secondary dark:text-gray-400 dark:hover:text-white text-sm">Inicio</a>
+                        <a href="#sobre-mi" class="footer-link font-mono-secondary dark:text-gray-400 dark:hover:text-white text-sm">Sobre Mí</a>
+                        <a href="#experiencia" class="footer-link font-mono-secondary dark:text-gray-400 dark:hover:text-white text-sm">Experiencia</a>
+                        <a href="#proyectos" class="footer-link font-mono-secondary dark:text-gray-400 dark:hover:text-white text-sm">Proyectos</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-base md:text-lg font-bold mb-4 md:mb-6 font-title">Tecnologías</h4>
+                    <div class="space-y-2 md:space-y-3">
+                        <span class="footer-link font-mono-secondary dark:text-gray-400 text-sm">Python & Flask</span>
+                        <span class="footer-link font-mono-secondary dark:text-gray-400 text-sm">JavaScript</span>
+                        <span class="footer-link font-mono-secondary dark:text-gray-400 text-sm">Machine Learning</span>
+                        <span class="footer-link font-mono-secondary dark:text-gray-400 text-sm">SQL Databases</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-base md:text-lg font-bold mb-4 md:mb-6 font-title">Contacto</h4>
+                    <div class="space-y-2 md:space-y-3">
+                        <p class="text-gray-300 font-mono-secondary dark:text-gray-400 text-sm">
+                            <i class="fas fa-phone text-blue-400 mr-3" aria-hidden="true"></i>
+                            +51 943 379 479
+                        </p>
+                        <p class="text-gray-300 font-mono-secondary dark:text-gray-400 text-sm">
+                            <i class="fas fa-envelope text-cyan-400 mr-3" aria-hidden="true"></i>
+                            yoelvelasquezhualcas1809@gmail.com
+                        </p>
+                        <p class="text-gray-300 font-mono-secondary dark:text-gray-400 text-sm">
+                            <i class="fas fa-map-marker-alt text-purple-400 mr-3" aria-hidden="true"></i>
+                            Trujillo, Perú
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-gray-700 dark:border-gray-800 text-center">
+                <p class="text-gray-400 font-mono-secondary text-sm md:text-base">
+                    <i class="fas fa-code text-blue-400 mr-2" aria-hidden="true"></i>
+                    © <span id="currentYear">2026</span> Yoel Velásquez Hualcas | Ingeniero de Software & IA
+                </p>
+                <p class="text-gray-500 text-xs md:text-sm mt-2 font-mono-secondary dark:text-gray-500">
+                    <i class="fas fa-coffee text-yellow-400 mr-2" aria-hidden="true"></i>
+                    Desarrollado con pasión y código limpio
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript UNIFICADO CORREGIDO -->
+    <script>
+        // ===== CONFIGURACIÓN DE EMAILJS =====
+        const EMAILJS_CONFIG = {
+            SERVICE_ID: 'service_7k913t8',
+            TEMPLATE_ID: 'template_76fpdht', 
+            PUBLIC_KEY: 'MLuhoUkY82mWLeehF'
+        };
+
+        // ===== INICIALIZACIÓN DEL PORTAFOLIO =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar EmailJS
+            initializeEmailJS();
+            
+            // Inicializar funcionalidades principales
+            initializePortfolio();
+        });
+
+        function initializeEmailJS() {
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+                console.log('✅ EmailJS inicializado');
+            } else {
+                console.error('❌ EmailJS SDK no cargado');
+                showNotification('Error al cargar el servicio de correo. Por favor recarga la página.', 'error');
+            }
+        }
+
+        function initializePortfolio() {
+            setupNavigation();
+            setupThemeToggle();
+            setupHamburgerMenu();
+            setupModal();
+            setupContactForm();
+            setupCounters();
+            setupSkillBars();
+            setupCurrentYear();
+            setupScrollProgress();
+            setupBackToTop();
+        }
+
+        // ===== NAVEGACIÓN SUAVE =====
+        function setupNavigation() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        const offset = window.innerWidth < 768 ? 70 : 100;
+                        const targetPosition = targetElement.offsetTop - offset;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Cerrar menú móvil si está abierto
+                        const mobileMenu = document.getElementById('mobileMenu');
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            closeHamburgerMenu();
+                        }
+                    }
+                });
+            });
+        }
+
+        // ===== TOGGLE TEMA OSCURO/CLARO =====
+        function setupThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeToggleMobile = document.getElementById('themeToggleMobile');
+            
+            // Verificar tema guardado
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                updateThemeIcons(true);
+            } else {
+                updateThemeIcons(false);
+            }
+            
+            function toggleTheme() {
+                const isDark = document.documentElement.classList.toggle('dark');
+                updateThemeIcons(isDark);
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            }
+            
+            function updateThemeIcons(isDark) {
+                const moonIcons = document.querySelectorAll('#moonIcon, #moonIconMobile');
+                const sunIcons = document.querySelectorAll('#sunIcon, #sunIconMobile');
+                
+                moonIcons.forEach(icon => icon.classList.toggle('hidden', isDark));
+                sunIcons.forEach(icon => icon.classList.toggle('hidden', !isDark));
+            }
+            
+            if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+            if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
+        }
+
+        // ===== MENÚ HAMBURGUESA CORREGIDO =====
+        function setupHamburgerMenu() {
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const desktopMenuButton = document.getElementById('desktopMenuButton');
+            const closeMobileMenu = document.getElementById('closeMobileMenu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            // Asegurar que el menú esté cerrado al inicio
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+            
+            // Event listeners
+            if (mobileMenuButton) mobileMenuButton.addEventListener('click', toggleHamburgerMenu);
+            if (desktopMenuButton) desktopMenuButton.addEventListener('click', toggleHamburgerMenu);
+            if (closeMobileMenu) closeMobileMenu.addEventListener('click', closeHamburgerMenu);
+            
+            // Cerrar menú al hacer clic fuera
+            if (mobileMenu) {
+                mobileMenu.addEventListener('click', function(e) {
+                    if (e.target === mobileMenu) {
+                        closeHamburgerMenu();
+                    }
+                });
+            }
+            
+            // Cerrar con Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    closeHamburgerMenu();
+                }
+            });
+            
+            // Cerrar menú al hacer clic en enlaces
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (link.getAttribute('href')?.startsWith('#')) {
+                        setTimeout(closeHamburgerMenu, 300);
+                    }
+                });
+            });
+            
+            // Cerrar menú al cambiar tamaño de ventana
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768 && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    closeHamburgerMenu();
+                }
+            });
+        }
+
+        function openHamburgerMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const desktopMenuButton = document.getElementById('desktopMenuButton');
+            
+            if (!mobileMenu) return;
+            
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            
+            if (mobileMenuButton) {
+                mobileMenuButton.innerHTML = '<i class="fas fa-times text-xl"></i>';
+            }
+            
+            if (desktopMenuButton) {
+                desktopMenuButton.innerHTML = '<i class="fas fa-times text-lg"></i>';
+            }
+        }
+
+        function closeHamburgerMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const desktopMenuButton = document.getElementById('desktopMenuButton');
+            
+            if (!mobileMenu) return;
+            
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            
+            if (mobileMenuButton) {
+                mobileMenuButton.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+            }
+            
+            if (desktopMenuButton) {
+                desktopMenuButton.innerHTML = '<i class="fas fa-bars text-lg"></i>';
+            }
+        }
+
+        function toggleHamburgerMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu && mobileMenu.classList.contains('hidden')) {
+                openHamburgerMenu();
+            } else {
+                closeHamburgerMenu();
+            }
+        }
+
+        // ===== MODAL DE PERFIL =====
+        function setupModal() {
+            const profileImage = document.querySelector('.relative.group');
+            const modal = document.getElementById('profileModal');
+            const closeModal = document.getElementById('closeModal');
+            
+            if (profileImage && modal) {
+                profileImage.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                if (closeModal) {
+                    closeModal.addEventListener('click', () => {
+                        modal.classList.add('hidden');
+                        modal.classList.remove('flex');
+                        document.body.style.overflow = 'auto';
+                    });
+                }
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.add('hidden');
+                        modal.classList.remove('flex');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                        modal.classList.add('hidden');
+                        modal.classList.remove('flex');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+            
+            // Manejo de errores en imágenes
+            const images = document.querySelectorAll('img[src="perfil.png"]');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    this.onerror = null;
+                    this.src = 'https://ui-avatars.com/api/?name=Yoel+Velasquez&background=3b82f6&color=fff&size=512';
+                });
+            });
+        }
+
+        // ===== FORMULARIO DE CONTACTO =====
+        function setupContactForm() {
+            const contactForm = document.getElementById('contactForm');
+            if (!contactForm) return;
+            
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Validación
+                if (!validateForm(this)) {
+                    showNotification('Por favor completa todos los campos requeridos correctamente', 'warning');
+                    return;
+                }
+                
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Enviando...';
+                submitBtn.disabled = true;
+                
+                try {
+                    // Preparar datos
+                    const formData = new FormData(this);
+                    const data = {
+                        nombre: formData.get('nombre'),
+                        email: formData.get('email'),
+                        tipo_proyecto: formData.get('tipo_proyecto'),
+                        mensaje: formData.get('mensaje'),
+                        date: new Date().toLocaleDateString('es-ES'),
+                        time: new Date().toLocaleTimeString('es-ES')
+                    };
+                    
+                    // Enviar con EmailJS
+                    const response = await emailjs.send(
+                        EMAILJS_CONFIG.SERVICE_ID,
+                        EMAILJS_CONFIG.TEMPLATE_ID,
+                        data
+                    );
+                    
+                    console.log('✅ Email enviado:', response);
+                    showNotification('¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.', 'success');
+                    
+                    // Limpiar formulario
+                    contactForm.reset();
+                    
+                    // Restaurar botón
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }, 2000);
+                    
+                } catch (error) {
+                    console.error('❌ Error al enviar email:', error);
+                    
+                    let errorMessage = 'Error al enviar el mensaje. ';
+                    if (!navigator.onLine) {
+                        errorMessage = 'Sin conexión a internet. Verifica tu conexión.';
+                    } else if (error.status === 0) {
+                        errorMessage += 'Error de conexión. Verifica tu internet.';
+                    } else {
+                        errorMessage += 'Inténtalo de nuevo o contáctame por WhatsApp.';
+                    }
+                    
+                    showNotification(errorMessage, 'error');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
+        }
+
+        // ===== CONTADORES ANIMADOS =====
+        function setupCounters() {
+            const counters = document.querySelectorAll('[data-counter]');
+            if (counters.length === 0) return;
+            
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.getAttribute('data-counter'));
+                        
+                        if (!isNaN(target) && target > 0) {
+                            animateCounter(counter, target);
+                            counterObserver.unobserve(counter);
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => counterObserver.observe(counter));
+        }
+
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const duration = 1500;
+            const interval = duration / (target / increment);
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                    element.textContent = formatCounterValue(target, element.textContent);
+                } else {
+                    element.textContent = formatCounterValue(Math.floor(current), element.textContent);
+                }
+            }, interval);
+        }
+
+        function formatCounterValue(value, originalContent) {
+            const original = originalContent.trim();
+            if (original.includes('+')) return Math.floor(value) + '+';
+            if (original.includes('%')) return Math.floor(value) + '%';
+            return Math.floor(value);
+        }
+
+        // ===== BARRAS DE HABILIDADES =====
+        function setupSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            if (skillBars.length === 0) return;
+            
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const skillBar = entry.target;
+                        const targetWidth = skillBar.getAttribute('data-width') || skillBar.style.width;
+                        
+                        skillBar.style.width = '0%';
+                        
+                        setTimeout(() => {
+                            skillBar.style.transition = 'width 1.5s ease';
+                            skillBar.style.width = targetWidth;
+                        }, 100);
+                        
+                        skillObserver.unobserve(skillBar);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            skillBars.forEach(bar => skillObserver.observe(bar));
+        }
+
+        // ===== AÑO ACTUAL EN FOOTER =====
+        function setupCurrentYear() {
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        }
+
+        // ===== BARRA DE PROGRESO DE SCROLL =====
+        function setupScrollProgress() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            if (!scrollProgress) return;
+            
+            window.addEventListener('scroll', () => {
+                const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrolled = (window.scrollY / windowHeight) * 100;
+                scrollProgress.style.width = scrolled + '%';
+            });
+        }
+
+        // ===== BOTÓN VOLVER ARRIBA =====
+        function setupBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            if (!backToTopBtn) return;
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTopBtn.classList.remove('opacity-0', 'scale-0');
+                    backToTopBtn.classList.add('opacity-100', 'scale-100');
+                } else {
+                    backToTopBtn.classList.remove('opacity-100', 'scale-100');
+                    backToTopBtn.classList.add('opacity-0', 'scale-0');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // ===== FUNCIONES DE UTILIDAD =====
+        function validateForm(form) {
+            let isValid = true;
+            const requiredFields = form.querySelectorAll('[required]');
+            
+            requiredFields.forEach(field => {
+                field.style.borderColor = '';
+                
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#ef4444';
+                    isValid = false;
+                } else if (field.type === 'email') {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(field.value.trim())) {
+                        field.style.borderColor = '#ef4444';
+                        isValid = false;
+                    }
+                }
+            });
+            
+            return isValid;
+        }
+
+        function showNotification(message, type = 'info') {
+            // Eliminar notificaciones anteriores
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(notif => notif.remove());
+            
+            // Crear nueva notificación
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            
+            let icon = 'ℹ️';
+            let borderColor = '#3b82f6';
+            
+            switch(type) {
+                case 'success':
+                    icon = '✅';
+                    borderColor = '#10b981';
+                    break;
+                case 'error':
+                    icon = '❌';
+                    borderColor = '#ef4444';
+                    break;
+                case 'warning':
+                    icon = '⚠️';
+                    borderColor = '#f59e0b';
+                    break;
+                case 'info':
+                    icon = '💡';
+                    borderColor = '#3b82f6';
+                    break;
+            }
+            
+            notification.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <span style="font-size: 1.2em;">${icon}</span>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            notification.style.borderLeft = `4px solid ${borderColor}`;
+            
+            document.body.appendChild(notification);
+            
+            // Mostrar
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+            
+            // Ocultar después de 5 segundos
+            setTimeout(() => {
+                notification.style.transform = 'translateX(120%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 5000);
+        }
+
+        // ===== CONFIGURACIÓN DE TAILWIND =====
+        tailwind.config = {
+            darkMode: 'class'
+        }
+        
+        console.log('🚀 Portafolio Yoel Velásquez inicializado correctamente');
+    </script>
+</body>
+</html>

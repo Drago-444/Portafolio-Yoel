@@ -1,0 +1,2327 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Certificaciones | Yoel Velásquez - Ingeniero de Software & IA</title>
+    <meta name="description" content="Certificaciones, títulos y formación académica de Yoel Velásquez - Especialista en IA y Desarrollo Full Stack">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== ESTILOS UNIFICADOS MEJORADOS PARA MÓVIL ===== */
+        
+        /* Configuración base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body { 
+            font-family: 'Roboto Mono', monospace; 
+            background: #f9fafb;
+            color: #1f2937;
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+        }
+        
+        .font-title { 
+            font-family: 'Fira Code', monospace; 
+            font-weight: 600;
+        }
+        
+        /* Certificado Card Hover Effect */
+        .cert-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+        
+        /* Modal */
+        .cert-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        .cert-modal.active {
+            display: flex;
+        }
+        
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3b82f6, #06b6d4);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3b82f6;
+            border: 3px solid white;
+        }
+        
+        /* Dark mode */
+        .dark .cert-card {
+            border-color: #374151;
+            background: #1f2937;
+        }
+        .dark .cert-card:hover {
+            border-color: #3b82f6;
+            background: #1e40af20;
+        }
+        
+        /* Dark mode classes para Tailwind */
+        .dark .dark\:bg-gray-900 { background-color: #111827; }
+        .dark .dark\:bg-gray-800 { background-color: #1f2937; }
+        .dark .dark\:text-white { color: #ffffff; }
+        .dark .dark\:text-gray-200 { color: #e5e7eb; }
+        .dark .dark\:border-gray-700 { border-color: #374151; }
+        
+        /* Animaciones */
+        .hover-lift {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #3b82f6, #06b6d4);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #2563eb, #0891b2);
+        }
+        
+        /* ===== MEJORAS ESPECÍFICAS PARA MÓVILES ===== */
+        
+        /* Mobile (0px - 767px) */
+        @media (max-width: 767px) {
+            body {
+                font-size: 15px;
+            }
+            
+            /* Header móvil */
+            .pt-20 {
+                padding-top: 5rem !important;
+            }
+            
+            .pb-12 {
+                padding-bottom: 3rem !important;
+            }
+            
+            /* Títulos móviles */
+            .text-4xl, .text-5xl {
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .text-3xl {
+                font-size: 1.75rem !important;
+            }
+            
+            .text-2xl {
+                font-size: 1.5rem !important;
+            }
+            
+            .text-xl {
+                font-size: 1.25rem !important;
+            }
+            
+            /* Padding general */
+            .px-4, .sm\:px-6, .lg\:px-8 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
+            /* Botones fixed para móvil */
+            .fixed.top-4 {
+                top: 1rem !important;
+            }
+            
+            .fixed.top-4.right-4 {
+                right: 1rem !important;
+                width: 3rem !important;
+                height: 3rem !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            
+            .fixed.top-4.left-4 {
+                left: 1rem !important;
+                padding: 0.5rem 0.75rem !important;
+                font-size: 0.875rem !important;
+            }
+            
+            .fixed.top-4.left-4 span {
+                display: none !important;
+            }
+            
+            .fixed.top-4.left-4 .sm\:inline {
+                display: none !important;
+            }
+            
+            .fixed.top-4.left-4 .sm\:hidden {
+                display: block !important;
+            }
+            
+            /* Cards y contenedores */
+            .rounded-2xl, .rounded-xl {
+                border-radius: 1rem !important;
+            }
+            
+            .p-8 {
+                padding: 1.5rem !important;
+            }
+            
+            .p-6 {
+                padding: 1.25rem !important;
+            }
+            
+            /* Timeline ajustado para móvil */
+            .timeline-item {
+                padding-left: 1.25rem;
+            }
+            
+            /* Grids en móvil */
+            .grid-cols-1 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .md\:grid-cols-2 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .lg\:grid-cols-2 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .grid-cols-1.md\:grid-cols-3 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .md\:grid-cols-3 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Flex responsive */
+            .flex-col.md\:flex-row {
+                flex-direction: column !important;
+            }
+            
+            /* Margins en móvil */
+            .mb-16, .mb-12, .mb-8 {
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .mt-8 {
+                margin-top: 1rem !important;
+            }
+            
+            /* Espaciado interno */
+            .space-y-6 > * + * {
+                margin-top: 1rem !important;
+            }
+            
+            .space-y-4 > * + * {
+                margin-top: 0.75rem !important;
+            }
+            
+            /* Tags y badges móvil */
+            .px-3.py-1, .px-2.py-1 {
+                padding: 0.375rem 0.75rem !important;
+                font-size: 0.75rem !important;
+            }
+            
+            .px-3.py-2 {
+                padding: 0.5rem 0.75rem !important;
+                font-size: 0.75rem !important;
+            }
+            
+            /* Botones grandes móvil */
+            .px-6.py-3 {
+                padding: 0.75rem 1rem !important;
+                font-size: 0.875rem !important;
+            }
+            
+            .px-5.py-2 {
+                padding: 0.625rem 0.875rem !important;
+                font-size: 0.875rem !important;
+            }
+            
+            /* Imagen de perfil móvil */
+            .w-20.h-20 {
+                width: 5rem !important;
+                height: 5rem !important;
+            }
+            
+            .w-16.h-16 {
+                width: 4rem !important;
+                height: 4rem !important;
+            }
+            
+            /* Asegurar que todo el texto sea legible */
+            p, span, a, li {
+                font-size: 0.9375rem !important;
+                line-height: 1.6 !important;
+            }
+            
+            /* Logros destacados móvil */
+            .text-4xl {
+                font-size: 2rem !important;
+            }
+            
+            /* Responsabilidades grid móvil */
+            .grid.gap-4 {
+                gap: 0.75rem !important;
+            }
+            
+            .grid.gap-6 {
+                gap: 1rem !important;
+            }
+            
+            /* Habilidades tags móvil */
+            .flex-wrap.gap-2 {
+                gap: 0.375rem !important;
+            }
+            
+            /* Footer móvil */
+            footer .py-12 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+            
+            footer .flex-wrap, footer .flex.space-x-4 {
+                gap: 0.5rem !important;
+            }
+            
+            footer .px-4.py-2 {
+                padding: 0.5rem 0.75rem !important;
+                font-size: 0.75rem !important;
+            }
+            
+            /* Modal móvil */
+            .cert-modal .max-w-4xl {
+                margin: 1rem !important;
+                max-height: 90vh !important;
+            }
+            
+            .cert-modal .p-6 {
+                padding: 1rem !important;
+            }
+            
+            .cert-modal .flex-col.sm\:flex-row {
+                flex-direction: column !important;
+            }
+            
+            /* Sección de cursos del PEA - tabs móvil */
+            #semesterTabs {
+                overflow-x: auto !important;
+                flex-wrap: nowrap !important;
+                padding-bottom: 0.5rem !important;
+                gap: 0.5rem !important;
+            }
+            
+            #semesterTabs button {
+                white-space: nowrap !important;
+                font-size: 0.875rem !important;
+                padding: 0.5rem 0.75rem !important;
+            }
+            
+            /* Tablas de competencias móvil */
+            .grid-cols-1.md\:grid-cols-3 {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .grid-cols-2.md\:grid-cols-4 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Texto pequeño en móvil */
+            .text-sm {
+                font-size: 0.8125rem !important;
+            }
+            
+            .text-xs {
+                font-size: 0.75rem !important;
+            }
+            
+            /* Padding interno reducido */
+            .p-4, .p-3 {
+                padding: 0.75rem !important;
+            }
+            
+            /* Iconos más pequeños en móvil */
+            .text-2xl, .text-xl {
+                font-size: 1.25rem !important;
+            }
+            
+            .text-lg {
+                font-size: 1.125rem !important;
+            }
+            
+            /* Ajuste para líneas de tiempo */
+            .timeline-dot {
+                width: 10px !important;
+                height: 10px !important;
+                left: -5px !important;
+            }
+            
+            /* Mejorar grid de módulos */
+            .grid.grid-cols-2.md\:grid-cols-4 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Certificaciones grid móvil */
+            .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-2 {
+                gap: 1rem !important;
+            }
+        }
+        
+        /* Tablet (768px - 1023px) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            body {
+                font-size: 15px;
+            }
+            
+            /* Timeline ajustado para tablet */
+            .timeline-item {
+                padding-left: 1.75rem;
+            }
+            
+            /* Padding ajustado para tablet */
+            .px-4, .sm\:px-6, .lg\:px-8 {
+                padding-left: 1.5rem !important;
+                padding-right: 1.5rem !important;
+            }
+            
+            /* Grids tablet */
+            .md\:grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            .md\:grid-cols-3 {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            /* Botones fixed tablet */
+            .fixed.top-4.left-4 span.sm\:inline {
+                display: inline !important;
+            }
+            
+            .fixed.top-4.left-4 .sm\:hidden {
+                display: none !important;
+            }
+        }
+        
+        /* Desktop (1024px and up) */
+        @media (min-width: 1024px) {
+            /* Estilos específicos para desktop */
+            .timeline-item {
+                padding-left: 2rem;
+            }
+        }
+        
+        /* Pantallas muy grandes (1440px+) */
+        @media (min-width: 1440px) {
+            .max-w-7xl {
+                max-width: 80rem !important;
+            }
+        }
+        
+        /* Prevenir overflow horizontal */
+        .overflow-x-hidden {
+            overflow-x: hidden !important;
+        }
+        
+        /* Asegurar que los botones sean tocables en móvil */
+        button, a {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        /* Mejorar imágenes responsivas */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* FIX para iOS Safari */
+        @supports (-webkit-touch-callout: none) {
+            .h-screen {
+                height: -webkit-fill-available !important;
+            }
+            .min-h-screen {
+                min-height: -webkit-fill-available !important;
+            }
+        }
+    </style>
+    
+    <!-- Script para configuración de Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 min-h-screen overflow-x-hidden">
+    
+    <!-- Botón Dark/Light Mode Fixed -->
+    <button id="themeToggleCert" 
+            class="fixed top-4 right-4 z-50 p-3 rounded-lg bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl dark:bg-gray-800/80 dark:text-gray-300 dark:hover:bg-gray-700 flex items-center justify-center"
+            aria-label="Cambiar tema">
+        <i class="fas fa-moon text-lg" id="moonIconCert"></i>
+        <i class="fas fa-sun text-lg hidden" id="sunIconCert"></i>
+    </button>
+    
+    <!-- Back to Portfolio Button -->
+    <a href="index.html" 
+       class="fixed top-4 left-4 z-40 bg-white dark:bg-gray-800 text-gray-800 dark:text-white px-4 py-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 font-title text-sm md:text-base">
+        <i class="fas fa-arrow-left"></i>
+        <span class="hidden sm:inline">Volver al Portafolio</span>
+        <span class="sm:hidden">Volver</span>
+    </a>
+    
+    <!-- Header -->
+    <header class="pt-16 md:pt-20 pb-8 md:pb-12 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 dark:from-blue-900/20 dark:to-cyan-900/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex justify-center mb-4">
+                <div class="w-16 md:w-20 h-16 md:h-20 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl">
+                    <img src="perfil.png" 
+                         alt="Yoel Velásquez" 
+                         class="w-full h-full object-cover"
+                         onerror="this.src='https://ui-avatars.com/api/?name=Yoel+Velasquez&background=3b82f6&color=fff'">
+                </div>
+            </div>
+            
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-title">
+                <span class="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                    Educación & Certificaciones
+                </span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-2">
+                Formación académica, certificados profesionales y logros educativos
+            </p>
+            
+            <div class="mt-6 md:mt-8 flex flex-wrap justify-center gap-2 md:gap-3">
+                <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs md:text-sm dark:bg-blue-900/30 dark:text-blue-400">
+                    <i class="fas fa-graduation-cap mr-2"></i>Ingeniería de Software
+                </span>
+                <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs md:text-sm dark:bg-green-900/30 dark:text-green-400">
+                    <i class="fas fa-certificate mr-2"></i>Certificados Profesionales
+                </span>
+                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-xs md:text-sm dark:bg-purple-900/30 dark:text-purple-400">
+                    <i class="fas fa-brain mr-2"></i>Inteligencia Artificial
+                </span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        
+        <!-- Educación Formal -->
+        <section class="mb-12 md:mb-16">
+            <div class="flex items-center mb-6 md:mb-8">
+                <div class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center mr-3 md:mr-4">
+                    <i class="fas fa-university text-white text-lg md:text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white font-title">Educación Formal</h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">Títulos y formación académica principal</p>
+                </div>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6 lg:p-8 border border-gray-200 dark:border-gray-700">
+                <!-- Título Principal -->
+                <div class="mb-8 md:mb-12 pb-8 md:pb-12 border-b border-gray-200 dark:border-gray-700">
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-6">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-4 md:mb-6">
+                                <div class="w-12 md:w-16 h-12 md:h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg md:rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-graduation-cap text-white text-xl md:text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg md:text-2xl font-bold text-gray-800 dark:text-white font-title">
+                                        Ingeniería de Software con Inteligencia Artificial
+                                    </h3>
+                                    <p class="text-blue-600 dark:text-blue-400 text-base md:text-lg font-semibold">
+                                        CFP SENATI - Chimbote
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4 md:mb-6">
+                                <span class="inline-block px-3 md:px-4 py-1 bg-blue-100 text-blue-600 rounded-full text-xs md:text-sm font-medium dark:bg-blue-900/30 dark:text-blue-400 mb-3">
+                                    <i class="far fa-calendar mr-2"></i>Mar 2023 - Nov 2025 | Egresado
+                                </span>
+                                <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-sm md:text-base">
+                                    Formación integral en desarrollo de software con enfoque en tecnologías emergentes 
+                                    e inteligencia artificial. Programa especializado que combina fundamentos de 
+                                    ingeniería de software con aplicaciones prácticas de machine learning, deep learning 
+                                    y procesamiento de datos.
+                                </p>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+                                <div class="bg-blue-50 dark:bg-gray-700 p-2 md:p-3 rounded-lg">
+                                    <div class="text-blue-600 dark:text-blue-400 font-bold text-base md:text-lg">Python/Flask</div>
+                                    <div class="text-gray-600 dark:text-gray-400 text-xs md:text-sm">Backend Development</div>
+                                </div>
+                                <div class="bg-cyan-50 dark:bg-gray-700 p-2 md:p-3 rounded-lg">
+                                    <div class="text-cyan-600 dark:text-cyan-400 font-bold text-base md:text-lg">Machine Learning</div>
+                                    <div class="text-gray-600 dark:text-gray-400 text-xs md:text-sm">AI Fundamentals</div>
+                                </div>
+                                <div class="bg-green-50 dark:bg-gray-700 p-2 md:p-3 rounded-lg">
+                                    <div class="text-green-600 dark:text-green-400 font-bold text-base md:text-lg">Bases de Datos</div>
+                                    <div class="text-gray-600 dark:text-gray-400 text-xs md:text-sm">SQL & NoSQL</div>
+                                </div>
+                                <div class="bg-purple-50 dark:bg-gray-700 p-2 md:p-3 rounded-lg">
+                                    <div class="text-purple-600 dark:text-purple-400 font-bold text-base md:text-lg">Web Dev</div>
+                                    <div class="text-gray-600 dark:text-gray-400 text-xs md:text-sm">Full Stack</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Placeholder para Título (cuando lo tengas) -->
+                        <div class="md:w-1/3 mt-4 md:mt-0">
+                            <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-4 md:p-6 text-center">
+                                <i class="fas fa-file-certificate text-3xl md:text-4xl text-gray-400 dark:text-gray-600 mb-3 md:mb-4"></i>
+                                <h4 class="text-base md:text-lg font-bold text-gray-700 dark:text-gray-300 mb-2">Título Profesional</h4>
+                                <p class="text-gray-600 dark:text-gray-500 text-xs md:text-sm mb-4">
+                                    En proceso de obtención (Nov 2025)
+                                </p>
+                                <button class="px-3 md:px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-xs md:text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-not-allowed" disabled>
+                                    <i class="far fa-eye mr-2"></i>Disponible pronto
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Módulos Especializados Cursados con Competencias Detalladas -->
+                <div class="mt-8 md:mt-12">
+                    <h4 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-6 md:mb-8 font-title">
+                        <i class="fas fa-list-check text-blue-500 mr-3"></i>
+                        Plan de Estudios Completo con Competencias Adquiridas
+                    </h4>
+                    
+                    <!-- Sistema de pestañas por semestre -->
+                    <div class="mb-6 md:mb-8">
+                        <div class="flex flex-wrap gap-2 mb-4 md:mb-6" id="semesterTabs">
+                            <!-- Las pestañas se generarán con JavaScript -->
+                        </div>
+                        
+                        <div id="semesterContent">
+                            <!-- El contenido se cargará dinámicamente -->
+                        </div>
+                    </div>
+                    
+                    <!-- Competencias Técnicas por Área -->
+                    <div class="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-gray-200 dark:border-gray-700">
+                        <h5 class="text-base md:text-lg font-bold text-gray-800 dark:text-white mb-4 md:mb-6 font-title">
+                            <i class="fas fa-cogs text-cyan-500 mr-3"></i>
+                            Competencias Técnicas Específicas
+                        </h5>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                            <!-- Competencias en Programación -->
+                            <div class="bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 md:p-6 border border-blue-100 dark:border-gray-700">
+                                <div class="flex items-center mb-3 md:mb-4">
+                                    <div class="w-10 md:w-12 h-10 md:h-12 bg-blue-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mr-3 md:mr-4">
+                                        <i class="fas fa-code text-blue-600 dark:text-blue-400 text-lg md:text-xl"></i>
+                                    </div>
+                                    <h5 class="font-bold text-gray-800 dark:text-white text-sm md:text-base">Programación Avanzada</h5>
+                                </div>
+                                <ul class="space-y-2 text-xs md:text-sm">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">POO, Encapsulación, Herencia, Polimorfismo</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Java Fundamentals & Foundations (Oracle Certified)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Algoritmia para IA, Recursividad, Árboles de Decisión</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Patrones de Diseño (Singleton, N-Capas)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Competencias en Desarrollo Web -->
+                            <div class="bg-gradient-to-br from-green-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 md:p-6 border border-green-100 dark:border-gray-700">
+                                <div class="flex items-center mb-3 md:mb-4">
+                                    <div class="w-10 md:w-12 h-10 md:h-12 bg-green-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mr-3 md:mr-4">
+                                        <i class="fas fa-globe text-green-600 dark:text-green-400 text-lg md:text-xl"></i>
+                                    </div>
+                                    <h5 class="font-bold text-gray-800 dark:text-white text-sm md:text-base">Desarrollo Web Full Stack</h5>
+                                </div>
+                                <ul class="space-y-2 text-xs md:text-sm">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">HTML5, CSS3, JavaScript, PHP, AJAX</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Frameworks: AngularJS, Laravel, WPF</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Conexión a BD con PDO, APIs REST</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Seguridad Web, Autenticación, Sesiones</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Competencias en Bases de Datos -->
+                            <div class="bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 md:p-6 border border-purple-100 dark:border-gray-700">
+                                <div class="flex items-center mb-3 md:mb-4">
+                                    <div class="w-10 md:w-12 h-10 md:h-12 bg-purple-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mr-3 md:mr-4">
+                                        <i class="fas fa-database text-purple-600 dark:text-purple-400 text-lg md:text-xl"></i>
+                                    </div>
+                                    <h5 class="font-bold text-gray-800 dark:text-white text-sm md:text-base">Bases de Datos & SQL</h5>
+                                </div>
+                                <ul class="space-y-2 text-xs md:text-sm">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Database Foundations & Design (Oracle)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Modelado ER, Normalización, Transact-SQL</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Consultas Avanzadas, Subconsultas, Joins</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Procedimientos, Funciones, Triggers</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Competencias en IA & Machine Learning -->
+                            <div class="bg-gradient-to-br from-pink-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 md:p-6 border border-pink-100 dark:border-gray-700">
+                                <div class="flex items-center mb-3 md:mb-4">
+                                    <div class="w-10 md:w-12 h-10 md:h-12 bg-pink-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mr-3 md:mr-4">
+                                        <i class="fas fa-robot text-pink-600 dark:text-pink-400 text-lg md:text-xl"></i>
+                                    </div>
+                                    <h5 class="font-bold text-gray-800 dark:text-white text-sm md:text-base">Inteligencia Artificial</h5>
+                                </div>
+                                <ul class="space-y-2 text-xs md:text-sm">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Machine Learning & Deep Learning</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Big Data, Hadoop, Análisis con R</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Redes Neuronales (Neuralnet, H2O)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Modelos Predictivos, CRISP-DM</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Competencias en Sistemas & Cloud -->
+                            <div class="bg-gradient-to-br from-orange-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 md:p-6 border border-orange-100 dark:border-gray-700">
+                                <div class="flex items-center mb-3 md:mb-4">
+                                    <div class="w-10 md:w-12 h-10 md:h-12 bg-orange-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mr-3 md:mr-4">
+                                        <i class="fas fa-cloud text-orange-600 dark:text-orange-400 text-lg md:text-xl"></i>
+                                    </div>
+                                    <h5 class="font-bold text-gray-800 dark:text-white text-sm md:text-base">Sistemas & Cloud</h5>
+                                </div>
+                                <ul class="space-y-2 text-xs md:text-sm">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Administración Linux Red Hat (RHCSA)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Microsoft Azure Fundamentals (AZ-900)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">AWS Cloud, Infraestructura en la Nube</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Seguridad, Redes, OpenSSH</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Competencias en Ingeniería de Software -->
+                            <div class="bg-gradient-to-br from-cyan-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 md:p-6 border border-cyan-100 dark:border-gray-700">
+                                <div class="flex items-center mb-3 md:mb-4">
+                                    <div class="w-10 md:w-12 h-10 md:h-12 bg-cyan-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mr-3 md:mr-4">
+                                        <i class="fas fa-sitemap text-cyan-600 dark:text-cyan-400 text-lg md:text-xl"></i>
+                                    </div>
+                                    <h5 class="font-bold text-gray-800 dark:text-white text-sm md:text-base">Ingeniería de Software</h5>
+                                </div>
+                                <ul class="space-y-2 text-xs md:text-sm">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">UML, Casos de Uso, Diagramas</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Metodologías Ágiles, Scrum, Kanban</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Arquitectura Software, Patrones</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">Ciclo de Vida, Prototipado, Testing</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Certificaciones Profesionales -->
+        <section class="mb-12 md:mb-16">
+            <div class="flex items-center mb-6 md:mb-8">
+                <div class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-green-500 to-emerald-400 rounded-lg flex items-center justify-center mr-3 md:mr-4">
+                    <i class="fas fa-award text-white text-lg md:text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white font-title">Certificaciones Profesionales</h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">Certificados oficiales y capacitaciones especializadas</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                <!-- Certificado 1: Desarrollo Back-End -->
+                <div class="cert-card bg-white dark:bg-gray-800 rounded-xl p-4 md:p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-start justify-between mb-3 md:mb-4">
+                        <div class="flex items-center gap-2 md:gap-3">
+                            <div class="w-12 md:w-14 h-12 md:h-14 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg md:rounded-xl flex items-center justify-center">
+                                <i class="fas fa-server text-white text-lg md:text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white font-title">Desarrollo Back-End</h3>
+                                <p class="text-blue-600 dark:text-blue-400 text-sm md:text-base">Nivel Básico</p>
+                            </div>
+                        </div>
+                        <span class="px-2 md:px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-bold dark:bg-blue-900/30 dark:text-blue-400">
+                            OFICIAL
+                        </span>
+                    </div>
+                    
+                    <div class="mb-3 md:mb-4">
+                        <div class="flex items-center text-gray-600 dark:text-gray-400 text-xs md:text-sm mb-1 md:mb-2">
+                            <i class="fas fa-building mr-2"></i>
+                            <span>Ministerio de Trabajo y Promoción del Empleo</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 dark:text-gray-400 text-xs md:text-sm">
+                            <i class="far fa-calendar-alt mr-2"></i>
+                            <span>Noviembre 2025 | 30 horas</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 md:mb-6 text-sm md:text-base">
+                        Certificación oficial en desarrollo backend con Node.js y Express. Incluye fundamentos de programación, 
+                        bases de datos y control de versiones para aplicaciones web modernas.
+                    </p>
+                    
+                    <div class="mb-3 md:mb-4">
+                        <h4 class="text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1 md:mb-2">Módulos cubiertos:</h4>
+                        <div class="flex flex-wrap gap-1 md:gap-2">
+                            <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded dark:bg-blue-900/30 dark:text-blue-400">Introducción Back-End</span>
+                            <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded dark:bg-blue-900/30 dark:text-blue-400">Fundamentos Programación</span>
+                            <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded dark:bg-blue-900/30 dark:text-blue-400">Node.js</span>
+                            <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded dark:bg-blue-900/30 dark:text-blue-400">Express.js</span>
+                            <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded dark:bg-blue-900/30 dark:text-blue-400">Bases de Datos</span>
+                            <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded dark:bg-blue-900/30 dark:text-blue-400">Control de Versiones</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-gray-500 dark:text-gray-400 text-xs md:text-sm">
+                            <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                            <span>PDF Verificado</span>
+                        </div>
+                        <div class="flex gap-1 md:gap-2">
+                            <button class="view-cert-btn px-3 md:px-4 py-1 md:py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-xs md:text-sm font-medium"
+                                    data-cert="backend"
+                                    data-title="Certificado de Desarrollo Back-End"
+                                    data-org="Ministerio de Trabajo y Promoción del Empleo"
+                                    data-date="Noviembre 2025"
+                                    data-hours="30"
+                                    data-file="Desarrollo_Web_Backend.pdf">
+                                <i class="far fa-eye mr-2"></i>Ver Certificado
+                            </button>
+                            <button class="px-2 md:px-3 py-1 md:py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-xs md:text-sm"
+                                    onclick="downloadCert('Desarrollo_Web_Backend.pdf', 'Certificado_BackEnd_Yoel_Velasquez.pdf')">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificado 2: Desarrollo Front-End -->
+                <div class="cert-card bg-white dark:bg-gray-800 rounded-xl p-4 md:p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-start justify-between mb-3 md:mb-4">
+                        <div class="flex items-center gap-2 md:gap-3">
+                            <div class="w-12 md:w-14 h-12 md:h-14 bg-gradient-to-br from-green-600 to-teal-500 rounded-lg md:rounded-xl flex items-center justify-center">
+                                <i class="fas fa-code text-white text-lg md:text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white font-title">Desarrollo Front-End</h3>
+                                <p class="text-green-600 dark:text-green-400 text-sm md:text-base">Nivel Básico</p>
+                            </div>
+                        </div>
+                        <span class="px-2 md:px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs font-bold dark:bg-green-900/30 dark:text-green-400">
+                            OFICIAL
+                        </span>
+                    </div>
+                    
+                    <div class="mb-3 md:mb-4">
+                        <div class="flex items-center text-gray-600 dark:text-gray-400 text-xs md:text-sm mb-1 md:mb-2">
+                            <i class="fas fa-building mr-2"></i>
+                            <span>Ministerio de Trabajo y Promoción del Empleo</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 dark:text-gray-400 text-xs md:text-sm">
+                            <i class="far fa-calendar-alt mr-2"></i>
+                            <span>Octubre 2025 | 30 horas</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 md:mb-6 text-sm md:text-base">
+                        Certificación en desarrollo frontend moderno. Abarca desde HTML5 y CSS3 hasta JavaScript ES6+ 
+                        y frameworks, con enfoque en diseño responsivo y mejores prácticas de desarrollo web.
+                    </p>
+                    
+                    <div class="mb-3 md:mb-4">
+                        <h4 class="text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1 md:mb-2">Módulos cubiertos:</h4>
+                        <div class="flex flex-wrap gap-1 md:gap-2">
+                            <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded dark:bg-green-900/30 dark:text-green-400">Introducción Front-End</span>
+                            <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded dark:bg-green-900/30 dark:text-green-400">HTML5</span>
+                            <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded dark:bg-green-900/30 dark:text-green-400">CSS3</span>
+                            <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded dark:bg-green-900/30 dark:text-green-400">JavaScript</span>
+                            <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded dark:bg-green-900/30 dark:text-green-400">Frameworks</span>
+                            <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded dark:bg-green-900/30 dark:text-green-400">Diseño Responsivo</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-gray-500 dark:text-gray-400 text-xs md:text-sm">
+                            <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                            <span>PDF Verificado</span>
+                        </div>
+                        <div class="flex gap-1 md:gap-2">
+                            <button class="view-cert-btn px-3 md:px-4 py-1 md:py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-xs md:text-sm font-medium"
+                                    data-cert="frontend"
+                                    data-title="Certificado de Desarrollo Front-End"
+                                    data-org="Ministerio de Trabajo y Promoción del Empleo"
+                                    data-date="Octubre 2025"
+                                    data-hours="30"
+                                    data-file="Desarrollo_Web_Frontend.pdf">
+                                <i class="far fa-eye mr-2"></i>Ver Certificado
+                            </button>
+                            <button class="px-2 md:px-3 py-1 md:py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-xs md:text-sm"
+                                    onclick="downloadCert('Desarrollo_Web_Frontend.pdf', 'Certificado_FrontEnd_Yoel_Velasquez.pdf')">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificado 3: Microsoft Excel Avanzado -->
+                <div class="cert-card bg-white dark:bg-gray-800 rounded-xl p-4 md:p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-start justify-between mb-3 md:mb-4">
+                        <div class="flex items-center gap-2 md:gap-3">
+                            <div class="w-12 md:w-14 h-12 md:h-14 bg-gradient-to-br from-red-600 to-orange-500 rounded-lg md:rounded-xl flex items-center justify-center">
+                                <i class="fas fa-file-excel text-white text-lg md:text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white font-title">Microsoft Excel Avanzado</h3>
+                                <p class="text-red-600 dark:text-red-400 text-sm md:text-base">Nivel Avanzado</p>
+                            </div>
+                        </div>
+                        <span class="px-2 md:px-3 py-1 bg-red-100 text-red-600 rounded-full text-xs font-bold dark:bg-red-900/30 dark:text-red-400">
+                            SENATI
+                        </span>
+                    </div>
+                    
+                    <div class="mb-3 md:mb-4">
+                        <div class="flex items-center text-gray-600 dark:text-gray-400 text-xs md:text-sm mb-1 md:mb-2">
+                            <i class="fas fa-university mr-2"></i>
+                            <span>SENATI - Escuela de Tecnologías de la Información</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 dark:text-gray-400 text-xs md:text-sm">
+                            <i class="far fa-calendar-alt mr-2"></i>
+                            <span>Setiembre 2024 | 30 horas</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 md:mb-6 text-sm md:text-base">
+                        Certificación en Excel Avanzado para análisis de datos y automatización de procesos. 
+                        Incluye funciones complejas, tablas dinámicas, macros y herramientas de business intelligence.
+                    </p>
+                    
+                    <div class="mb-3 md:mb-4">
+                        <div class="flex items-center text-gray-600 dark:text-gray-400 text-xs md:text-sm">
+                            <i class="fas fa-graduation-cap mr-2"></i>
+                            <span>Programa: Escuela de Tecnologías de la Información</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-gray-500 dark:text-gray-400 text-xs md:text-sm">
+                            <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                            <span>PDF Verificado</span>
+                        </div>
+                        <div class="flex gap-1 md:gap-2">
+                            <button class="view-cert-btn px-3 md:px-4 py-1 md:py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-xs md:text-sm font-medium"
+                                    data-cert="excel"
+                                    data-title="Certificado de Microsoft Excel Avanzado"
+                                    data-org="SENATI - Escuela de TI"
+                                    data-date="Setiembre 2024"
+                                    data-hours="30"
+                                    data-file="Microsoft_Excel_Avanzado.pdf">
+                                <i class="far fa-eye mr-2"></i>Ver Certificado
+                            </button>
+                            <button class="px-2 md:px-3 py-1 md:py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-xs md:text-sm"
+                                    onclick="downloadCert('Microsoft_Excel_Avanzado.pdf', 'Certificado_Excel_Avanzado_Yoel_Velasquez.pdf')">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificado 4: Impulsando Talento con Valores -->
+                <div class="cert-card bg-white dark:bg-gray-800 rounded-xl p-4 md:p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-start justify-between mb-3 md:mb-4">
+                        <div class="flex items-center gap-2 md:gap-3">
+                            <div class="w-12 md:w-14 h-12 md:h-14 bg-gradient-to-br from-purple-600 to-pink-500 rounded-lg md:rounded-xl flex items-center justify-center">
+                                <i class="fas fa-users text-white text-lg md:text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white font-title">Impulsando Talento con Valores</h3>
+                                <p class="text-purple-600 dark:text-purple-400 text-sm md:text-base">Programa Integral</p>
+                            </div>
+                        </div>
+                        <span class="px-2 md:px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-xs font-bold dark:bg-purple-900/30 dark:text-purple-400">
+                            FERRYCORP
+                        </span>
+                    </div>
+                    
+                    <div class="mb-3 md:mb-4">
+                        <div class="flex items-center text-gray-600 dark:text-gray-400 text-xs md:text-sm mb-1 md:mb-2">
+                            <i class="fas fa-handshake mr-2"></i>
+                            <span>Asociación Ferreycorp - Responsabilidad Social</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 dark:text-gray-400 text-xs md:text-sm">
+                            <i class="far fa-calendar-alt mr-2"></i>
+                            <span>Junio 2025 | 20 horas presenciales</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 md:mb-6 text-sm md:text-base">
+                        Programa integral de desarrollo personal y profesional que combina habilidades blandas, 
+                        valores empresariales y liderazgo para potenciar el talento en entornos corporativos modernos.
+                    </p>
+                    
+                    <div class="mb-3 md:mb-4">
+                        <h4 class="text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1 md:mb-2">Contenido del programa:</h4>
+                        <div class="grid grid-cols-2 gap-1 md:gap-2">
+                            <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded dark:bg-purple-900/30 dark:text-purple-400">Habilidades Personales</span>
+                            <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded dark:bg-purple-900/30 dark:text-purple-400">Valores</span>
+                            <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded dark:bg-purple-900/30 dark:text-purple-400">Empleabilidad</span>
+                            <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded dark:bg-purple-900/30 dark:text-purple-400">Liderazgo</span>
+                            <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded dark:bg-purple-900/30 dark:text-purple-400">Responsabilidad Social</span>
+                            <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded dark:bg-purple-900/30 dark:text-purple-400">Innovación</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-gray-500 dark:text-gray-400 text-xs md:text-sm">
+                            <i class="fas fa-award text-yellow-500 mr-2"></i>
+                            <span>Certificación Corporativa</span>
+                        </div>
+                        <div class="flex gap-1 md:gap-2">
+                            <button class="view-cert-btn px-3 md:px-4 py-1 md:py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-xs md:text-sm font-medium"
+                                    data-cert="ferreycorp"
+                                    data-title="Certificado: Impulsando Talento con Valores"
+                                    data-org="Asociación Ferreycorp"
+                                    data-date="Junio 2025"
+                                    data-hours="20"
+                                    data-file="Impulsando_Talento_Valores.pdf">
+                                <i class="far fa-eye mr-2"></i>Ver Certificado
+                            </button>
+                            <button class="px-2 md:px-3 py-1 md:py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-xs md:text-sm"
+                                    onclick="downloadCert('Impulsando_Talento_Valores.pdf', 'Certificado_Ferreycorp_Yoel_Velasquez.pdf')">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección para futuras certificaciones -->
+            <div class="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-gray-200 dark:border-gray-700">
+                <div class="text-center">
+                    <div class="inline-flex items-center gap-2 md:gap-3 text-gray-500 dark:text-gray-400 mb-3 md:mb-4">
+                        <i class="fas fa-sync-alt text-lg animate-spin text-blue-500"></i>
+                        <span class="font-title text-gray-700 dark:text-gray-300 text-sm md:text-base">Más certificaciones en proceso de carga...</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-xs md:text-sm">
+                        Próximamente: Certificaciones de Telefónica, Cisco, Credly y otras instituciones reconocidas
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Cronología Educativa -->
+        <section class="mb-12 md:mb-16">
+            <div class="flex items-center mb-6 md:mb-8">
+                <div class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-purple-500 to-pink-400 rounded-lg flex items-center justify-center mr-3 md:mr-4">
+                    <i class="fas fa-timeline text-white text-lg md:text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white font-title">Cronología de Formación</h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">Mi trayectoria educativa y desarrollo profesional</p>
+                </div>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6 lg:p-8 border border-gray-200 dark:border-gray-700">
+                <div class="max-w-3xl mx-auto">
+                    <!-- 2023: Inicio de la carrera -->
+                    <div class="timeline-item mb-8 md:mb-12">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-blue-50 dark:bg-gray-700 rounded-xl p-4 md:p-6">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white font-title">Inicio de Carrera: Ingeniería de Software con IA</h3>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs md:text-sm font-medium dark:bg-blue-900/30 dark:text-blue-400 mt-2 sm:mt-0">
+                                    Marzo 2023
+                                </span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3 text-sm md:text-base">
+                                CFP SENATI - Chimbote
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">
+                                Comienzo del programa especializado en desarrollo de software con enfoque en 
+                                inteligencia artificial, machine learning y tecnologías emergentes.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 2024: Primeras certificaciones -->
+                    <div class="timeline-item mb-8 md:mb-12">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-green-50 dark:bg-gray-700 rounded-xl p-4 md:p-6">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white font-title">Certificación Microsoft Excel Avanzado</h3>
+                                <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs md:text-sm font-medium dark:bg-green-900/30 dark:text-green-400 mt-2 sm:mt-0">
+                                    Setiembre 2024
+                                </span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3 text-sm md:text-base">
+                                SENATI - Escuela de Tecnologías de la Información
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">
+                                Certificación oficial en Excel Avanzado para análisis de datos, 
+                                automatización de procesos y herramientas de business intelligence.
+                            </p>
+                            <div class="mt-3 flex items-center text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-clock mr-2"></i>
+                                <span>30 horas de capacitación</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2024: Segundo semestre -->
+                    <div class="timeline-item mb-8 md:mb-12">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-yellow-50 dark:bg-gray-700 rounded-xl p-4 md:p-6">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white font-title">Especialización en Inteligencia Artificial</h3>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-xs md:text-sm font-medium dark:bg-yellow-900/30 dark:text-yellow-400 mt-2 sm:mt-0">
+                                    2024
+                                </span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3 text-sm md:text-base">
+                                SENATI - Módulos de IA & Machine Learning
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">
+                                Cursos especializados en Machine Learning, Deep Learning, 
+                                algoritmos de IA y fundamentos de ciencia de datos con Python y R.
+                            </p>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs rounded dark:bg-yellow-900/30 dark:text-yellow-400">Machine Learning</span>
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs rounded dark:bg-yellow-900/30 dark:text-yellow-400">Deep Learning</span>
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs rounded dark:bg-yellow-900/30 dark:text-yellow-400">Python para IA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2025: Desarrollo Web certificado -->
+                    <div class="timeline-item mb-8 md:mb-12">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-purple-50 dark:bg-gray-700 rounded-xl p-4 md:p-6">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white font-title">Certificaciones en Desarrollo Web Full Stack</h3>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-xs md:text-sm font-medium dark:bg-purple-900/30 dark:text-purple-400 mt-2 sm:mt-0">
+                                    Oct - Nov 2025
+                                </span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3 text-sm md:text-base">
+                                Ministerio de Trabajo y Promoción del Empleo
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">
+                                Certificaciones oficiales en Desarrollo Front-End y Back-End, 
+                                abarcando HTML5, CSS3, JavaScript, Node.js, Express y bases de datos.
+                            </p>
+                            <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <div class="flex items-center text-xs md:text-sm">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    <span class="text-gray-600 dark:text-gray-400">Front-End (30 horas)</span>
+                                </div>
+                                <div class="flex items-center text-xs md:text-sm">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    <span class="text-gray-600 dark:text-gray-400">Back-End (30 horas)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2025: Programa de valores -->
+                    <div class="timeline-item mb-8 md:mb-12">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-pink-50 dark:bg-gray-700 rounded-xl p-4 md:p-6">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white font-title">Programa: Impulsando Talento con Valores</h3>
+                                <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-xs md:text-sm font-medium dark:bg-pink-900/30 dark:text-pink-400 mt-2 sm:mt-0">
+                                    Junio 2025
+                                </span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3 text-sm md:text-base">
+                                Asociación Ferreycorp - Responsabilidad Social
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">
+                                Programa integral de desarrollo personal y profesional enfocado en 
+                                habilidades blandas, liderazgo, valores corporativos y empleabilidad.
+                            </p>
+                            <div class="mt-3 flex items-center text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-users mr-2"></i>
+                                <span>20 horas presenciales</span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- 2025: Egreso -->
+                    <div class="timeline-item mb-8 md:mb-12">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-emerald-50 dark:bg-gray-700 rounded-xl p-4 md:p-6">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white font-title">Egreso de Ingeniería de Software con IA</h3>
+                                <span class="px-3 py-1 bg-emerald-100 text-emerald-600 rounded-full text-xs md:text-sm font-medium dark:bg-emerald-900/30 dark:text-emerald-400 mt-2 sm:mt-0">
+                                    Noviembre 2025
+                                </span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3 text-sm md:text-base">
+                                CFP SENATI - Chimbote | Egresado
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">
+                                Finalización exitosa del programa de Ingeniería de Software con especialización 
+                                en Inteligencia Artificial, habiendo completado todos los módulos teóricos y 
+                                3 prácticas profesionales en empresa.
+                            </p>
+                            <div class="mt-3 grid grid-cols-2 md:grid-cols-4 gap-2">
+                                <div class="text-center">
+                                    <div class="text-base md:text-lg font-bold text-emerald-600 dark:text-emerald-400">6</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">Semestres</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-base md:text-lg font-bold text-emerald-600 dark:text-emerald-400">1,154+</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">Horas totales</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-base md:text-lg font-bold text-emerald-600 dark:text-emerald-400">12+</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">Certificaciones</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-base md:text-lg font-bold text-emerald-600 dark:text-emerald-400">3</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">Prácticas</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2026: Certificación British Council C1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-blue-50 dark:bg-gray-700 rounded-xl p-4 md:p-6">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white font-title">Certificación Inglés Nivel C1 - British Council</h3>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs md:text-sm font-medium dark:bg-blue-900/30 dark:text-blue-400 mt-2 sm:mt-0">
+                                    Enero 2026
+                                </span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3 text-sm md:text-base">
+                                British Council Perú - Certificación Internacional
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">
+                                Obtención del nivel C1 (Avanzado) con puntaje máximo de 599 puntos, certificando competencia 
+                                avanzada en comunicación técnica, comprensión auditiva y escrita para entornos profesionales internacionales.
+                            </p>
+                            <div class="mt-3 flex flex-col sm:flex-row sm:items-center gap-2 md:gap-3">
+                                <div class="inline-flex items-center px-2 md:px-3 py-1 bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 rounded-full text-xs md:text-sm dark:from-blue-900/30 dark:to-cyan-900/30 dark:text-blue-400">
+                                    <i class="fas fa-check-circle mr-1 md:mr-2"></i>
+                                    <span class="font-bold">Puntaje: 599/599 (Máximo)</span>
+                                </div>
+                                <div class="inline-flex items-center px-2 md:px-3 py-1 bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 rounded-full text-xs md:text-sm dark:from-green-900/30 dark:to-emerald-900/30 dark:text-green-400">
+                                    <i class="fas fa-award mr-1 md:mr-2"></i>
+                                    <span>Certificación Internacional</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 dark:text-gray-500 text-xs md:text-sm mt-3">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Examen realizado en enero 2026 - Certificado en proceso de verificación
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Logros y Reconocimientos -->
+        <section>
+            <div class="flex items-center mb-6 md:mb-8">
+                <div class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-red-500 to-pink-400 rounded-lg flex items-center justify-center mr-3 md:mr-4">
+                    <i class="fas fa-trophy text-white text-lg md:text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white font-title">Logros y Reconocimientos</h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">Méritos obtenidos durante mi formación profesional</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <!-- Logro 1: Inglés C1 British Council -->
+                <div class="bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 md:p-6 border border-blue-100 dark:border-gray-700 text-center hover-lift">
+                    <div class="w-12 md:w-16 h-12 md:h-16 bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-gray-700 dark:to-gray-800 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                        <i class="fas fa-language text-blue-600 dark:text-blue-400 text-xl md:text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-2">Certificación C1 - British Council</h4>
+                    <p class="text-gray-600 dark:text-gray-400 text-xs md:text-sm mb-3">
+                        Puntaje máximo: 599/599 (Nivel Avanzado)
+                    </p>
+                    <div class="inline-flex items-center px-2 md:px-3 py-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full text-xs font-bold mb-2">
+                        <i class="fas fa-trophy mr-1"></i> PUNTAJE MÁXIMO ALCANZADO
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-500 text-xs">
+                        <i class="fas fa-calendar-check mr-1"></i> Enero 2026
+                    </p>
+                    <div class="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <p class="text-gray-600 dark:text-gray-400 text-xs">
+                            <i class="fas fa-check-circle text-green-500 mr-1"></i>
+                            Certificación internacional para titulación profesional
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Logro 2: Prácticas profesionales -->
+                <div class="bg-gradient-to-br from-green-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 md:p-6 border border-green-100 dark:border-gray-700 text-center hover-lift">
+                    <div class="w-12 md:w-16 h-12 md:h-16 bg-gradient-to-br from-green-100 to-teal-100 dark:from-gray-700 dark:to-gray-800 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                        <i class="fas fa-briefcase text-green-600 dark:text-green-400 text-xl md:text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-2">3 Prácticas Profesionales</h4>
+                    <p class="text-gray-600 dark:text-gray-400 text-xs md:text-sm mb-3">
+                        Experiencia en empresas del sector industrial y tecnológico
+                    </p>
+                    <div class="space-y-1 text-xs md:text-sm">
+                        <div class="flex items-center justify-center text-gray-700 dark:text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-2 text-xs"></i>
+                            <span>Empresa Siderúrgica del Perú S.A.A.</span>
+                        </div>
+                        <div class="flex items-center justify-center text-gray-700 dark:text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-2 text-xs"></i>
+                            <span>Gestión documental de +100 expedientes</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-500 text-xs mt-3">
+                        Evaluaciones sobresalientes en todas las prácticas
+                    </p>
+                </div>
+                
+                <!-- Logro 3: Certificaciones completadas -->
+                <div class="bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 md:p-6 border border-purple-100 dark:border-gray-700 text-center hover-lift">
+                    <div class="w-12 md:w-16 h-12 md:h-16 bg-gradient-to-br from-purple-100 to-pink-100 dark:from-gray-700 dark:to-gray-800 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                        <i class="fas fa-award text-purple-600 dark:text-purple-400 text-xl md:text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-2">8+ Certificaciones Profesionales</h4>
+                    <p class="text-gray-600 dark:text-gray-400 text-xs md:text-sm mb-3">
+                        En áreas técnicas y desarrollo profesional
+                    </p>
+                    <div class="grid grid-cols-2 gap-1 text-xs">
+                        <span class="px-2 py-1 bg-purple-50 text-purple-600 rounded dark:bg-purple-900/30 dark:text-purple-400">Front-End</span>
+                        <span class="px-2 py-1 bg-purple-50 text-purple-600 rounded dark:bg-purple-900/30 dark:text-purple-400">Back-End</span>
+                        <span class="px-2 py-1 bg-purple-50 text-purple-600 rounded dark:bg-purple-900/30 dark:text-purple-400">Excel Avanzado</span>
+                        <span class="px-2 py-1 bg-purple-50 text-purple-600 rounded dark:bg-purple-900/30 dark:text-purple-400">Inglés C1</span>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-500 text-xs mt-3">
+                        Instituciones: SENATI, Ministerio de Trabajo, Ferreycorp
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Logros adicionales -->
+            <div class="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+                <div class="bg-gradient-to-br from-cyan-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-lg p-3 md:p-4 border border-cyan-100 dark:border-gray-700">
+                    <div class="flex items-center">
+                        <div class="w-8 md:w-10 h-8 md:h-10 bg-cyan-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mr-2 md:mr-3">
+                            <i class="fas fa-laptop-code text-cyan-600 dark:text-cyan-400"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-gray-800 dark:text-white text-sm md:text-base">Proyecto Final Destacado</h5>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Sistema Web de Registro Docente</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-yellow-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-lg p-3 md:p-4 border border-yellow-100 dark:border-gray-700">
+                    <div class="flex items-center">
+                        <div class="w-8 md:w-10 h-8 md:h-10 bg-yellow-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mr-2 md:mr-3">
+                            <i class="fas fa-brain text-yellow-600 dark:text-yellow-400"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-gray-800 dark:text-white text-sm md:text-base">Especialización en IA</h5>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Machine Learning & Deep Learning</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-pink-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-lg p-3 md:p-4 border border-pink-100 dark:border-gray-700">
+                    <div class="flex items-center">
+                        <div class="w-8 md:w-10 h-8 md:h-10 bg-pink-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mr-2 md:mr-3">
+                            <i class="fas fa-users text-pink-600 dark:text-pink-400"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-gray-800 dark:text-white text-sm md:text-base">Liderazgo y Valores</h5>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Programa Ferreycorp completado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Modal para ver certificados -->
+    <div id="certModal" class="cert-modal">
+        <div class="max-w-4xl w-full mx-4 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden max-h-[90vh]">
+            <div class="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 dark:border-gray-700">
+                <div>
+                    <h3 id="modalTitle" class="text-lg md:text-2xl font-bold text-gray-800 dark:text-white font-title"></h3>
+                    <div class="flex flex-col md:flex-row md:items-center gap-1 md:gap-4 mt-1 md:mt-2">
+                        <span id="modalOrg" class="text-blue-600 dark:text-blue-400 font-medium text-sm md:text-base"></span>
+                        <span id="modalDate" class="text-gray-500 dark:text-gray-400 text-xs md:text-sm"></span>
+                    </div>
+                </div>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="p-4 md:p-6 max-h-[calc(90vh-120px)] overflow-y-auto">
+                <!-- Aquí va el certificado -->
+                <div id="modalContent" class="text-center">
+                    <div class="mb-6 md:mb-8">
+                        <i class="fas fa-file-certificate text-4xl md:text-6xl text-gray-300 dark:text-gray-700 mb-3 md:mb-4"></i>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm md:text-base">
+                            Vista previa del certificado. Sube el archivo PDF o imagen para verlo aquí.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-900 p-4 md:p-6 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-700">
+                        <h4 class="text-base md:text-lg font-bold text-gray-700 dark:text-gray-300 mb-3 md:mb-4">
+                            Instrucciones para subir certificados:
+                        </h4>
+                        <ol class="text-left text-gray-600 dark:text-gray-400 space-y-2 text-xs md:text-sm">
+                            <li>1. Guarda tus certificados como imágenes (JPG/PNG) o PDF</li>
+                            <li>2. Sube a una carpeta "certificados" en tu hosting</li>
+                            <li>3. Actualiza los botones con la ruta correcta</li>
+                            <li>4. Configura las funciones de descarga</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row justify-between items-center p-4 md:p-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+                <div class="text-gray-600 dark:text-gray-400 text-xs md:text-sm mb-3 sm:mb-0">
+                    <i class="fas fa-shield-alt mr-2"></i>
+                    Certificado verificado y auténtico
+                </div>
+                <div class="flex gap-2 md:gap-3">
+                    <button id="downloadModalBtn" class="px-3 md:px-5 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium text-xs md:text-sm">
+                        <i class="fas fa-download mr-2"></i>Descargar PDF
+                    </button>
+                    <button id="closeModalBtn" class="px-3 md:px-5 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-xs md:text-sm">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white dark:bg-gray-900 mt-12 md:mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+            <div class="text-center">
+                <h3 class="text-lg md:text-xl font-bold mb-4 font-title">
+                    <span class="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                        Yoel Velásquez Hualcas
+                    </span>
+                </h3>
+                <p class="text-gray-300 mb-6 dark:text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
+                    Ingeniero de Software especializado en Inteligencia Artificial y Desarrollo Full Stack.
+                    Educación continua y certificaciones profesionales actualizadas.
+                </p>
+                
+                <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-6 md:mb-8">
+                    <a href="index.html" class="px-3 md:px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-xs md:text-sm">
+                        <i class="fas fa-home mr-2"></i>Portafolio Principal
+                    </a>
+                    <a href="index.html#contacto" class="px-3 md:px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors text-xs md:text-sm">
+                        <i class="fas fa-envelope mr-2"></i>Contacto
+                    </a>
+                </div>
+                
+                <div class="border-t border-gray-700 dark:border-gray-800 pt-6 md:pt-8">
+                    <p class="text-gray-400 text-sm md:text-base">
+                        <i class="fas fa-code text-blue-400 mr-2"></i>
+                        © <span id="currentYear">2024</span> Yoel Velásquez | Educación & Certificaciones
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ===== DARK MODE TOGGLE (Idéntico al portafolio principal) =====
+            const themeToggle = document.getElementById('themeToggleCert');
+            const moonIcon = document.getElementById('moonIconCert');
+            const sunIcon = document.getElementById('sunIconCert');
+            
+            // Cargar tema guardado
+            const savedTheme = localStorage.getItem('theme');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                if (moonIcon) moonIcon.classList.add('hidden');
+                if (sunIcon) sunIcon.classList.remove('hidden');
+            } else if (savedTheme === 'light') {
+                document.documentElement.classList.remove('dark');
+                if (moonIcon) moonIcon.classList.remove('hidden');
+                if (sunIcon) sunIcon.classList.add('hidden');
+            }
+            
+            // Alternar tema
+            function toggleTheme() {
+                const isDark = document.documentElement.classList.toggle('dark');
+                
+                if (moonIcon) moonIcon.classList.toggle('hidden', isDark);
+                if (sunIcon) sunIcon.classList.toggle('hidden', !isDark);
+                
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            }
+            
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+            
+            // ===== MODAL PARA CERTIFICADOS =====
+            const certModal = document.getElementById('certModal');
+            const closeModalBtn = document.getElementById('closeModal');
+            const closeModalBtn2 = document.getElementById('closeModalBtn');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalOrg = document.getElementById('modalOrg');
+            const modalDate = document.getElementById('modalDate');
+            const modalContent = document.getElementById('modalContent');
+            const downloadModalBtn = document.getElementById('downloadModalBtn');
+            
+            let currentCertFile = null;
+            let currentCertName = null;
+            
+            // Abrir modal con información específica
+            document.querySelectorAll('.view-cert-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const title = this.dataset.title;
+                    const org = this.dataset.org;
+                    const date = this.dataset.date;
+                    const hours = this.dataset.hours || 'N/A';
+                    const filename = this.dataset.file;
+                    
+                    currentCertFile = filename;
+                    currentCertName = title;
+                    
+                    // Actualizar contenido del modal
+                    if (modalTitle) modalTitle.textContent = title;
+                    if (modalOrg) modalOrg.textContent = org;
+                    if (modalDate) modalDate.textContent = `Emitido: ${date} | Duración: ${hours} horas`;
+                    
+                    // Mostrar vista previa del certificado
+                    if (modalContent) {
+                        modalContent.innerHTML = `
+                            <div class="text-center py-4 md:py-8">
+                                <div class="mb-4 md:mb-6">
+                                    <i class="fas fa-file-certificate text-4xl md:text-6xl text-blue-400 dark:text-blue-600 mb-3 md:mb-4"></i>
+                                    <h4 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-2">${title}</h4>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">${org}</p>
+                                </div>
+                                
+                                <div class="bg-gray-50 dark:bg-gray-900 p-4 md:p-6 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-700">
+                                    <h5 class="text-base md:text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                                        <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                                        Información del certificado
+                                    </h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 text-left text-sm">
+                                        <div>
+                                            <p class="text-gray-600 dark:text-gray-400">Institución:</p>
+                                            <p class="font-medium text-gray-800 dark:text-white">${org}</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-600 dark:text-gray-400">Fecha de emisión:</p>
+                                            <p class="font-medium text-gray-800 dark:text-white">${date}</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-600 dark:text-gray-400">Duración:</p>
+                                            <p class="font-medium text-gray-800 dark:text-white">${hours} horas</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-600 dark:text-gray-400">Estado:</p>
+                                            <p class="font-medium text-green-600 dark:text-green-400">
+                                                <i class="fas fa-check-circle mr-1"></i> Verificado
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-gray-200 dark:border-gray-800">
+                                        <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                                            <i class="fas fa-lock mr-1"></i>
+                                            Este certificado ha sido verificado y es auténtico. 
+                                            Haz clic en "Descargar PDF" para obtener la versión oficial.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    
+                    // Configurar botón de descarga del modal
+                    if (downloadModalBtn) {
+                        downloadModalBtn.onclick = function() {
+                            if (currentCertFile) {
+                                const downloadName = currentCertName.replace(/[^\w\s]/gi, '') + '.pdf';
+                                downloadCert(currentCertFile, downloadName);
+                            }
+                        };
+                    }
+                    
+                    // Mostrar modal
+                    if (certModal) {
+                        certModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            // Cerrar modal
+            function closeModal() {
+                if (certModal) {
+                    certModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+            
+            if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+            if (closeModalBtn2) closeModalBtn2.addEventListener('click', closeModal);
+            
+            // Cerrar al hacer click fuera
+            if (certModal) {
+                certModal.addEventListener('click', function(e) {
+                    if (e.target === this) closeModal();
+                });
+            }
+            
+            // Cerrar con Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && certModal && certModal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+            
+            // ===== AÑO ACTUAL EN FOOTER =====
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+        
+        // Función para descargar certificados (ACTUALIZADA CON RUTAS REALES)
+        function downloadCert(filename, downloadName = null) {
+            // Ruta relativa a la carpeta certificados
+            const filepath = `certificados/${filename}`;
+            
+            // Nombre por defecto si no se especifica
+            const finalDownloadName = downloadName || filename;
+            
+            // Crear enlace temporal para descarga
+            const link = document.createElement('a');
+            link.href = filepath;
+            link.download = finalDownloadName;
+            
+            // Forzar descarga (algunos navegadores pueden abrir en nueva pestaña)
+            link.target = '_blank';
+            
+            // Simular click
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Notificación
+            showNotification(`Descargando: ${finalDownloadName}`, 'success');
+        }
+        
+        // Función para mostrar notificaciones
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            
+            let icon = 'ℹ️';
+            let bgColor = '#3b82f6';
+            let title = 'Información';
+            
+            switch(type) {
+                case 'success':
+                    icon = '✅';
+                    bgColor = '#10b981';
+                    title = 'Descarga iniciada';
+                    break;
+                case 'error':
+                    icon = '❌';
+                    bgColor = '#ef4444';
+                    title = 'Error';
+                    break;
+                case 'warning':
+                    icon = '⚠️';
+                    bgColor = '#f59e0b';
+                    title = 'Advertencia';
+                    break;
+            }
+            
+            notification.innerHTML = `
+                <div class="flex items-start space-x-2 md:space-x-3">
+                    <span class="text-xl mt-0.5">${icon}</span>
+                    <div>
+                        <div class="font-semibold text-gray-800 dark:text-gray-200 text-sm md:text-base">${title}</div>
+                        <div class="text-xs md:text-sm text-gray-600 dark:text-gray-400">${message}</div>
+                    </div>
+                </div>
+            `;
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: white;
+                color: #1f2937;
+                padding: 0.75rem 1rem;
+                border-radius: 8px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+                border-left: 4px solid ${bgColor};
+                z-index: 9999;
+                transform: translateX(120%);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+                font-family: 'Roboto Mono', monospace;
+            `;
+            
+            // Dark mode support
+            if (document.documentElement.classList.contains('dark')) {
+                notification.style.background = '#1f2937';
+                notification.style.color = '#e5e7eb';
+            }
+            
+            document.body.appendChild(notification);
+            
+            // Animación de entrada
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+            
+            // Auto-eliminar después de 5 segundos
+            setTimeout(() => {
+                notification.style.transform = 'translateX(120%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 5000);
+        }
+        
+        console.log('🎓 Página de Educación & Certificaciones cargada correctamente');
+    </script>
+    
+    <script>
+    // Datos completos con competencias del PEA
+    const coursesBySemester = {
+        "Semestre 2": {
+            courses: [
+                {
+                    name: "Algoritmia para el Desarrollo de Programas",
+                    code: "PIAD 216",
+                    hours: 77,
+                    icon: "fas fa-diagram-project",
+                    color: "blue",
+                    competencies: [
+                        "Desarrollo de aplicaciones de cálculo",
+                        "Programación lógica y manejo de ficheros",
+                        "Manejo de errores y expresiones regulares",
+                        "Aplicaciones con base de datos y entorno gráfico"
+                    ]
+                },
+                {
+                    name: "Java Fundamentals (Oracle)",
+                    code: "PIAD 217",
+                    hours: 102,
+                    icon: "fab fa-java",
+                    color: "orange",
+                    competencies: [
+                        "Introducción a Alice 3 y Greenfoot",
+                        "Conceptos básicos de Java y estructura de programa",
+                        "Matrices, excepciones y clases en Java",
+                        "Certificación Oracle Java Fundamentals"
+                    ]
+                },
+                {
+                    name: "Fundamentos de Programación Web (Front End Developer)",
+                    code: "PIAD 218",
+                    hours: 77,
+                    icon: "fas fa-code",
+                    color: "green",
+                    competencies: [
+                        "Desarrollo web con HTML y CSS",
+                        "Barras de navegación y formularios",
+                        "JavaScript para web interactiva",
+                        "Sitios web responsivos"
+                    ]
+                },
+                {
+                    name: "Database Foundations (Oracle)",
+                    code: "PIAD 219",
+                    hours: 76,
+                    icon: "fas fa-database",
+                    color: "purple",
+                    competencies: [
+                        "Creación y modelado de bases de datos",
+                        "Modelos físicos en Oracle SQL Developer",
+                        "Scripts para creación de BD con estructura",
+                        "Certificación Oracle Database Foundations"
+                    ]
+                },
+                {
+                    name: "Red Hat System Administration I (Linux Red Hat)",
+                    code: "PIAD 220",
+                    hours: 76,
+                    icon: "fab fa-linux",
+                    color: "red",
+                    competencies: [
+                        "Comandos CLI y administración de objetos",
+                        "Administración de usuarios/grupos y permisos",
+                        "Configuración OpenSSH y redes",
+                        "Instalación de paquetes y gestión de servicios",
+                        "Certificación Red Hat RHCSA"
+                    ]
+                }
+            ],
+            totalHours: 408,
+            certifications: ["Oracle Java Fundamentals", "Oracle Database Foundations", "Red Hat RHCSA"]
+        },
+        "Semestre 3": {
+            courses: [
+                {
+                    name: "Programación para Desarrollo de Software with Oracle",
+                    code: "PIAD 316",
+                    hours: 204,
+                    icon: "fas fa-laptop-code",
+                    color: "blue",
+                    competencies: [
+                        "Programación Orientada a Objetos avanzada",
+                        "Encapsulación, herencia y polimorfismo",
+                        "Clases de bibliotecas y métodos en Java",
+                        "Sentencias de decisión, bucles y matrices"
+                    ]
+                },
+                {
+                    name: "Ing. de Software y Metodologías Ágiles",
+                    code: "PIAD 317",
+                    hours: 102,
+                    icon: "fas fa-tasks",
+                    color: "green",
+                    competencies: [
+                        "Fundamentos de ingeniería de software",
+                        "Metodologías Ágiles: Scrum y Kanban",
+                        "Ciclo de vida del desarrollo de software",
+                        "Gestión de proyectos tecnológicos"
+                    ]
+                },
+                {
+                    name: "Backend Developer Web",
+                    code: "PIAD 318",
+                    hours: 102,
+                    icon: "fas fa-server",
+                    color: "purple",
+                    competencies: [
+                        "Desarrollo backend con PHP",
+                        "Acceso a datos con PDO",
+                        "Aplicaciones con AJAX",
+                        "Framework AngularJS"
+                    ]
+                },
+                {
+                    name: "Database Design and Programming with SQL (Oracle)",
+                    code: "PIAD -",
+                    hours: 0,
+                    icon: "fas fa-database",
+                    color: "cyan",
+                    competencies: [
+                        "Diseño de BD: entidades, atributos y relaciones",
+                        "Consultas básicas y subconsultas con funciones",
+                        "Operaciones complejas y agrupaciones",
+                        "Proyectos de bases de datos completas"
+                    ]
+                }
+            ],
+            totalHours: 408,
+            certifications: ["Oracle Java Foundations", "Metodologías Ágiles"]
+        },
+        "Semestre 4": {
+            courses: [
+                {
+                    name: "Algoritmia para la Inteligencia Artificial",
+                    code: "PIAD 426",
+                    hours: 26,
+                    icon: "fas fa-brain",
+                    color: "purple",
+                    competencies: [
+                        "Fundamentos teóricos de IA",
+                        "Recursividad en programación",
+                        "Árboles de decisiones",
+                        "Algoritmos especializados para IA"
+                    ]
+                },
+                {
+                    name: "Lenguaje de Programación para IA",
+                    code: "PIAD -",
+                    hours: 26,
+                    icon: "fas fa-code",
+                    color: "blue",
+                    competencies: [
+                        "Patrón N-Capas y Singleton",
+                        "Manejo de transacciones y seguridad",
+                        "Control Timer y clase Threads",
+                        "Consultas con LINQ y reportes"
+                    ]
+                },
+                {
+                    name: "Desarrollo de Aplicaciones Web III",
+                    code: "PIAD -",
+                    hours: 26,
+                    icon: "fas fa-globe",
+                    color: "green",
+                    competencies: [
+                        "Entorno Laravel avanzado",
+                        "Acceso a bases de datos",
+                        "Seguridad de aplicaciones web",
+                        "Almacenamiento persistente"
+                    ]
+                },
+                {
+                    name: "Base y Estructura de Datos",
+                    code: "PIAD -",
+                    hours: 26,
+                    icon: "fas fa-database",
+                    color: "cyan",
+                    competencies: [
+                        "Operaciones DCL y TCL avanzadas",
+                        "Restricciones y calidad de información",
+                        "Transact-SQL para tiendas virtuales",
+                        "Consultas avanzadas para reportes"
+                    ]
+                },
+                {
+                    name: "Modelado y Diseño del Software",
+                    code: "PIAD -",
+                    hours: 0,
+                    icon: "fas fa-sitemap",
+                    color: "orange",
+                    competencies: [
+                        "Ciclo de vida de desarrollo de sistemas",
+                        "Análisis orientado a objetos con UML",
+                        "Diagramas de caso de uso y actividad",
+                        "Diagramas de clases, estado y componentes"
+                    ]
+                }
+            ],
+            totalHours: 104,
+            certifications: ["Especialización en IA", "UML Avanzado"]
+        },
+        "Semestre 5": {
+            courses: [
+                {
+                    name: "Software y Prototipado",
+                    code: "PIAD -",
+                    hours: 26,
+                    icon: "fas fa-paint-brush",
+                    color: "blue",
+                    competencies: [
+                        "Desarrollo de prototipos funcionales",
+                        "Análisis de información de usuario",
+                        "Definición de arquitectura",
+                        "Diseño de interfaces UX/UI"
+                    ]
+                },
+                {
+                    name: "Diseño y Desarrollo de Aplicaciones Móviles I",
+                    code: "PIAD 525",
+                    hours: 26,
+                    icon: "fas fa-mobile-alt",
+                    color: "green",
+                    competencies: [
+                        "Entornos de desarrollo móvil",
+                        "Configuración de layouts",
+                        "Patrones de navegación",
+                        "Conexión a datos y ListView"
+                    ]
+                },
+                {
+                    name: "Big Data y Machine Learning",
+                    code: "PIAD -",
+                    hours: 26,
+                    icon: "fas fa-chart-bar",
+                    color: "purple",
+                    competencies: [
+                        "Análisis de datos con R",
+                        "Fundamentos Big Data y Data Mining",
+                        "Estadística para Machine Learning",
+                        "Modelos predictivos y Hadoop"
+                    ]
+                },
+                {
+                    name: "Ingeniería del Software",
+                    code: "PIAD -",
+                    hours: 26,
+                    icon: "fas fa-cogs",
+                    color: "orange",
+                    competencies: [
+                        "Fundamentos de Ingeniería del Software",
+                        "Lenguaje Unificado de Modelado (UML)",
+                        "Procesos y diseño de software",
+                        "Arquitectura lógica de sistemas"
+                    ]
+                }
+            ],
+            totalHours: 104,
+            certifications: ["Machine Learning", "Desarrollo Móvil"]
+        },
+        "Semestre 6": {
+            courses: [
+                {
+                    name: "Prototipado de Aplicaciones de Inteligencia Artificial",
+                    code: "PIAD -",
+                    hours: 26,
+                    icon: "fas fa-robot",
+                    color: "purple",
+                    competencies: [
+                        "Desarrollo de modelos de IA",
+                        "Machine Learning aplicado",
+                        "IBM Watson y Watson Studio",
+                        "Implementación de soluciones IA"
+                    ]
+                },
+                {
+                    name: "Diseño y Desarrollo de Aplicaciones Móviles II",
+                    code: "PIAD -",
+                    hours: 26,
+                    icon: "fas fa-mobile-alt",
+                    color: "green",
+                    competencies: [
+                        "Master-detail y Drawer Navigation",
+                        "Personalización de ListView",
+                        "Patrón MVVM",
+                        "Consumo de APIs REST"
+                    ]
+                },
+                {
+                    name: "AZ-900T00: Fundamentos de Microsoft Azure",
+                    code: "PIAD 627",
+                    hours: 26,
+                    icon: "fas fa-cloud",
+                    color: "blue",
+                    competencies: [
+                        "Cálculo de costes en la nube",
+                        "Diseño de infraestructura cloud",
+                        "Seguridad y conectividad en Azure",
+                        "Certificación Microsoft Azure Fundamentals"
+                    ]
+                },
+                {
+                    name: "Inteligencia de Negocios y Data Warehouse",
+                    code: "PIAD -",
+                    hours: 26,
+                    icon: "fas fa-chart-line",
+                    color: "cyan",
+                    competencies: [
+                        "Diseño de Data Warehouse",
+                        "SQL Server Reporting Services",
+                        "Dashboards y Power View",
+                        "Configuración de almacenamiento BI"
+                    ]
+                },
+                {
+                    name: "Redes Neuronales",
+                    code: "PIAD -",
+                    hours: 26,
+                    icon: "fas fa-network-wired",
+                    color: "pink",
+                    competencies: [
+                        "Implementación de paquete Neuralnet",
+                        "Paquete H2O para deep learning",
+                        "Arquitecturas de redes neuronales",
+                        "Aplicaciones prácticas de IA"
+                    ]
+                }
+            ],
+            totalHours: 130,
+            certifications: ["Microsoft Azure AI-900", "Redes Neuronales", "BI & Data Warehouse"]
+        }
+    };
+
+    // Función para obtener el color de las clases
+    function getColorClasses(color) {
+        const colorMap = {
+            'blue': { bg: 'bg-blue-100 dark:bg-gray-700', text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-200 dark:border-blue-900' },
+            'green': { bg: 'bg-green-100 dark:bg-gray-700', text: 'text-green-600 dark:text-green-400', border: 'border-green-200 dark:border-green-900' },
+            'purple': { bg: 'bg-purple-100 dark:bg-gray-700', text: 'text-purple-600 dark:text-purple-400', border: 'border-purple-200 dark:border-purple-900' },
+            'orange': { bg: 'bg-orange-100 dark:bg-gray-700', text: 'text-orange-600 dark:text-orange-400', border: 'border-orange-200 dark:border-orange-900' },
+            'red': { bg: 'bg-red-100 dark:bg-gray-700', text: 'text-red-600 dark:text-red-400', border: 'border-red-200 dark:border-red-900' },
+            'yellow': { bg: 'bg-yellow-100 dark:bg-gray-700', text: 'text-yellow-600 dark:text-yellow-400', border: 'border-yellow-200 dark:border-yellow-900' },
+            'cyan': { bg: 'bg-cyan-100 dark:bg-gray-700', text: 'text-cyan-600 dark:text-cyan-400', border: 'border-cyan-200 dark:border-cyan-900' },
+            'pink': { bg: 'bg-pink-100 dark:bg-gray-700', text: 'text-pink-600 dark:text-pink-400', border: 'border-pink-200 dark:border-pink-900' },
+            'gray': { bg: 'bg-gray-100 dark:bg-gray-700', text: 'text-gray-600 dark:text-gray-400', border: 'border-gray-200 dark:border-gray-900' }
+        };
+        return colorMap[color] || colorMap.blue;
+    }
+
+    // Función para renderizar las pestañas
+    function renderSemesterTabs() {
+        const tabsContainer = document.getElementById('semesterTabs');
+        const contentContainer = document.getElementById('semesterContent');
+        
+        if (!tabsContainer || !contentContainer) return;
+        
+        // Crear pestañas
+        Object.keys(coursesBySemester).forEach((semester, index) => {
+            const tabButton = document.createElement('button');
+            tabButton.className = `px-3 md:px-4 py-2 rounded-lg font-medium transition-all duration-300 text-xs md:text-sm ${index === 0 ? 'bg-blue-500 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'}`;
+            tabButton.textContent = semester;
+            tabButton.dataset.semester = semester;
+            
+            tabButton.addEventListener('click', () => {
+                // Remover clase activa de todas las pestañas
+                document.querySelectorAll('#semesterTabs button').forEach(btn => {
+                    btn.className = btn.className.replace('bg-blue-500 text-white', 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700');
+                });
+                
+                // Añadir clase activa a la pestaña clickeada
+                tabButton.className = tabButton.className.replace('bg-gray-100 dark:bg-gray-800', 'bg-blue-500 text-white');
+                
+                // Renderizar contenido del semestre
+                renderSemesterContent(semester);
+            });
+            
+            tabsContainer.appendChild(tabButton);
+        });
+        
+        // Renderizar contenido inicial
+        renderSemesterContent(Object.keys(coursesBySemester)[0]);
+    }
+
+    // Función para renderizar el contenido de un semestre
+    function renderSemesterContent(semester) {
+        const contentContainer = document.getElementById('semesterContent');
+        const semesterData = coursesBySemester[semester];
+        
+        if (!contentContainer || !semesterData) return;
+        
+        const { courses, totalHours, certifications } = semesterData;
+        
+        let html = `
+            <div class="mb-4 md:mb-6 bg-gradient-to-r from-blue-50 to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 md:p-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-3 md:mb-4">
+                    <div>
+                        <h5 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white">${semester}</h5>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs md:text-sm">${courses.length} cursos | ${totalHours} horas totales</p>
+                    </div>
+                    <div class="mt-2 md:mt-0">
+                        <span class="px-2 md:px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs md:text-sm font-medium dark:bg-blue-900/30 dark:text-blue-400">
+                            <i class="fas fa-clock mr-1"></i> ${totalHours}h
+                        </span>
+                        ${certifications && certifications.length > 0 ? `
+                            <span class="ml-1 md:ml-2 px-2 md:px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs md:text-sm font-medium dark:bg-green-900/30 dark:text-green-400">
+                                <i class="fas fa-certificate mr-1"></i> ${certifications.length} certs
+                            </span>
+                        ` : ''}
+                    </div>
+                </div>
+                
+                ${certifications && certifications.length > 0 ? `
+                    <div class="mb-3 md:mb-4">
+                        <h6 class="text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1 md:mb-2">
+                            <i class="fas fa-award mr-2"></i>Certificaciones incluidas:
+                        </h6>
+                        <div class="flex flex-wrap gap-1 md:gap-2">
+                            ${certifications.map(cert => `
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs dark:bg-yellow-900/30 dark:text-yellow-400">
+                                    ${cert}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            </div>
+            
+            <div class="space-y-3 md:space-y-4">
+        `;
+        
+        courses.forEach(course => {
+            const color = getColorClasses(course.color);
+            
+            html += `
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 md:p-5 border ${color.border} hover:shadow-md transition-all duration-300">
+                    <div class="flex items-start mb-3 md:mb-4">
+                        <div class="w-10 md:w-12 h-10 md:h-12 ${color.bg} rounded-lg flex items-center justify-center mr-3 md:mr-4">
+                            <i class="${course.icon} ${color.text} text-base md:text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h6 class="font-bold text-gray-800 dark:text-white text-sm md:text-base">${course.name}</h6>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1 md:mb-2">${course.code} | ${course.hours} horas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-2 md:mb-3">
+                        <h6 class="text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1 md:mb-2">
+                            <i class="fas fa-check-circle text-green-500 mr-1 md:mr-2 text-xs"></i>Competencias desarrolladas:
+                        </h6>
+                        <ul class="space-y-1 pl-2">
+                            ${course.competencies.map(comp => `
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-0.5 mr-1 md:mr-2 text-xs"></i>
+                                    <span class="text-gray-600 dark:text-gray-300 text-xs md:text-sm">${comp}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="flex items-center justify-between pt-2 md:pt-3 border-t border-gray-100 dark:border-gray-700">
+                        <span class="text-xs text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-check-circle text-green-500 mr-1"></i> Completado exitosamente
+                        </span>
+                        ${course.hours > 0 ? `
+                            <span class="px-2 md:px-3 py-1 ${color.bg} ${color.text} rounded-lg text-xs font-medium">
+                                <i class="fas fa-clock mr-1"></i> ${course.hours}h
+                            </span>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        });
+        
+        html += `</div>`;
+        contentContainer.innerHTML = html;
+    }
+
+    // Inicializar cuando el DOM esté cargado
+    document.addEventListener('DOMContentLoaded', renderSemesterTabs);
+    </script>
+
+</body>
+</html>
