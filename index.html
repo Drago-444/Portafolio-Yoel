@@ -877,7 +877,7 @@
                                     <i class="fab fa-linkedin mr-2" aria-hidden="true"></i>
                                     <span>LinkedIn</span>
                                 </a>
-                                <a href="CV_Yoel_Velasquez.pdf" 
+                                <a href="/cv/CV.pdf" 
                                    download="CV_Yoel_Velasquez.pdf"
                                    class="flex items-center text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300" id="downloadCV">
                                     <i class="fas fa-file-pdf mr-2" aria-hidden="true"></i>
@@ -1726,7 +1726,7 @@
                            class="social-icon dark:bg-gray-700 dark:hover:bg-gray-600" aria-label="Enviar email">
                             <i class="fas fa-envelope"></i>
                         </a>
-                        <a href="CV_Yoel_Velasquez.pdf" 
+                        <a href="/cv/CV.pdf" 
                            download="CV_Yoel_Velasquez.pdf"
                            class="social-icon dark:bg-gray-700 dark:hover:bg-gray-600" aria-label="Descargar CV">
                             <i class="fas fa-file-pdf"></i>
@@ -1825,6 +1825,7 @@
             setupCurrentYear();
             setupScrollProgress();
             setupBackToTop();
+            setupCVDownload(); // <-- NUEVA FUNCIÓN AÑADIDA
         }
 
         // ===== NAVEGACIÓN SUAVE =====
@@ -2032,6 +2033,25 @@
                     this.src = 'https://ui-avatars.com/api/?name=Yoel+Velasquez&background=3b82f6&color=fff&size=512';
                 });
             });
+        }
+
+        // ===== MANEJO DE DESCARGA DE CV =====
+        function setupCVDownload() {
+            // Verificar si estamos en GitHub Pages y corregir rutas si es necesario
+            if (window.location.hostname.includes('github.io')) {
+                console.log('🌐 Detectado GitHub Pages - verificando enlaces CV');
+                
+                // Corregir todos los enlaces de CV
+                const cvLinks = document.querySelectorAll('a[href*="CV"]');
+                cvLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    // Si el enlace no empieza con / y no es una URL completa, añadir /
+                    if (href && !href.startsWith('http') && !href.startsWith('/')) {
+                        link.setAttribute('href', '/' + href);
+                        console.log('✅ Enlace CV corregido:', link.getAttribute('href'));
+                    }
+                });
+            }
         }
 
         // ===== FORMULARIO DE CONTACTO =====
