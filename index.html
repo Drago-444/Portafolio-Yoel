@@ -877,8 +877,8 @@
                                     <i class="fab fa-linkedin mr-2" aria-hidden="true"></i>
                                     <span>LinkedIn</span>
                                 </a>
-                                <a href="cv/CV.pdf" 
-                                   download="CV_Yoel_Velasquez.pdf"
+                                <a href="#" 
+                                   onclick="return downloadCV()"
                                    class="flex items-center text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300" id="downloadCV">
                                     <i class="fas fa-file-pdf mr-2" aria-hidden="true"></i>
                                     <span>Descargar CV</span>
@@ -1726,8 +1726,8 @@
                            class="social-icon dark:bg-gray-700 dark:hover:bg-gray-600" aria-label="Enviar email">
                             <i class="fas fa-envelope"></i>
                         </a>
-                        <a href="cv/CV.pdf" 
-                           download="CV_Yoel_Velasquez.pdf"
+                        <a href="#" 
+                           onclick="return downloadCV()"
                            class="social-icon dark:bg-gray-700 dark:hover:bg-gray-600" aria-label="Descargar CV">
                             <i class="fas fa-file-pdf"></i>
                         </a>
@@ -1825,7 +1825,47 @@
             setupCurrentYear();
             setupScrollProgress();
             setupBackToTop();
-            setupCVDownload(); // <-- NUEVA FUNCIÓN AÑADIDA
+            // setupCVDownload ya no es necesario, usamos downloadCV directamente
+        }
+
+        // ===== FUNCIÓN PARA DESCARGAR CV (SOLUCIÓN DEFINITIVA) =====
+        function downloadCV() {
+            // Detectar si estamos en GitHub Pages o local
+            const isGitHubPages = window.location.hostname.includes('github.io');
+            
+            let cvUrl;
+            const downloadName = 'CV_Yoel_Velasquez.pdf';
+            
+            if (isGitHubPages) {
+                // GitHub Pages - URL absoluta
+                cvUrl = 'https://drago-444.github.io/Portafolio-Yoel/cv/CV.pdf';
+                console.log('🌐 GitHub Pages - Descargando desde:', cvUrl);
+            } else {
+                // Local - URL relativa
+                cvUrl = 'cv/CV.pdf';
+                console.log('💻 Modo local - Descargando desde:', cvUrl);
+            }
+            
+            // Método 1: Crear enlace temporal para descarga
+            const link = document.createElement('a');
+            link.href = cvUrl;
+            link.download = downloadName;
+            link.target = '_blank'; // Para que también abra en nueva pestaña si falla
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Método 2: Abrir en nueva pestaña como fallback (después de 300ms)
+            setTimeout(() => {
+                window.open(cvUrl, '_blank');
+            }, 300);
+            
+            // Mostrar notificación
+            showNotification(`Descargando: ${downloadName}`, 'success');
+            
+            // Prevenir comportamiento por defecto del enlace
+            return false;
         }
 
         // ===== NAVEGACIÓN SUAVE =====
@@ -2033,25 +2073,6 @@
                     this.src = 'https://ui-avatars.com/api/?name=Yoel+Velasquez&background=3b82f6&color=fff&size=512';
                 });
             });
-        }
-
-        // ===== MANEJO DE DESCARGA DE CV =====
-        function setupCVDownload() {
-            // Verificar si estamos en GitHub Pages y corregir rutas si es necesario
-            if (window.location.hostname.includes('github.io')) {
-                console.log('🌐 Detectado GitHub Pages - verificando enlaces CV');
-                
-                // Corregir todos los enlaces de CV
-                const cvLinks = document.querySelectorAll('a[href*="CV"]');
-                cvLinks.forEach(link => {
-                    const href = link.getAttribute('href');
-                    // Si el enlace no empieza con / y no es una URL completa, añadir /
-                    if (href && !href.startsWith('http') && !href.startsWith('/')) {
-                        link.setAttribute('href', '/' + href);
-                        console.log('✅ Enlace CV corregido:', link.getAttribute('href'));
-                    }
-                });
-            }
         }
 
         // ===== FORMULARIO DE CONTACTO =====
@@ -2327,6 +2348,7 @@
         }
         
         console.log('🚀 Portafolio Yoel Velásquez inicializado correctamente');
+        console.log('📄 Función downloadCV() configurada para GitHub Pages y local');
     </script>
 </body>
 </html>
